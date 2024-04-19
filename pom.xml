@@ -6,12 +6,12 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+<!--		<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
 	</parent>
 	<groupId>com.univaq</groupId>
-	<artifactId>Planet Express</artifactId>
+	<artifactId>PlanetExpress</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Planet Express</name>
+	<name>PlanetExpress</name>
 	<description>Progetto Planet Express Viva la banda</description>
 
 
