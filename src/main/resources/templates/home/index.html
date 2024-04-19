@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="it"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/utils/layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<div layout:fragment="contenuto">
+    <div class="flex items-center justify-center mt-2 flex-col gap-5">
+        <div class="text-4xl font-bold uppercase">Home</div>
+        <a href="/dynamic" class="text-2xl text-gray-800 font-semibold hover:text-red-500 focus:text-red-500">Pagina con i dati Dinamici</a>
+        <a href="/db" class="text-2xl text-gray-800 font-semibold hover:text-red-500 focus:text-red-500">Pagina con i dati dal Database</a>
+    </div>
+</div>
+</body>
+</html>
