@@ -1,9 +1,8 @@
 package com.univaq.TestAgile.controller;
 
 import com.univaq.TestAgile.model.EsempioDati;
-import com.univaq.TestAgile.model.Pianta;
-import com.univaq.TestAgile.repository.MySqlRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+//import com.univaq.TestAgile.repository.MySqlRepository;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +12,8 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-    @Autowired
-    MySqlRepository mySqlRepository;
+  //  @Autowired
+   // MySqlRepository mySqlRepository;
 
     @GetMapping("/")
     public String index() {
@@ -37,10 +36,10 @@ public class HomeController {
         return "dynamic";
     }
 
-    @GetMapping("/db")
-    public String db(Model model) {
-        List<Pianta> datiEsempioDb = mySqlRepository.findAll();
-        model.addAttribute("testDatiEsempio", datiEsempioDb);
-        return "db";
-    }
+//    @GetMapping("/db")
+//    public String db(Model model) {
+//        List<Pianta> datiEsempioDb = mySqlRepository.findAll();
+//        model.addAttribute("testDatiEsempio", datiEsempioDb);
+//        return "db";
+//    }
 }
