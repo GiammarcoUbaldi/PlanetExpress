@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="/utils/layout">
+<head>
+    <title>Crea Cliente</title>
+</head>
+<body layout:fragment="contenuto">
+<h1>Crea Cliente</h1>
+<form action="/api/cliente/nuovo" method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required>
+
+    <label for="cognome">Cognome:</label>
+    <input type="text" id="cognome" name="cognome" required>
+
+    <button type="submit">Crea</button>
+</form>
+</body>
+</html>

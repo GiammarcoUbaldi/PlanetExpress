@@ -3,14 +3,16 @@ package com.univaq.TestAgile.controller;
 import com.univaq.TestAgile.model.Cliente;
 import com.univaq.TestAgile.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
 
-@org.springframework.web.bind.annotation.RestController
+@Controller
 @RequestMapping("/api/cliente")
-public class ClienteRestController {
+public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;
@@ -28,6 +30,12 @@ public class ClienteRestController {
     @PostMapping
     public Cliente createCliente(@RequestBody Cliente cliente) {
         return clienteRepository.save(cliente);
+    }
+
+    @PostMapping("/nuovo")
+    public String creaCliente(@ModelAttribute Cliente cliente) {
+        clienteRepository.save(cliente);
+        return "redirect:/db";
     }
 
 //        @PutMapping("/{id}")

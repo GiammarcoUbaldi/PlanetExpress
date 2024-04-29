@@ -23,5 +23,4 @@ public class ClienteService {
         return (List<Cliente>) clienteRepository.findAll();
     }
 
-
 }
