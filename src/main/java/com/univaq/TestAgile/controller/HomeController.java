@@ -2,6 +2,7 @@ package com.univaq.TestAgile.controller;
 
 import com.univaq.TestAgile.model.Cliente;
 
+import com.univaq.TestAgile.model.Evento;
 import com.univaq.TestAgile.service.ClienteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import java.util.List;
 public class HomeController {
     @Autowired
     ClienteService clienteService;
+    @Autowired
+    EventoController eventoController;
 
     @GetMapping("/")
     public String index() {
@@ -33,5 +36,11 @@ public class HomeController {
         return "db";
     }
 
+    @GetMapping("/mostraEventi")
+    public String mostraEventi(Model model) {
+        List<Evento> datiEsempioDb = eventoController.getAllEventi();
+        model.addAttribute("testDatiEsempio", datiEsempioDb);
+        return "/evento";
+    }
 
 }
