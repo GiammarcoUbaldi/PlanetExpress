@@ -6,10 +6,7 @@ import com.univaq.TestAgile.repository.ClienteRepository;
 import com.univaq.TestAgile.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,14 +17,33 @@ public class EventoController {
     @Autowired
     private EventoRepository eventoRepository;
 
-    @GetMapping("/giovanni")
-    public List<Evento> getAllEventi() {
-        return (List<Evento>) eventoRepository.findAll();
+    @GetMapping("/accettati")
+    public List<Evento> getEventiAccettati() {
+        return (List<Evento>) eventoRepository.findByAccettato("Accettato");
+    }
+
+    @GetMapping("/rifiutati")
+    public List<Evento> getEventiRifiutati() {
+        return (List<Evento>) eventoRepository.findByAccettato("Rifiutato");
+    }
+
+    @GetMapping("/in_sospeso")
+    public List<Evento> getEventiInSospeso() {
+        return (List<Evento>) eventoRepository.findByAccettato("In sospeso");
     }
 
     @PostMapping
     public Evento createEvento(@RequestBody Evento evento) {
         return eventoRepository.save(evento);
+    }
+
+    @GetMapping("/aggiornamento/{id}/{valoreNuovo}")
+    public String updateStato(@PathVariable long id, @PathVariable String valoreNuovo) {
+        Evento evento = eventoRepository.findById(id).get();
+        evento.setAccettato(valoreNuovo);
+        eventoRepository.save(evento);
+
+        return "redirect:/mostraEventi";
     }
 
 }

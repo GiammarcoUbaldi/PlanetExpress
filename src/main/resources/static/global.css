@@ -1,0 +1,9 @@
+.listaEventiAcc{
+    background-color: red;
+    border-radius: 40px;
+    border-width: 2px;
+    border-color: black;
+    color: black;
+    font-size: 2rem;
+    padding: 4rem;
+}

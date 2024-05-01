@@ -38,9 +38,14 @@ public class HomeController {
 
     @GetMapping("/mostraEventi")
     public String mostraEventi(Model model) {
-        List<Evento> datiEsempioDb = eventoController.getAllEventi();
-        model.addAttribute("testDatiEsempio", datiEsempioDb);
-        return "/evento";
+        List<Evento> eventiAccettatiDb = eventoController.getEventiAccettati();
+        List<Evento> eventiRifiutatiDb = eventoController.getEventiRifiutati();
+        List<Evento> eventiInSospesoDb = eventoController.getEventiInSospeso();
+        model.addAttribute("EventoAccettato", eventiAccettatiDb);
+        model.addAttribute("EventoRifiutato", eventiRifiutatiDb);
+        model.addAttribute("EventoInSospeso", eventiInSospesoDb);
+        model.addAttribute("testDatiEsempio", eventiInSospesoDb);
+        return "/Admin/listaEventi";
     }
 
 }

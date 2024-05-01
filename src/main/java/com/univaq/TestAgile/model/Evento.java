@@ -16,8 +16,8 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "nome_evento")
+    private String nomeEvento;
 
     @Column(name = "data_ora_evento")
     private LocalDateTime dataOraEvento;
@@ -37,35 +37,47 @@ public class Evento {
     @Column(name = "stato_evento")
     private String statoEvento;
 
+    @Column(name = "accettazione")
+    private String accettato;
     /*
     @Column(name = "admin_responsabile")
     private String adminResponsabile;
+*/
 
         @Column(name = "referente")
-    private String referente;
+    private String nomeReferente;
 
-     */
-
-    public Evento(String nome, LocalDateTime dataOraEvento, String luogo, String descrizione, LocalDateTime dataOraCreazione, String link_img, String statoEvento) {
-        this.nome = nome;
+    public Evento(String nome, String referente, LocalDateTime dataOraEvento, String luogo, String descrizione, LocalDateTime dataOraCreazione, String link_img, String statoEvento, String accettato) {
+        this.nomeEvento = nome;
+        this.nomeReferente = referente;
         this.dataOraEvento = dataOraEvento;
         this.luogo = luogo;
         this.descrizione = descrizione;
         this.dataOraCreazione = dataOraCreazione;
         this.link_img = link_img;
         this.statoEvento = statoEvento;
+        this.accettato = accettato;
+
     }
 
     public Evento() {
 
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeEvento() {
+        return nomeEvento;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeEvento(String nomeEvento) {
+        this.nomeEvento = nomeEvento;
+    }
+
+    public String getNomeReferente() {
+        return nomeReferente;
+    }
+
+    public void setNomeReferente(String nomeReferente) {
+        this.nomeEvento = nomeReferente;
     }
 
     public LocalDateTime getDataOraEvento() {
@@ -118,5 +130,13 @@ public class Evento {
 
     public Long getId() {
         return id;
+    }
+
+    public String getAccettato() {
+        return accettato;
+    }
+
+    public void setAccettato(String accettato) {
+        this.accettato = accettato;
     }
 }
