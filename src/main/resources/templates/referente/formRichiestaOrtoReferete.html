@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/utils/layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<div layout:fragment="contenuto">
+    <h1 class="my-4 font-semibold text-gray-800 text-center text-3xl">Form per richiedere di condividere un orto
+        <h1>
+            <div class="max-w-[400px] mx-auto flex items-center justify-center">
+                <form action="/api/orto-referente/add-richiesta-orto" method="post">
+                    <label for="nome" class="mb-1 block text-base font-medium text-[#07074D]">Nome Orto:</label>
+                    <input type="text" id="nome" name="nome" required
+                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                    <label for="descrizione"
+                           class="mb-1 block text-base font-medium text-[#07074D]">Descrizione:</label>
+                    <input type="text" id="descrizione" name="descrizione" required
+                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                    <label for="posizione" class="mb-1 block text-base font-medium text-[#07074D]">Posizione:</label>
+                    <input type="text" id="posizione" name="posizione" required
+                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                    <label for="dimensioneX" class="mb-1 block text-base font-medium text-[#07074D]">Dimensione
+                        x:</label>
+                    <input type="number" id="dimensioneX" name="dimensioneX" required
+                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                    <label for="dimensioneY" class="mb-1 block text-base font-medium text-[#07074D]">Dimensione
+                        y:</label>
+                    <input type="number" id="dimensioneY" name="dimensioneY" required
+                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                    <label for="numeroZolle" class="mb-1 block text-base font-medium text-[#07074D]">Numero
+                        zolle:</label>
+                    <input type="number" id="numeroZolle" name="numeroZolle" required
+                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                    <label for="nomeReferente" class="mb-1 block text-base font-medium text-[#07074D]">Nome
+                        Referente:</label>
+                    <input type="text" id="nomeReferente" name="nomeReferente" required
+                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                    <label for="infoAggiuntive" class="mb-1 block text-base font-medium text-[#07074D]">Info
+                        Aggiuntive:</label>
+                    <input type="text" id="infoAggiuntive" name="infoAggiuntive"
+                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                    <button type="submit"
+                            class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none mt-2 float-end">
+                        Invia
+                    </button>
+                </form>
+            </div>
+</div>
+</body>
+</html>

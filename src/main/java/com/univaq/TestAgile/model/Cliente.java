@@ -14,10 +14,10 @@ public class Cliente {
     private Long id;
 
     @Column(name = "nome") // Usiamo "nome" per tradurre firstName
-    private String nome;
+    private String nomeX;
 
     @Column(name = "cognome") // Usiamo "cognome" per tradurre lastName
-    private String cognome;
+    private String cognomeX;
 
     public Cliente(String giovanni, String rossi) {
     }
@@ -27,19 +27,19 @@ public class Cliente {
     }
 
     public String getNome() {
-        return nome;
+        return nomeX;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nomeX = nome;
     }
 
     public String getCognome() {
-        return cognome;
+        return cognomeX;
     }
 
     public void setCognome(String cognome) {
-        this.cognome = cognome;
+        this.cognomeX = cognome;
     }
     public Long getId() {
         return id;
@@ -49,8 +49,8 @@ public class Cliente {
     public String toString() {
         return "Cliente{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
+                ", nome='" + nomeX + '\'' +
+                ", cognome='" + cognomeX + '\'' +
                 '}';
     }
 }
