@@ -15,9 +15,12 @@ import java.util.List;
 @Controller
 public class HomeController {
     @Autowired
-    ClienteService clienteService;
+    ClienteController clienteController;
+
     @Autowired
     EventoController eventoController;
+
+
 
     @GetMapping("/")
     public String index() {
@@ -31,7 +34,7 @@ public class HomeController {
 
     @GetMapping("/db")
     public String db(Model model) {
-        List<Cliente> datiEsempioDb = clienteService.getTuttiClienti();
+        List<Cliente> datiEsempioDb = clienteController.getAllClienti();
         model.addAttribute("testDatiEsempio", datiEsempioDb);
         return "db";
     }
@@ -41,6 +44,10 @@ public class HomeController {
         List<Evento> datiEsempioDb = eventoController.getAllEventi();
         model.addAttribute("testDatiEsempio", datiEsempioDb);
         return "/evento";
+    }
+    @GetMapping("/form-richiesta-orto-referente")
+    public String mostraFormRichiestaOrtoReferente(Model model) {
+        return "/referente/formRichiestaOrtoReferete";
     }
 
 }
