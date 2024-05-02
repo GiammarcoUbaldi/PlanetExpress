@@ -15,7 +15,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between; /* Allinea gli elementi in header */
-    position: sticky; /* Aggiunto header fisso */
+    position: relative; /* Aggiunto header fisso */
     top: 0;
     z-index: 1000; /* Aggiunto z-index per garantire che l'header sia sopra il contenuto */
 }
@@ -25,8 +25,15 @@ header {
     text-align: center; /* Centra il titolo */
 }
 
-.titolo img {
-    height: 60px;
+.image-button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.image-button img {
+    height: 48px;
     margin-right: 5px;
 }
 
@@ -39,9 +46,17 @@ header {
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
     cursor: pointer;
     margin: 5px; /* Margine tra i bottoni */
+}
+
+.absolute{
+    position: absolute;
+}
+
+.relative{
+    position: relative;
 }
 
 .container {

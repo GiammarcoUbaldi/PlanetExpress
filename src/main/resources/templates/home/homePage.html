@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/utils/layout">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +11,16 @@
     <link rel="stylesheet" href="/global.css">
 </head>
 <body>
-<header>
-    <div class="titolo">
-        <img src="/icon.png" alt="Logo PlanetExpress">
-        <h1>PlanetExpress</h1>
-    </div>
-    <button class="login-btn" onclick="window.location.href='pagina_login.html'">Login</button>
-</header>
-<div class="container">
-    <div class="big-title">COLTIVA NEL TUO ORTO!!!</div>
+<div layout:fragment="contenuto">
+    <div class="container">
+        <div class="big-title">COLTIVA NEL TUO ORTO!!!</div>
     <div class="btn-container">
-        <button class="custom-btn" onclick="window.location.href='pagina_candidatura_referenti.html'">Candidati come REFERENTE</button>
-        <button class="custom-btn" onclick="window.location.href='pagina_login.html'">Coltiva nel tuo ORTO</button>
+        <button class="custom-btn" onclick="window.location.href='/form-richiesta-orto-referente'">Candidati come REFERENTE</button>
+<!--        <button class="custom-btn" onclick="window.location.href='pagina_login.html'">Coltiva nel tuo ORTO</button>-->
     </div>
     <div class="events">
         <div class="btn-container">
-            <a href="pagina_eventi.html"><button class="btn events-forum-btn">Eventi</button></a>
+            <a href="/mostraEventi"><button class="btn events-forum-btn">Eventi</button></a>
         </div>
         <div class="event-preview">
             <h3>Roma</h3>
@@ -50,6 +48,7 @@
             <p>Sezione dedicata a condividere esperienze di coltivazione.</p>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

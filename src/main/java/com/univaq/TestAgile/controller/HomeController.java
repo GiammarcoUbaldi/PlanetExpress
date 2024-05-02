@@ -23,8 +23,11 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-        return "/home/index";
+        return "/home/homePage";
     }
+
+    @GetMapping("/login")
+    public String login() {return "/login/login";}
 
     @GetMapping("/riempiDb")
     public String riempiDb() {
