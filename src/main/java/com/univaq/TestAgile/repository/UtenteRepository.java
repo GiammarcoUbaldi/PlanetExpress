@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 public interface UtenteRepository extends CrudRepository<Utente, Long> {
     Utente findByNomeAndPassword(String nome, String password);
-    List<Utente> findByRuolo(String tipo);
+    // List<Utente> findByRuolo(String tipo);
 
 }

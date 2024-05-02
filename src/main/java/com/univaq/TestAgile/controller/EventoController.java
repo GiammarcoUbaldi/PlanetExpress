@@ -45,4 +45,8 @@ public class EventoController {
         return "redirect:/mostraEventi";
     }
 
+    @GetMapping("/get/{id}/")
+    public Evento getEventoById(@PathVariable long id) {
+        return eventoRepository.findById(id).get();
+    }
 }
