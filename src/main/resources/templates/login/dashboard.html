@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="/utils/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div layout:fragment="contenuto" class="flex items-center gap-4 flex-col">
+    <h1 class="text-3xl font-bold">Dashboard</h1>
+    <div class="text-xl font-medium">
+        <h2>Ciao,<span th:text="${utente.getNome()}"></span></h2>
+        <h2>Tipo di Utente: <span th:text="${utente.getTipo()}"></span></h2>
+    </div>
+</div>
+
+</body>
+</html>

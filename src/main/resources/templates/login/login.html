@@ -1,27 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="/utils/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benvenuto - Urban Gardens</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="welcome-container">
-    <h2>Benvenuto</h2>
-    <div id="welcome-message"></div>
+<div layout:fragment="contenuto" class="flex items-center justify-center gap-4 flex-col mt-12">
+    <div class="container mx-auto mt-10">
+        <div class="w-full max-w-sm p-4 mx-auto bg-white shadow-md rounded-lg">
+            <h1 class="text-2xl font-bold text-center mb-4">Accedi</h1>
+
+            <form action="/api/login/richiestaAccesso" method="get">
+                <div class="mb-4">
+                    <label for="nome" class="block text-gray-700">Nome Utente:</label>
+                    <input type="text" id="nome" name="nome"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700">Password:</label>
+                    <input type="text" id="password" name="password"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                <button type="submit"
+                        class="w-full py-2 px-4 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Accedi
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
 
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const role = urlParams.get('role');
-
-    const welcomeMessages = {
-        'utente': 'Benvenuto Cliente!',
-        'referente': 'Benvenuto Referente!',
-        'amministratore': 'Benvenuto Admin!'
-    };
-    document.getElementById('welcome-message').innerText = welcomeMessages[role];
-</script>
 </body>
 </html>

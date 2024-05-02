@@ -12,6 +12,20 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.univaq.TestAgile.model.Evento;
+import com.univaq.TestAgile.model.OrtoReferente;
+import com.univaq.TestAgile.model.Utente;
+import com.univaq.TestAgile.repository.EventoRepository;
+import com.univaq.TestAgile.repository.OrtoReferenteRepository;
+import com.univaq.TestAgile.repository.UtenteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/api/riempiDb")
 public class RiempiDbCotroller {
@@ -152,5 +166,17 @@ public class RiempiDbCotroller {
     public void inserisciDati() {
         inserisciDatiEvento();
         inserisciDatiOrtoReferente();
+        inserisciDatiUtente();
+    }
+
+    @Autowired
+    private UtenteRepository utenteRepository;
+    private void inserisciDatiUtente() {
+        List<Utente> eventi = new ArrayList<Utente>();
+        eventi.add(new Utente("utente", "password", "utente"));
+        eventi.add(new Utente("admin", "password", "admin"));
+        eventi.add(new Utente("referent", "password", "referente"));
+        utenteRepository.deleteAll();
+        utenteRepository.saveAll(eventi);
     }
 }
