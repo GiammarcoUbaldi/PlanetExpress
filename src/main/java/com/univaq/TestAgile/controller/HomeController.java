@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -43,8 +44,14 @@ public class HomeController {
         model.addAttribute("EventoAccettato", eventiAccettatiDb);
         model.addAttribute("EventoRifiutato", eventiRifiutatiDb);
         model.addAttribute("EventoInSospeso", eventiInSospesoDb);
-        model.addAttribute("testDatiEsempio", eventiInSospesoDb);
         return "/admin/listaEventi";
+    }
+
+    @GetMapping("/mostraDettagliEvento/{id}")
+    public String mostraDettagliEvento(Model model, @PathVariable long id) {
+        Evento evento = eventoController.getEventoById(id);
+        model.addAttribute("datiDettagli", evento);
+        return "/admin/dettagliEvento";
     }
 
     @GetMapping("/form-richiesta-orto-referente")
