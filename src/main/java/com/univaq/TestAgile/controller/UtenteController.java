@@ -45,6 +45,6 @@ public class UtenteController {
     // Endpoint per ottenere utenti per tipo
     @GetMapping("/by-type/{tipo}")
     public List<Utente> getUtentiByType(@PathVariable String tipo) {
-        return utenteRepository.findByRuolo(tipo);
+        return utenteRepository.findByTipo(tipo);
     }
 }
