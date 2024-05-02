@@ -554,6 +554,40 @@ video {
   --tw-contain-style:  ;
 }
 
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -568,6 +602,10 @@ video {
 
 .float-end {
   float: inline-end;
+}
+
+.m-4 {
+  margin: 1rem;
 }
 
 .-mx-4 {
@@ -611,6 +649,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
 }
 
 .block {
@@ -687,6 +729,10 @@ video {
 
 .max-w-\[400px\] {
   max-width: 400px;
+}
+
+.max-w-\[500px\] {
+  max-width: 500px;
 }
 
 .max-w-screen-xl {
@@ -778,6 +824,10 @@ video {
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
 }
 
 .rounded-full {
@@ -1131,6 +1181,12 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-2xl {
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -1429,103 +1485,4 @@ video {
       color: rgb(59 130 246 / var(--tw-text-opacity));
     }
   }
-}
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9fafb; /* Cambiato colore di sfondo */
-  color: #333; /* Cambiato colore del testo principale */
-  line-height: 1.6; /* Aggiunto spazio tra le righe */
-}
-
-header {
-  background-color: #2ecc71;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Allinea gli elementi in header */
-  position: sticky; /* Aggiunto header fisso */
-  top: 0;
-  z-index: 1000; /* Aggiunto z-index per garantire che l'header sia sopra il contenuto */
-}
-
-.titolo {
-  flex-grow: 1; /* Fai espandere il titolo per occupare lo spazio rimanente */
-  text-align: center; /* Centra il titolo */
-}
-
-.titolo img {
-  height: 60px;
-  margin-right: 5px;
-}
-
-.titolo h1 {
-  margin: 0; /* Rimuovi i margini per il titolo */
-}
-
-.login-btn, .custom-btn {
-  background-color: #3498db; /* Colore del bottone */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 5px; /* Margine tra i bottoni */
-}
-
-.container {
-  margin: 0 auto; /* Centrare orizzontalmente la sezione */
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px; /* Aggiunto bordo arrotondato */
-  background-color: #fff; /* Colore di sfondo */
-}
-
-.big-title {
-  font-size: 60px; /* Aumentato dimensione del titolo */
-  margin-bottom: 20px;
-  color: black; /* Cambiato colore del titolo */
-}
-
-.events, .forum {
-  background-color: #fff;
-  color: #333;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  width: 45%;
-  margin-right: 5%;
-  vertical-align: top;
-}
-.event-preview, .forum-preview {
-  border: 1px solid #ddd;
-  background-color: #f9f9f9;
-  padding: 10px;
-  margin-bottom: 15px;
-}
-
-.btn-container {
-  display: flex;
-  justify-content: center; /* Centrato i bottoni */
-  margin-top: 20px;
-}
-
-.btn {
-  background-color: #d40f0f; /* Cambiato colore dei bottoni */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease; /* Aggiunto effetto di transizione */
-}
-
-.btn:hover {
-  background-color: #27ae60; /* Cambiato colore al passaggio del mouse */
 }

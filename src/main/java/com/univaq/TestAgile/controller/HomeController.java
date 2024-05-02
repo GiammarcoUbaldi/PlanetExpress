@@ -3,7 +3,7 @@ package com.univaq.TestAgile.controller;
 import com.univaq.TestAgile.model.Cliente;
 
 import com.univaq.TestAgile.model.Evento;
-import com.univaq.TestAgile.service.ClienteService;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,29 +14,22 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-    @Autowired
-    ClienteController clienteController;
 
     @Autowired
     EventoController eventoController;
 
-
+    @Autowired
+    RiempiDbCotroller riempiDbCotroller;
 
     @GetMapping("/")
     public String index() {
         return "/home/index";
     }
 
-    @GetMapping("/salvaCliente")
-    public String inserisciCliente() {
-        return "/salvaCliente";
-    }
-
-    @GetMapping("/db")
-    public String db(Model model) {
-        List<Cliente> datiEsempioDb = clienteController.getAllClienti();
-        model.addAttribute("testDatiEsempio", datiEsempioDb);
-        return "db";
+    @GetMapping("/riempiDb")
+    public String riempiDb() {
+        riempiDbCotroller.inserisciDati();
+        return "redirect:/";
     }
 
     @GetMapping("/mostraEventi")
@@ -48,8 +41,9 @@ public class HomeController {
         model.addAttribute("EventoRifiutato", eventiRifiutatiDb);
         model.addAttribute("EventoInSospeso", eventiInSospesoDb);
         model.addAttribute("testDatiEsempio", eventiInSospesoDb);
-        return "/Admin/listaEventi";
+        return "/admin/listaEventi";
     }
+
     @GetMapping("/form-richiesta-orto-referente")
     public String mostraFormRichiestaOrtoReferente(Model model) {
         return "/referente/formRichiestaOrtoReferete";
