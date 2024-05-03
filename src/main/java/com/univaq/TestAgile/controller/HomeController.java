@@ -1,6 +1,5 @@
 package com.univaq.TestAgile.controller;
 
-import com.univaq.TestAgile.model.Cliente;
 
 import com.univaq.TestAgile.model.Evento;
 

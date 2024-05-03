@@ -20,6 +20,7 @@ public class LoginController {
         System.out.println(utente);
         if(utente!=null){
             model.addAttribute("utente", utente);
+            model.addAttribute("loggato", true);
             return "/login/dashboard";
         }else{
             return "redirect:/";

@@ -64,7 +64,7 @@ public class RiempiDbCotroller {
                 "Tecniche per un'irrigazione efficiente e sostenibile",
                 LocalDateTime.now(),
                 "https://source.unsplash.com/random/300x300?seed=1234435",
-                "Aperto",
+                "Passato",
                 "Accettato"));
         eventi.add(new Evento("Festa di inaugurazione orto",
                 "Gruppo Ortolani",
@@ -73,7 +73,7 @@ public class RiempiDbCotroller {
                 "Festa per celebrare l'apertura dell'orto e conoscere i nuovi partecipanti",
                 LocalDateTime.now(),
                 "https://source.unsplash.com/random/300x300?seed=1232345",
-                "Organizzato",
+                "Prossimo",
                 "Accettato"));
         eventi.add(new Evento(
                 "Condivisione semi e piantine",
@@ -83,7 +83,7 @@ public class RiempiDbCotroller {
                 "Porta i tuoi semi e piantine in eccedenza e scambiali con gli altri",
                 LocalDateTime.now(),
                 "https://source.unsplash.com/random/300x300?seed=134245",
-                "In Corso",
+                "Passato",
                 "In sospeso"));
         eventi.add(new Evento("Laboratorio di compostaggio",
                 "Esperto di Compostaggio",

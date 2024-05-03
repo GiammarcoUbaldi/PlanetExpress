@@ -1,6 +1,5 @@
 package com.univaq.TestAgile.controller;
 
-import com.univaq.TestAgile.model.Cliente;
 import com.univaq.TestAgile.model.OrtoReferente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

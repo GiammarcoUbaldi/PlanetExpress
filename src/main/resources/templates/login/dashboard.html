@@ -11,8 +11,15 @@
     <div class="text-xl font-medium">
         <h2>Ciao,<span th:text="${utente.getNome()}"></span></h2>
         <h2>Tipo di Utente: <span th:text="${utente.getTipo()}"></span></h2>
-        <a href="/admin/richieste-orto-referente">Visualizza richiesta</a>
+        <div th:if="${utente.getTipo() == 'admin'}">
+        </br>
+        <a href="/admin/richieste-orto-referente" class="px-3 py-2 bg-green-400 rounded-full">Visualizza Richieste Orti</a>
+        </br>
+        </br>
+        </br>
+        <a href="/mostraEventi" class="px-3 py-2 bg-yellow-400 rounded-full">Visualizza Eventi</a>
 <!--        Ricordare su <a> di fare un bottone -->
+    </div>
     </div>
 </div>
 

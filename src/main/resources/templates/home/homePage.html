@@ -12,17 +12,17 @@
 </head>
 <body>
 <div layout:fragment="contenuto">
-    <div class="container">
+    <div class="container text-center mx-auto">
         <div class="big-title">COLTIVA NEL TUO ORTO!!!</div>
-    <div class="btn-container">
-        <button class="custom-btn" onclick="window.location.href='/form-richiesta-orto-referente'">Candidati come REFERENTE</button>
+    <div class="flex items-center my-8 w-full flex-row justify-center">
+        <button class="custom-btn rounded-full " onclick="window.location.href='/form-richiesta-orto-referente'">Candidati come REFERENTE</button>
 <!--        <button class="custom-btn" onclick="window.location.href='pagina_login.html'">Coltiva nel tuo ORTO</button>-->
     </div>
     <div class="events">
         <div class="btn-container">
-            <a href="/mostraEventi"><button class="btn events-forum-btn">Eventi</button></a>
+            <a href="#"><button class="btn events-forum-btn ">Eventi</button></a>
         </div>
-        <div class="event-preview">
+        <div class="event-preview mt-4">
             <h3>Roma</h3>
             <p>Descrizione dell'evento a ROMA.</p>
         </div>
@@ -31,11 +31,12 @@
             <p>Descrizione dell'evento a Urbino.</p>
         </div>
     </div>
-    <div class="forum">
-        <div class="btn-container">
+        </br>
+    <div class="forum mt-4">
+        <div class="btn-container ">
             <a href="pagina_forum.html"><button class="btn events-forum-btn">Forum</button></a>
         </div>
-        <div class="forum-preview">
+        <div class="forum-preview mt-4">
             <h3>Cibo</h3>
             <p>Sezione dedicata a discutere di ricette, piante commestibili, e altro.</p>
         </div>
