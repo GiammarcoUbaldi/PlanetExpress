@@ -857,10 +857,6 @@ video {
   border-width: 1px;
 }
 
-.border-\[3px\] {
-  border-width: 3px;
-}
-
 .border-\[2px\] {
   border-width: 2px;
 }
@@ -1296,6 +1292,11 @@ video {
 
 .duration-75 {
   transition-duration: 75ms;
+}
+
+.hover\:bg-\[\#66E153\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(102 225 83 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-blue-600:hover {

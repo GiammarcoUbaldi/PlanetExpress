@@ -1,5 +1,24 @@
+
+.font-quicksand {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+
+.font-jua {
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.font-titan {
+    font-family: "Titan One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Jua", sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f9fafb; /* Cambiato colore di sfondo */
@@ -26,7 +45,6 @@ header {
 }
 
 
-
 .image-button {
     height: 48px;
     margin-right: 5px;
@@ -46,11 +64,11 @@ header {
     margin: 5px; /* Margine tra i bottoni */
 }
 
-.absolute{
+.absolute {
     position: absolute;
 }
 
-.relative{
+.relative {
     position: relative;
 }
 
@@ -79,6 +97,7 @@ header {
     /*margin-right: 5%;*/
     vertical-align: top;
 }
+
 .event-preview, .forum-preview {
     border: 1px solid #ddd;
     background-color: #f9f9f9;
@@ -106,3 +125,5 @@ header {
 .btn:hover {
     background-color: #27ae60; /* Cambiato colore al passaggio del mouse */
 }
+
+
