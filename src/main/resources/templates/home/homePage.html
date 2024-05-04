@@ -20,8 +20,11 @@
     </div>
 
 
-        <div class="my-8">
-            <div th:insert="~{/components/_button :: button(nome='Il mio bottone', tipo='normale', colore='verde')}"></div>
+        <div class="my-8 flex items-center justify-center">
+            <div class=""
+                 th:insert="~{/components/_button :: button(nome='Avanti', tipo='normale', colore='verde',href='/',iconaSrc='/icons/cuoreVerde.svg',dimIcona='6')}"></div>
+            <div class="my-4" th:insert="~{/components/_button :: button(nome='Dettagli', tipo='normale', colore='giallo',href='/')}"></div>
+            <div class="mt-4" th:insert="~{/components/_button :: button(nome='Rifiuta', tipo='normale', colore='rosso',href='/',size='text-3xl')}"></div>
 
         </div>
 
