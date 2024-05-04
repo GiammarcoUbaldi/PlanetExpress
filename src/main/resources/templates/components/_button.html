@@ -1,0 +1,14 @@
+<!--Componente Button -->
+<div th:switch="${tipo}" th:fragment="button">
+
+    <button th:case="'normale'" th:text="${nome}"
+    class="rounded-full border-[2px] bg-verdeSuccessoBG text-verdeSuccessoText border-verde1 px-4 py-2 font-semibold text-xl"
+    ></button>
+
+
+
+    <button th:case="'speciale'" th:text="'⭐ ' + ${nome}" th:style="'background-color:' + ${colore}"></button>
+    <!-- Aggiungi altri casi se necessario -->
+    <button th:case="*" th:text="''" th:style="'background-color:' + ${colore}"></button>
+</div>
+
