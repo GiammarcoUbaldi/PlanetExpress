@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/utils/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orto Referente</title>
+</head>
+<body>
+<div layout:fragment="contenuto">
+    <!--    Cielo  -->
+    <div class="text-3xl md:text-4xl lg:text-6xl text-verde1 text-center w-full bg-celeste2 py-8 px-4">Il tuo orto</div>
+    <!--    Cancello -->
+    <div class="w-screen">
+        <img class="w-full" src="/bg/bgOrto.svg" alt="Sfondo di un paesaggio"/>
+    </div>
+    <!--    Sfondo Verde      -->
+    <div class="w-full bg-verde4 h-screen">
+    <div class="grid grid-cols-5 grid-rows-3 p-8">
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio='carota')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+        <div class="" th:insert="~{/components/orto/_zollaDiTerreno :: terra(nome='Nickname')}"></div>
+
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!--Componente Input
+tipo
+id
+label
+size
+-->
+<div th:switch="${tipo}" th:fragment="input" th:class="${size?:'text-xl text-verde1'}">
+
+    <div th:case="'text'" class="flex flex-col items-start">
+        <label th:for="${id}" th:text="${label}"
+               th:class="${classLabel + ' font-semibold ml-5'}"></label>
+        <input type="text" th:id="${id}"
+               th:class="${'rounded-full border-2 border-verde1 px-3 p-2 ' + classInput}">
+    </div>
+
+</div>
+

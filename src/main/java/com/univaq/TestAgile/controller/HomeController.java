@@ -29,6 +29,9 @@ public class HomeController {
     @GetMapping("/login")
     public String login() {return "/login/login";}
 
+    @GetMapping("/visualizzaOrtoReferente")
+    public String mostraOrtoReferente() {return "/referente/orto/visualizzaOrtoReferente";}
+
     @GetMapping("/riempiDb")
     public String riempiDb() {
         riempiDbCotroller.inserisciDati();
