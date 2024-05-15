@@ -41,7 +41,7 @@ public class Zolla {
     @Column(name = "proprietario")
     private String proprietario;
 
-    public Zolla(String nome, String tipoTerreno, String ortaggio, Date semina, String stato, Date dataScadenza, Date dataPrenotazione, String proprietario) {
+    public Zolla(String nome, String tipoTerreno, String ortaggio, Date semina, String stato, Date dataScadenza, Date dataPrenotazione, String proprietario, OrtoReferente orto) {
         this.nome = nome;
         this.tipoTerreno = tipoTerreno;
         this.ortaggio = ortaggio;
@@ -50,6 +50,7 @@ public class Zolla {
         this.dataScadenza = dataScadenza;
         this.dataPrenotazione = dataPrenotazione;
         this.proprietario = proprietario;
+        this.orto = orto;
     }
 
     public Zolla() {

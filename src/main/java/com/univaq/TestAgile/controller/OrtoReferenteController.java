@@ -60,7 +60,6 @@ public class OrtoReferenteController {
         ortoReferenteRepository.save(tempOrto);
 
 
-
         return "redirect:/admin/richieste-orto-referente";
     }
 
@@ -73,13 +72,10 @@ public class OrtoReferenteController {
     public void insertZolleVuote(@PathVariable OrtoReferente orto) {
         int dimensioneX = orto.getDimensioneX();
         int dimensioneY = orto.getDimensioneY();
-        System.out.println("Mi hai chiamato");
-        System.out.println(orto);
-        System.out.println(dimensioneX);
-        System.out.println(dimensioneY);
+
         for (int x = 1; x <= dimensioneX; x++) {
             for (int y = 1; y <= dimensioneY; y++) {
-                Zolla zolla = new Zolla("Zolla_" + x + "_" + y, "sabbioso", null, null, null, null, null, null);
+                Zolla zolla = new Zolla("Zolla_" + x + "_" + y, "sabbioso", null, null, null, null, null, null, orto);
                 zollaRepository.save(zolla);
             }
         }

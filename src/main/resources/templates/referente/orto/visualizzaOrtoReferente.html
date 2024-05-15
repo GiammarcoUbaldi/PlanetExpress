@@ -31,31 +31,34 @@
                 <div th:insert="~{/components/orto/_zollaDiTerreno ::  terra(ortaggio=${zolla.getOrtaggio()},id=${zolla.getId()})}"></div>
             </div>
         </div>
-            <div class="grid container mx-auto grid-rows-1 text-center px-8"
-                 th:style="'grid-template-columns: repeat(' + ${ortoReferente.getDimensioneX()} + ', minmax(0, 1fr)); '">
-                <div class="text-6xl text-verde1 "  th:each="i : ${#numbers.sequence(1, ortoReferente.getDimensioneX())}" th:text="${i}"></div>
-            </div>
+        <div class="grid container mx-auto grid-rows-1 text-center px-8"
+             th:style="'grid-template-columns: repeat(' + ${ortoReferente.getDimensioneX()} + ', minmax(0, 1fr)); '">
+            <div class="text-6xl text-verde1 " th:each="i : ${#numbers.sequence(1, ortoReferente.getDimensioneX())}"
+                 th:text="${i}"></div>
+        </div>
 
-            <div class="p-8 container mx-auto">
-                <div class="text-4xl text-verde1 mb-4">Lista Zolle Occupate:</div>
-                <div id="desc1" class="w-full rounded-3xl border-verde1 border-8 bg-[#F4F4F4] p-8 text-center text-3xl transition-all duration-300
+        <div class="p-8 container mx-auto">
+            <div class="text-4xl text-verde1 mb-4">Lista Zolle Occupate:</div>
+            <div th:each="zolla, iStat : ${zolle}">
+                <div th:if="${zolla.getOrtaggio() != null}"
+                     id="desc1" class="w-full rounded-3xl border-verde1 border-8 bg-[#F4F4F4] p-8 text-center text-3xl transition-all duration-300
                    grid grid-cols-1 md:grid-cols-3 justify-items-center place-items-center">
                     <!--Parte Sinistra  -->
                     <div class="flex flex-col gap-4 text-verde1 text-xl md:text-3xl ">
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/piantina.svg" alt="icona pianta" class="w-10">
-                            <div class="">Ortaggio: Carote</div>
+                            <div class="">Ortaggio: <span th:text="${zolla.getOrtaggio()}"></span></div>
                         </div>
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/semi.svg" alt="icona semi" class="w-10">
-                            <div class="">Semina: 02/05/2024</div>
+                            <div class="">Semina: <span th:text="${zolla.getSemina()}"></span></div>
                         </div>
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/forchettaColtello.svg" alt="icona forchetta e coltello" class="w-10">
-                            <div class="">Stima Raccolta: 07/06/2024</div>
+                            <div class="">Stima Raccolta: <span th:text="${zolla.getSemina()}"></span></div>
                         </div>
                         <div class="flex flex-row items-center gap-4 self-center">
-                            <div class="">Stato: in crescita</div>
+                            <div class="">Stato: <span th:text="${zolla.getStato()}"></span></div>
                             <div class="c100 p75 green aspect-square">
                                 <span>75%</span>
                                 <div class="slice">
@@ -67,20 +70,20 @@
                     </div>
                     <!--Parte Centrale  -->
                     <div class="flex flex-col items-center justify-center ">
-                        <div class="text-3xl text-verde1">Zolla A2</div>
+                        <div class="text-3xl text-verde1"><span th:text="${zolla.getNome()}"></span></div>
                         <div class="aspect-[193/125] w-32 my-12"
-                             th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio='carota',id='1',noSelect='true')}"></div>
-                        <div class="">Tipo terreno: sabbioso</div>
+                             th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true')}"></div>
+                        <div class="">Tipo terreno: <span th:text="${zolla.getTipoTerreno()}"></span></div>
                     </div>
                     <!--Parte Destra  -->
                     <div class="justify-self-end flex flex-col gap-4 text-verde1 text-xl md:text-3xl ">
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/timer.svg" alt="icona timer" class="w-10">
-                            <div class="">Data Scadenza: 12/05/2024</div>
+                            <div class="">Data Scadenza: <span th:text="${zolla.getDataScadenza()}"></span></div>
                         </div>
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/farmer1.svg" alt="icona farmer" class="w-10">
-                            <div class="">Proprietario: Fabrizio</div>
+                            <div class="">Proprietario: <span th:text="${zolla.getProprietario()}"></span></div>
                         </div>
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/calendar1.svg" alt="icona calendar" class="w-10">
@@ -89,25 +92,25 @@
                     </div>
                     <div>
                     </div>
-
-
                 </div>
-                <script>
-                    $(document).ready(function () {
-                        $("#1").click(function () {
-                            $('html, body').animate({
-                                scrollTop: $("#desc1").offset().top
-                            }, 1000);
-                            $("#desc1").css("background-color", "#BAEBB9"); // Evidenzia il div
-                            setTimeout(function () {
-                                $("#desc1").css("background-color", "#F4F4F4"); // Rimuove lo stile CSS
-                            }, 1500);
-                        });
-                    });
-
-                </script>
             </div>
+
+            <script>
+                $(document).ready(function () {
+                    $("#10").click(function () {
+                        $('html, body').animate({
+                            scrollTop: $("#desc10").offset().top
+                        }, 1000);
+                        $("#desc10").css("background-color", "#BAEBB9"); // Evidenzia il div
+                        setTimeout(function () {
+                            $("#desc10").css("background-color", "#F4F4F4"); // Rimuove lo stile CSS
+                        }, 1500);
+                    });
+                });
+
+            </script>
         </div>
     </div>
+</div>
 </body>
 </html>
