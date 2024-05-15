@@ -8,5 +8,5 @@ public interface UtenteRepository extends CrudRepository<Utente, Long> {
     Utente findByNomeAndPassword(String nome, String password);
 
     List<Utente> findByTipo(String tipo);
-
+    boolean existsByEmail(String email);
 }
