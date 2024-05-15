@@ -36,18 +36,12 @@
         <div class="btn-container ">
             <a href="pagina_forum.html"><button class="btn events-forum-btn">Forum</button></a>
         </div>
-        <div class="forum-preview mt-4">
-            <h3>Cibo</h3>
-            <p>Sezione dedicata a discutere di ricette, piante commestibili, e altro.</p>
-        </div>
-        <div class="forum-preview">
-            <h3>Consigli</h3>
-            <p>Sezione dedicata a chiedere e dare consigli sulla coltivazione.</p>
-        </div>
-        <div class="forum-preview">
-            <h3>Esperienze</h3>
-            <p>Sezione dedicata a condividere esperienze di coltivazione.</p>
-        </div>
+       <div th:each="post: ${listaPost}">
+           <div th:text="${post.getTitolo()}"></div>
+           <div th:text="${post.getDescrizione()}"></div>
+           <div th:text="${post.getUsername()}"></div>
+
+       </div>
     </div>
 </div>
 </div>

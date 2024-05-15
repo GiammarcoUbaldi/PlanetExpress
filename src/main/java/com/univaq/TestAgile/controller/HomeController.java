@@ -4,6 +4,7 @@ package com.univaq.TestAgile.controller;
 import com.univaq.TestAgile.model.Evento;
 
 
+import com.univaq.TestAgile.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +22,12 @@ public class HomeController {
     @Autowired
     RiempiDbCotroller riempiDbCotroller;
 
+    @Autowired
+    private PostRepository postRepository;
+
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("listaPost", postRepository.findAll());
         return "/home/homePage";
     }
 
@@ -58,4 +63,8 @@ public class HomeController {
         return "/referente/formRichiestaOrtoReferete";
     }
 
+    @GetMapping("/creaPost")
+    public String creaPost() {
+        return "/Post/ScriviPost";
+    }
 }

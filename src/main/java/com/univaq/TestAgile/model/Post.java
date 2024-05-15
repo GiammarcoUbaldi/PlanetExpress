@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 @Entity
 @Table
-public class Commento {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class Commento {
     @Column(name = "descrizione")
     private String descrizione;
 
-    public Commento() {
+    public Post() {
     }
 
-    public Commento(String username, String tipo, String titolo, String descrizione) {
+    public Post(String username, String tipo, String titolo, String descrizione) {
         this.username = username;
         this.tipo = tipo;
         this.titolo = titolo;
