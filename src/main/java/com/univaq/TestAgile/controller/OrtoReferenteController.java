@@ -1,5 +1,6 @@
 package com.univaq.TestAgile.controller;
 
+import com.univaq.TestAgile.model.Evento;
 import com.univaq.TestAgile.model.OrtoReferente;
 import com.univaq.TestAgile.repository.OrtoReferenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,4 +49,10 @@ public class OrtoReferenteController {
         ortoReferenteRepository.save(temp);
         return "redirect:/admin/richieste-orto-referente";
     }
+
+    @GetMapping("/get/{id}/")
+    public OrtoReferente getEventoById(@PathVariable long id) {
+        return ortoReferenteRepository.findById(id).get();
+    }
+
 }

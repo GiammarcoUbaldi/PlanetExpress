@@ -29,8 +29,6 @@ public class HomeController {
     @GetMapping("/login")
     public String login() {return "/login/login";}
 
-    @GetMapping("/visualizzaOrtoReferente")
-    public String mostraOrtoReferente() {return "/referente/orto/visualizzaOrtoReferente";}
 
     @GetMapping("/riempiDb")
     public String riempiDb() {
@@ -54,11 +52,6 @@ public class HomeController {
         Evento evento = eventoController.getEventoById(id);
         model.addAttribute("datiDettagli", evento);
         return "/admin/dettagliEvento";
-    }
-
-    @GetMapping("/form-richiesta-orto-referente")
-    public String mostraFormRichiestaOrtoReferente(Model model) {
-        return "/referente/formRichiestaOrtoReferete";
     }
 
 }
