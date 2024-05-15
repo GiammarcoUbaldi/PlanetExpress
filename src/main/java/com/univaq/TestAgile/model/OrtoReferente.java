@@ -2,7 +2,7 @@ package com.univaq.TestAgile.model;
 
 import jakarta.persistence.*;
 import org.springframework.boot.context.properties.bind.DefaultValue;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+    import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories
 @Entity
