@@ -22,6 +22,9 @@ public class Utente {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "tipo_utente")
+    private String tipoUtente;
+
     @Column(name = "sesso")
     private String sesso;
 

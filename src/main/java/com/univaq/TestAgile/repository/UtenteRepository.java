@@ -7,6 +7,6 @@ import java.util.List;
 public interface UtenteRepository extends CrudRepository<Utente, Long> {
     Utente findByNomeAndPassword(String nome, String password);
 
-    List<Utente> findByTipo(String tipo);
+    List<Utente> findByTipoUtente(String tipo);
     boolean existsByEmail(String email);
 }

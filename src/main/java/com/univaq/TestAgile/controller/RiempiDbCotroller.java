@@ -172,11 +172,11 @@ public class RiempiDbCotroller {
     @Autowired
     private UtenteRepository utenteRepository;
     private void inserisciDatiUtente() {
-        List<Utente> eventi = new ArrayList<Utente>();
-        eventi.add(new Utente("utente", "password", "utente"));
-        eventi.add(new Utente("admin", "password", "admin"));
-        eventi.add(new Utente("referent", "password", "referente"));
-        utenteRepository.deleteAll();
-        utenteRepository.saveAll(eventi);
+//        List<Utente> eventi = new ArrayList<Utente>();
+////        eventi.add(new Utente("utente", "password", "utente"));
+////        eventi.add(new Utente("admin", "password", "admin"));
+////        eventi.add(new Utente("referent", "password", "referente"));
+//        utenteRepository.deleteAll();
+//        utenteRepository.saveAll(eventi);
     }
 }
