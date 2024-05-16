@@ -10,16 +10,26 @@
     <h1 class="text-3xl font-bold">Dashboard</h1>
     <div class="text-xl font-medium">
         <h2>Ciao,<span th:text="${utente.getNome()}"></span></h2>
-        <h2>Tipo di Utente: <span th:text="${utente.getTipo()}"></span></h2>
-        <div th:if="${utente.getTipo() == 'admin'}">
-        </br>
-        <a href="/admin/richieste-orto-referente" class="px-3 py-2 bg-green-400 rounded-full">Visualizza Richieste Orti</a>
-        </br>
-        </br>
-        </br>
-        <a href="/mostraEventi" class="px-3 py-2 bg-yellow-400 rounded-full">Visualizza Eventi</a>
-<!--        Ricordare su <a> di fare un bottone -->
-    </div>
+        <h2>Tipo di Utente: <span th:text="${utente.getTipoUtente()}"></span></h2>
+        <div th:if="${utente.getTipoUtente() == 'admin'}">
+            </br>
+            <a href="/admin/richieste-orto-referente" class="px-3 py-2 bg-green-400 rounded-full">Visualizza Richieste
+                Orti</a>
+            </br>
+            </br>
+            </br>
+            <a href="/mostraEventi" class="px-3 py-2 bg-yellow-400 rounded-full">Visualizza Eventi</a>
+            <!--        Ricordare su <a> di fare un bottone -->
+        </div>
+
+        <div>
+            <form action="/utente/dashboardModifica" method="get">
+                <input type="hidden" name="utenteId" th:value="${utente.getId()}">
+                <button type="submit" value="Modifica Dati" >Modifica Dati</button>
+            </form>
+        </div>
+
+
     </div>
 </div>
 

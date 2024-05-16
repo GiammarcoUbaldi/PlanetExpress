@@ -21,22 +21,22 @@ public class RegistrazioneController {
 
     @GetMapping("/form")
     public String registrazioneForm(Utente utente) {
-        return "/registrazione/form";
+        return "/Registrazione/registrazione";
     }
 
     @PostMapping("/submit")
     public String registrazioneSubmit( Utente utente, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "/registrazione/form";
+            return "/Registrazione/registrazione";
         }
 
         if (utenteRepository.existsByEmail(utente.getEmail())) {
             model.addAttribute("error", "Email già utilizzata, scegli un'altra email.");
-            return "/registrazione/form";
+            return "/Registrazione/registrazione";
         }
 
         utenteRepository.save(utente);
         model.addAttribute("utente", utente);
-        return "/registrazione/conferma";
+        return "redirect:/login";
     }
 }

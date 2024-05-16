@@ -42,18 +42,17 @@ public class Utente {
     public Utente() {
     }
 
-    public Utente(String nome, String cognome, String email, String password, String sesso, String indirizzo, String nazione, String numeroTelefono) {
+    public Utente(String nome, String cognome, String email, String password, String tipoUtente, String sesso, String indirizzo, String nazione, String numeroTelefono) {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.password = password;
+        this.tipoUtente = tipoUtente;
         this.sesso = sesso;
         this.indirizzo = indirizzo;
         this.nazione = nazione;
         this.numeroTelefono = numeroTelefono;
     }
-
-    // Getters e setters per tutti i campi
 
     public Long getId() {
         return id;
@@ -127,6 +126,14 @@ public class Utente {
         this.numeroTelefono = numeroTelefono;
     }
 
+    public String getTipoUtente() {
+        return tipoUtente;
+    }
+
+    public void setTipoUtente(String tipoUtente) {
+        this.tipoUtente = tipoUtente;
+    }
+
     @Override
     public String toString() {
         return "Utente{" +
@@ -139,6 +146,7 @@ public class Utente {
                 ", indirizzo='" + indirizzo + '\'' +
                 ", nazione='" + nazione + '\'' +
                 ", numeroTelefono='" + numeroTelefono + '\'' +
+                ", tipoUtente='" + tipoUtente + '\'' +
                 '}';
     }
 }

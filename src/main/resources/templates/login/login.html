@@ -13,8 +13,8 @@
 
             <form action="/api/login/richiestaAccesso" method="get">
                 <div class="mb-4">
-                    <label for="nome" class="block text-gray-700">Nome Utente:</label>
-                    <input type="text" id="nome" name="nome"
+                    <label for="email" class="block text-gray-700">Nome Utente:</label>
+                    <input type="email" id="email" name="email"
                            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                            required>
                 </div>
@@ -25,13 +25,18 @@
                            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                            required>
                 </div>
+                <!--                Gestione Errore-->
+                <div th:if="${error}" class="text-red-500 text-lg font-medium my-2 text-center">
+                    <p th:text="${error}"></p>
+                </div>
                 <button type="submit"
                         class="w-full py-2 px-4 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Accedi
                 </button>
             </form>
 
-            <p class="mt-4 text-center">Non hai ancora un account? <a href="/api/registrazione/form" class="text-blue-500">Registrati</a></p>
+            <p class="mt-4 text-center">Non hai ancora un account? <a href="/api/registrazione/form"
+                                                                      class="text-blue-500">Registrati</a></p>
         </div>
     </div>
 </div>

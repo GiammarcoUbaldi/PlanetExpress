@@ -1,53 +1,78 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="/utils/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifica Utente</title>
 </head>
 <body>
-<h1>Modifica Utente</h1>
+<div layout:fragment="contenuto" class="flex items-center justify-center gap-4 flex-col mt-4">
+    <div class="container mx-auto">
+        <div class="w-full max-w-sm p-4 mx-auto bg-white shadow-md rounded-lg">
+            <h1 class="text-2xl font-bold text-center mb-4">Modifica Dati Utente</h1>
+            <form action="/api/modifica-utente/submit" method="post">
+                <input type="hidden" name="id" th:value="${utente.getId()}">
 
-<form action="/api/modifica-utente/submit" method="post">
-    <input type="hidden" name="id" value="${utente.id}">
+                <div class="mb-4">
+                    <label for="nome" class="block text-gray-700">Nome:</label>
+                    <input type="text" id="nome" name="nome" th:value="${utente.getNome()}"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                <div class="mb-4">
+                    <label for="cognome" class="block text-gray-700">Cognome:</label>
+                    <input type="text" id="cognome" name="cognome" th:value="${utente.getCognome()}"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                <div class="mb-4">
+                    <label for="sesso" class="block text-gray-700">Sesso:</label>
+                    <select id="sesso" name="sesso"
+                            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            required>
+                        <option value="Maschio" th:selected="${utente.getSesso() == 'Maschio'}">Maschio</option>
+                        <option value="Femmina" th:selected="${utente.getSesso() == 'Femmina'}">Femmina</option>
+                        <option value="Altro" th:selected="${utente.getSesso() == 'Altro'}">Altro</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email:</label>
+                    <input type="email" id="email" name="email" th:value="${utente.getEmail()}"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700">Password:</label>
+                    <input type="password" id="password" name="password"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                <div class="mb-4">
+                    <label for="numeroTelefono" class="block text-gray-700">Numero di Telefono:</label>
+                    <input type="tel" id="numeroTelefono" name="numeroTelefono" th:value="${utente.getNumeroTelefono()}"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                <div class="mb-4">
+                    <label for="indirizzo" class="block text-gray-700">Indirizzo:</label>
+                    <input type="text" id="indirizzo" name="indirizzo" th:value="${utente.getIndirizzo()}"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
 
-    <div>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" value="${utente.nome}" required>
+                <button type="submit"
+                        class="w-full mt-4 py-2 px-4 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Salva Modifiche
+                </button>
+            </form>
+        </div>
+        <div class="text-lg font-medium text-center py-4 px-4 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-white border-verde1 border rounded-3xl ">
+            <p th:if="${success == 'ok'}">Le modifiche sono state salvate con successo.<br/>
+                <a href="/" class="bg-green-400 px-2 py-1 rounded-full border border-verde1 mt-8 text-verde1 font-medium">Vai alla home</a>
+            </p>
+            <p th:if="${success == 'no'}">Ci sono stati dei problemi riprova</p>
+        </div>
     </div>
-    <div>
-        <label for="cognome">Cognome:</label>
-        <input type="text" id="cognome" name="cognome" value="${utente.cognome}" required>
-    </div>
-    <div>
-        <label for="sesso">Sesso:</label>
-        <select id="sesso" name="sesso" required>
-            <option value="Maschio" ${utente.sesso == 'Maschio' ? 'selected' : ''}>Maschio</option>
-            <option value="Femmina" ${utente.sesso == 'Femmina' ? 'selected' : ''}>Femmina</option>
-            <option value="Altro" ${utente.sesso == 'Altro' ? 'selected' : ''}>Altro</option>
-        </select>
-    </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="${utente.email}" required>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <div>
-        <label for="numeroTelefono">Numero di Telefono:</label>
-        <input type="tel" id="numeroTelefono" name="numeroTelefono" value="${utente.numeroTelefono}" required>
-    </div>
-    <div>
-        <label for="indirizzo">Indirizzo:</label>
-        <input type="text" id="indirizzo" name="indirizzo" value="${utente.indirizzo}" required>
-    </div>
-
-    <button type="submit">Salva Modifiche</button>
-</form>
-
-<h2>Conferma</h2>
-<p>Le modifiche sono state salvate con successo.</p>
+</div>
 </body>
 </html>
