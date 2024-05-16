@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
-
+/*
 @Controller
 @RequestMapping("/api/modifica-utente")
 public class ModificaUtenteController {
@@ -25,9 +25,10 @@ public class ModificaUtenteController {
     @GetMapping
     public String mostraModificaUtente(@RequestParam Long id, Model model) {
         Utente utente = utenteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Utente non trovato"));
-        model.addAttribute("utente", utente);
+      //  model.addAttribute("utente", utente);
         return "/modifica-utente/form";
     }
+
 
     @PostMapping("/submit")
     public String modificaUtente(@Valid Utente utente, BindingResult bindingResult, Model model) {
@@ -39,4 +40,7 @@ public class ModificaUtenteController {
         model.addAttribute("utente", utente);
         return "/modifica-utente/conferma";
     }
+
+
 }
+*/

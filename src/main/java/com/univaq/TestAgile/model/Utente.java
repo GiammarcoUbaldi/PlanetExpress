@@ -1,7 +1,9 @@
 package com.univaq.TestAgile.model;
 
 import jakarta.persistence.*;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+@EnableJpaRepositories
 @Entity
 @Table(name = "utenti")
 public class Utente {
