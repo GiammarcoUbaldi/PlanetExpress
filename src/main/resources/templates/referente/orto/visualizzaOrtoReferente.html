@@ -22,7 +22,7 @@
     </div>
     <!--    Sfondo Verde     -->
     <div class="w-full bg-verde4 min-h-screen">
-        <div class="grid p-8 container mx-auto"
+        <div class="grid p-8 container lg:px-32 mx-auto"
              th:style="'grid-template-columns: repeat(' + ${ortoReferente.getDimensioneX()} + ', minmax(0, 1fr)); ' +
                'grid-template-rows: repeat(' + ${ortoReferente.getDimensioneY()} + ', minmax(0, 1fr));'">
             <!-- Inserisco le zolle nel orto-->
@@ -30,13 +30,13 @@
                 <div th:insert="~{/components/orto/_zollaDiTerreno ::  terra(ortaggio=${zolla.getOrtaggio()},id=${zolla.getId()})}"></div>
             </div>
         </div>
-        <div class="grid container mx-auto grid-rows-1 text-center px-8"
+        <div class="grid container lg:px-32 mx-auto grid-rows-1 text-center px-8"
              th:style="'grid-template-columns: repeat(' + ${ortoReferente.getDimensioneX()} + ', minmax(0, 1fr)); '">
             <div class="text-6xl text-verde1 " th:each="i : ${#numbers.sequence(1, ortoReferente.getDimensioneX())}"
                  th:text="${i}"></div>
         </div>
 
-        <div class="p-8 container mx-auto ">
+        <div class="p-8 container lg:px-32 mx-auto ">
             <div class="text-4xl text-verde1 mb-4">Lista Zolle Occupate:</div>
             <div th:each="zolla, iStat : ${zolle}" class="mt-4">
                 <div th:if="${zolla.getOrtaggio() != null}"
@@ -105,7 +105,7 @@
         </div>
 
         <div class="bg-[#38231E] min-h-screen w-full">
-            <div class="container px-4 mx-auto">
+            <div class="container lg:px-32 px-4 mx-auto">
                 <div class="text-4xl text-giallo1 mb-4">Lista Zolle Libere:</div>
                 <div th:each="zolla, iStat : ${zolle}" class="mt-4">
                     <div th:if="${zolla.getOrtaggio() == null}"

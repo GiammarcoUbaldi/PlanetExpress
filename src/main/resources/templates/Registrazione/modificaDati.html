@@ -66,7 +66,8 @@
                 </button>
             </form>
         </div>
-        <div class="text-lg font-medium text-center py-4 px-4 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-white border-verde1 border rounded-3xl ">
+
+        <div th:if="${success}"  class="text-lg font-medium text-center py-4 px-4 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-white border-verde1 border rounded-3xl ">
             <p th:if="${success == 'ok'}">Le modifiche sono state salvate con successo.<br/>
                 <a href="/" class="bg-green-400 px-2 py-1 rounded-full border border-verde1 mt-8 text-verde1 font-medium">Vai alla home</a>
             </p>
