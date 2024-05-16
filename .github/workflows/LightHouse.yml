@@ -39,7 +39,8 @@ jobs:
 
       - name: Run Lighthouse
         run: |
-          npx lighthouse http://localhost:8080 --output json --output-path ./your-spring-boot-app/lighthouse-report.json
+          npx lighthouse http://localhost:8080 --output json --output-path lighthouse-report.json
+
 
       - name: Upload Lighthouse Report
         uses: actions/upload-artifact@v2
