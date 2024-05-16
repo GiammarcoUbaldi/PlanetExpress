@@ -15,15 +15,15 @@ public class LoginController {
     UtenteRepository utenteRepository;
 
     @GetMapping("/richiestaAccesso")
-    public String getUtenteById(@RequestParam String nome, @RequestParam String password, Model model) {
-        Utente utente = utenteRepository.findByNomeAndPassword(nome,password);
-        System.out.println(utente);
+    public String getUtenteById(@RequestParam String email, @RequestParam String password, Model model) {
+        Utente utente = utenteRepository.findByEmailAndPassword(email,password);
         if(utente!=null){
             model.addAttribute("utente", utente);
             model.addAttribute("loggato", true);
             return "/login/dashboard";
         }else{
-            return "redirect:/";
+            model.addAttribute("error", "Utente non presente, Riprova");
+            return "/login/login";
         }
     }
 

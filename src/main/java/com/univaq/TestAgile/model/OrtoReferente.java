@@ -2,7 +2,9 @@ package com.univaq.TestAgile.model;
 
 import jakarta.persistence.*;
 import org.springframework.boot.context.properties.bind.DefaultValue;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+    import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import java.util.List;
 
 @EnableJpaRepositories
 @Entity
@@ -13,6 +15,9 @@ public class OrtoReferente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(mappedBy = "orto")
+    private List<Zolla> zolle;
 
     @Column(name = "nome")
     private String nome;

@@ -41,57 +41,63 @@ public class RiempiDbCotroller {
         List<Evento> eventi = new ArrayList<Evento>();
         eventi.add(new Evento("Preparazione terreno orto comune",
                 "Gruppo Ortolani",
+                1L,
                 LocalDateTime.of(2024, 05, 15, 10, 00),
                 "Orto Comunale - Via Roma",
                 "Preparazione del terreno per la semina e il trapianto",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x300?seed=1234345",
+                "https://source.unsplash.com/random/300x400?seed=1234345",
                 "Organizzato",
                 "Rifiutato"));
         eventi.add(new Evento("Semina ortaggi primaverili",
                 "Marta Verdi",
+                2L,
                 LocalDateTime.of(2024, 06, 01, 16, 00),
                 "Orto Comunale - Via Roma",
                 "Semina di pomodori, lattuga, carote e altre verdure",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x300?seed=2312345",
+                "https://source.unsplash.com/random/300x400?seed=2312345",
                 "In Corso",
                 "In sospeso"));
         eventi.add(new Evento("Corso di irrigazione efficiente",
                 "Esperto Irrigazione",
+                3L,
                 LocalDateTime.of(2024, 07, 10, 18, 00),
                 "Sala Conferenze - Comune di L'Aquila",
                 "Tecniche per un'irrigazione efficiente e sostenibile",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x300?seed=1234435",
+                "https://source.unsplash.com/random/300x400?seed=1234435",
                 "Passato",
                 "Accettato"));
         eventi.add(new Evento("Festa di inaugurazione orto",
                 "Gruppo Ortolani",
+                4L,
                 LocalDateTime.of(2024, 05, 25, 18, 00),
                 "Orto Comunale - Via Roma",
                 "Festa per celebrare l'apertura dell'orto e conoscere i nuovi partecipanti",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x300?seed=1232345",
+                "https://source.unsplash.com/random/300x400?seed=1232345",
                 "Prossimo",
                 "Accettato"));
         eventi.add(new Evento(
                 "Condivisione semi e piantine",
                 "Marta Verdi",
+                2L,
                 LocalDateTime.of(2024, 05, 25, 18, 00),
                 "Orto Comunale - Via Roma",
                 "Porta i tuoi semi e piantine in eccedenza e scambiali con gli altri",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x300?seed=134245",
+                "https://source.unsplash.com/random/300x400?seed=134245",
                 "Passato",
                 "In sospeso"));
         eventi.add(new Evento("Laboratorio di compostaggio",
                 "Esperto di Compostaggio",
+                5L,
                 LocalDateTime.of(2024, 07, 17, 15, 00),
                 "Sala Conferenze - Comune di L'Aquila",
                 "Impara a creare il tuo compost per nutrire il tuo orto in modo naturale",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x300?seed=12345",
+                "https://source.unsplash.com/random/300x400?seed=12345",
                 "Aperto",
                 "Rifiutato"));
         eventoRepository.deleteAll();
@@ -172,11 +178,12 @@ public class RiempiDbCotroller {
     @Autowired
     private UtenteRepository utenteRepository;
     private void inserisciDatiUtente() {
-        List<Utente> eventi = new ArrayList<Utente>();
-        eventi.add(new Utente("utente", "password", "utente"));
-        eventi.add(new Utente("admin", "password", "admin"));
-        eventi.add(new Utente("referent", "password", "referente"));
-        utenteRepository.deleteAll();
-        utenteRepository.saveAll(eventi);
+//        List<Utente> eventi = new ArrayList<Utente>();
+////        eventi.add(new Utente("utente", "password", "utente"));
+////        eventi.add(new Utente("admin", "password", "admin"));
+////        eventi.add(new Utente("referent", "password", "referente"));
+//        utenteRepository.deleteAll();
+//        utenteRepository.saveAll(eventi);
+
     }
 }

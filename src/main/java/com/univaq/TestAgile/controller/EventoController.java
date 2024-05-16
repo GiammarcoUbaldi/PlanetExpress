@@ -30,6 +30,14 @@ public class EventoController {
         return (List<Evento>) eventoRepository.findByAccettato("In sospeso");
     }
 
+    /*
+    @GetMapping("/proposti")
+    public List<Evento> getEventiProposti() {
+        return (List<Evento>) eventoRepository.findByProposto("");
+    }
+
+     */
+
     @PostMapping
     public Evento createEvento(@RequestBody Evento evento) {
         return eventoRepository.save(evento);

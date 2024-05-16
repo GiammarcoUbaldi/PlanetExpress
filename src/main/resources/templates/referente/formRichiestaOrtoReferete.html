@@ -5,60 +5,100 @@
       layout:decorate="/utils/layout">
 <head>
     <meta charset="UTF-8"/>
+
 </head>
 <body>
 
 <div layout:fragment="contenuto">
     <div class="bg-white p-4 m-4 mt-8 rounded-3xl max-w-[500px] mx-auto w-full shadow-2xl">
-    <h1 class="my-4 font-semibold text-gray-800 text-center text-3xl">Form per richiedere di condividere un orto
-        <h1>
-            <div class="max-w-[400px] mx-auto flex items-center justify-center">
-                <form action="/api/orto-referente/add-richiesta-orto" method="post">
-                    <label for="nome" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Nome Orto:</label>
-                    <input type="text" id="nome" name="nome" required
-                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+        <h1 class="my-4 font-semibold text-gray-800 text-center text-3xl">Form per richiedere di condividere un orto
+        </h1>
+        <div class="max-w-[400px] mx-auto flex items-center justify-center">
+            <form action="/api/orto-referente/add-richiesta-orto" method="post">
+                <label for="nome" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Nome
+                    Orto:</label>
+                <input type="text" id="nome" name="nome" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                    <label for="descrizione"
-                           class="mb-1 block text-base font-medium text-[#07074D] mt-1">Descrizione:</label>
-                    <input type="text" id="descrizione" name="descrizione" required
-                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                <label for="descrizione"
+                       class="mb-1 block text-base font-medium text-[#07074D] mt-1">Descrizione:</label>
+                <input type="text" id="descrizione" name="descrizione" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                    <label for="posizione" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Posizione:</label>
-                    <input type="text" id="posizione" name="posizione" required
-                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                <label for="posizione"
+                       class="mb-1 block text-base font-medium text-[#07074D] mt-1">Posizione:</label>
+                <input type="text" id="posizione" name="posizione" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                    <label for="dimensioneX" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Dimensione
-                        x:</label>
-                    <input type="number" id="dimensioneX" name="dimensioneX" required
-                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                <label for="dimensioneX" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Dimensione
+                    x:</label>
+                <input type="number" id="dimensioneX" name="dimensioneX" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                    <label for="dimensioneY" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Dimensione
-                        y:</label>
-                    <input type="number" id="dimensioneY" name="dimensioneY" required
-                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                <label for="dimensioneY" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Dimensione
+                    y:</label>
+                <input type="number" id="dimensioneY" name="dimensioneY" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                    <label for="numeroZolle" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Numero
-                        zolle:</label>
-                    <input type="number" id="numeroZolle" name="numeroZolle" required
-                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                    <label for="nomeReferente" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Nome
-                        Referente:</label>
-                    <input type="text" id="nomeReferente" name="nomeReferente" required
-                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                <div class="flex flex-row items-center">
+                    <div>Numero Zolle:</div>
+                    <div id='numZolleCalcolate'></div>
+                </div>
+                <!-- Campo nascosto per il numero di zolle -->
+                <input type="hidden" id="numZolle" name="numeroZolle">
 
-                    <label for="infoAggiuntive" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Info
-                        Aggiuntive:</label>
-                    <input type="text" id="infoAggiuntive" name="infoAggiuntive"
-                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                <label for="nomeReferente" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Nome
+                    Referente:</label>
+                <input type="text" id="nomeReferente" name="nomeReferente" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                    <button type="submit"
-                            class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none mt-2 float-end">
-                        Invia
-                    </button>
-                </form>
-            </div>
+                <label for="infoAggiuntive" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Info
+                    Aggiuntive:</label>
+                <input type="text" id="infoAggiuntive" name="infoAggiuntive"
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                <button type="submit"
+                        class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none mt-2 float-end">
+                    Invia
+                </button>
+            </form>
+        </div>
+
     </div>
+    <script>
+        $(document).ready(function () {
+            // Funzione per calcolare e aggiornare il numero di zolle
+            function updateNumZolle() {
+                // Ottieni i valori di dimensioneX e dimensioneY
+                const dimensioneX = parseInt(document.getElementById('dimensioneX').value);
+                const dimensioneY = parseInt(document.getElementById('dimensioneY').value);
+
+                // Calcola il numero di zolle
+                const numZolle = dimensioneX * dimensioneY;
+
+                // Inserisci il risultato nell'elemento numZolleCalcolate
+                if (isNaN(numZolle)) {
+                    document.getElementById('numZolleCalcolate').textContent = 0;
+                    document.getElementById('numZolle').value = 0;
+                } else {
+                    document.getElementById('numZolleCalcolate').textContent = numZolle;
+                    document.getElementById('numZolle').value = numZolle;
+                }
+            }
+
+            // Ottieni gli elementi di input
+            const dimensioneXInput = document.getElementById('dimensioneX');
+            const dimensioneYInput = document.getElementById('dimensioneY');
+
+            // Aggiungi un listener per l'evento di input su entrambi gli input
+            dimensioneXInput.addEventListener('input', updateNumZolle);
+            dimensioneYInput.addEventListener('input', updateNumZolle);
+        });
+
+    </script>
+
 </div>
+
 </body>
 </html>

@@ -7,31 +7,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>homePage</title>
+    <title>PlanetExpress</title>
     <link rel="stylesheet" href="/global.css">
 </head>
 <body>
 <div layout:fragment="contenuto">
-    <div class="container text-center mx-auto">
-        <div class="big-title">COLTIVA NEL TUO ORTO!!!</div>
-    <div class="flex items-center my-8 w-full flex-row justify-center">
-        <button class="custom-btn rounded-full " onclick="window.location.href='/form-richiesta-orto-referente'">Candidati come REFERENTE</button>
-<!--        <button class="custom-btn" onclick="window.location.href='pagina_login.html'">Coltiva nel tuo ORTO</button>-->
+    <div class="container lg:px-32 text-center mx-auto">
+        <!--        Title -->
+        <div class="mx-4 mt-8 lg:mx-32">
+            <img src="/bg/titleHome.svg" alt="Title Coltiva nel tuo orto" class="w-full ">
+        </div>
+
+        <div class="max-w-[350px] flex flex-col items-center justify-center my-32 w-full mx-auto">
+            <!-- Button inizia a coltivare -->
+            <a href="/login"
+               class="flex flex-row items-center gap-2 px-4 py-2 bg-verde4 text-white rounded-full font-medium text-xl boxShadowHomeButtonVerde">
+                <img src="/icons/farmer1.svg" alt="Icona Farmer" class="w-12 ">
+                Inizia a coltivare</a>
+
+            <!-- Button Candidati come referente -->
+            <a href="/referente/form-richiesta-orto" class="flex flex-row items-center gap-2 px-4 py-2 bg-rosso1 text-verde1 rounded-full boxShadowHomeButtonRosso font-medium text-xl mt-12">
+                <img src="/icons/corona.svg" alt="Icona Farmer" class="w-12 ">
+                Condividi il tuo orto e' diventa referente</a>
+        </div>
     </div>
-    <div class="events">
-        <div class="btn-container">
-            <a href="#"><button class="btn events-forum-btn ">Eventi</button></a>
-        </div>
-        <div class="event-preview mt-4">
-            <h3>Roma</h3>
-            <p>Descrizione dell'evento a ROMA.</p>
-        </div>
-        <div class="event-preview">
-            <h3>Urbino</h3>
-            <p>Descrizione dell'evento a Urbino.</p>
-        </div>
-    </div>
-        </br>
+
+  <!--       
     <div class="forum mt-4">
         <div class="btn-container ">
             <a href="pagina_forum.html"><button class="btn events-forum-btn">Forum</button></a>
@@ -41,9 +42,23 @@
            <div th:text="${post.getDescrizione()}"></div>
            <div th:text="${post.getUsername()}"></div>
 
-       </div>
+       </div>-->
+
+
+<!--        Stacchetto Home 1-->
+<div class="w-full mt-32">
+    <img src="/bg/homeStack1.png" alt="Stacchetto Home 1" class="w-full ">
+</div>
+<div class="bg-rosso1 h-full py-4 px-4 min-h-screen">
+    <div class="container text-center mx-auto">
+
     </div>
 </div>
+
+    <div class="bg-rosso1 w-full">
+        <img src="/bg/footerTemporaneo.png" alt="PianteFooter" class="w-full ">
+    </div>
+
 </div>
 </body>
 </html>
