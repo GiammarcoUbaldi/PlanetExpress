@@ -3,6 +3,10 @@ package com.univaq.TestAgile.model;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @EnableJpaRepositories
@@ -54,6 +58,23 @@ public class Zolla {
     }
 
     public Zolla() {
+    }
+
+    public String getGiorniPossesso(){
+        Date dataPrenotazioneDate = getDataPrenotazione();
+
+        // Convertire la data di prenotazione in LocalDate
+        Instant instant = dataPrenotazioneDate.toInstant();
+        LocalDate dataPrenotazione = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+
+        // Ottenere la data odierna
+        LocalDate dataOdierna = LocalDate.now();
+
+        // Calcolare la differenza di giorni
+        long giorniPossesso = ChronoUnit.DAYS.between(dataPrenotazione, dataOdierna);
+
+        // Convertire il risultato in una stringa e restituirlo
+        return String.valueOf(giorniPossesso);
     }
 
     public Long getId() {

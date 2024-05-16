@@ -13,16 +13,15 @@
 <body>
 <div layout:fragment="contenuto">
     <!--    Cielo  -->
-    <div class="text-3xl md:text-4xl lg:text-6xl text-verde1 text-center w-full bg-celeste2 pt-36 py-8 px-4">Il tuo
-        orto
+    <div class="text-3xl md:text-4xl lg:text-6xl text-verde1 text-center w-full bg-celeste2 pt-36 py-8 px-4">
+        L'Orto <span class="" th:text="${ortoReferente.getNome()}"></span>
     </div>
-    <!--    Cancello -->
+    <!--    Orto BG -->
     <div class="w-full">
-        <img class="w-full" src="/bg/bgOrto.svg" alt="Sfondo di un paesaggio"/>
+        <img class="w-full" src="/bg/bgOrtoCorto.png" alt="Sfondo di un paesaggio"/>
     </div>
     <!--    Sfondo Verde     -->
-    <div class="w-full bg-verde4 min-h-screen pb-52">
-        <div class="text-6xl text-verde1" th:text="${ortoReferente.getNumeroZolle()}">A</div>
+    <div class="w-full bg-verde4 min-h-screen">
         <div class="grid p-8 container mx-auto"
              th:style="'grid-template-columns: repeat(' + ${ortoReferente.getDimensioneX()} + ', minmax(0, 1fr)); ' +
                'grid-template-rows: repeat(' + ${ortoReferente.getDimensioneY()} + ', minmax(0, 1fr));'">
@@ -37,11 +36,11 @@
                  th:text="${i}"></div>
         </div>
 
-        <div class="p-8 container mx-auto">
+        <div class="p-8 container mx-auto ">
             <div class="text-4xl text-verde1 mb-4">Lista Zolle Occupate:</div>
-            <div th:each="zolla, iStat : ${zolle}">
+            <div th:each="zolla, iStat : ${zolle}" class="mt-4">
                 <div th:if="${zolla.getOrtaggio() != null}"
-                     id="desc1" class="w-full rounded-3xl border-verde1 border-8 bg-[#F4F4F4] p-8 text-center text-3xl transition-all duration-300
+                     th:id="'desc-zolla-'+${zolla.getId()}" class="w-full rounded-3xl border-verde1 border-8 bg-[#F4F4F4] p-8 text-center text-3xl transition-all duration-300
                    grid grid-cols-1 md:grid-cols-3 justify-items-center place-items-center">
                     <!--Parte Sinistra  -->
                     <div class="flex flex-col gap-4 text-verde1 text-xl md:text-3xl ">
@@ -51,11 +50,13 @@
                         </div>
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/semi.svg" alt="icona semi" class="w-10">
-                            <div class="">Semina: <span th:text="${zolla.getSemina()}"></span></div>
+                            <div class="">Semina: <span
+                                    th:text="${#dates.format(zolla.getSemina(), 'yyyy-MM-dd')}"></span></div>
                         </div>
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/forchettaColtello.svg" alt="icona forchetta e coltello" class="w-10">
-                            <div class="">Stima Raccolta: <span th:text="${zolla.getSemina()}"></span></div>
+                            <div class="">Stima Raccolta: <span
+                                    th:text="${#dates.format(zolla.getSemina(), 'yyyy-MM-dd')}"></span></div>
                         </div>
                         <div class="flex flex-row items-center gap-4 self-center">
                             <div class="">Stato: <span th:text="${zolla.getStato()}"></span></div>
@@ -79,7 +80,8 @@
                     <div class="justify-self-end flex flex-col gap-4 text-verde1 text-xl md:text-3xl ">
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/timer.svg" alt="icona timer" class="w-10">
-                            <div class="">Data Scadenza: <span th:text="${zolla.getDataScadenza()}"></span></div>
+                            <div class="">Data Scadenza: <span
+                                    th:text="${#dates.format(zolla.getDataScadenza(), 'yyyy-MM-dd')}"></span></div>
                         </div>
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/farmer1.svg" alt="icona farmer" class="w-10">
@@ -87,29 +89,63 @@
                         </div>
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/calendar1.svg" alt="icona calendar" class="w-10">
-                            <div class="">In suo possesso da 34 giorni</div>
+                            <div th:text="'In suo possesso da ' + ${zolla.getGiorniPossesso()} + ' giorni'"></div>
                         </div>
                     </div>
                     <div>
                     </div>
                 </div>
             </div>
-
-            <script>
-                $(document).ready(function () {
-                    $("#10").click(function () {
-                        $('html, body').animate({
-                            scrollTop: $("#desc10").offset().top
-                        }, 1000);
-                        $("#desc10").css("background-color", "#BAEBB9"); // Evidenzia il div
-                        setTimeout(function () {
-                            $("#desc10").css("background-color", "#F4F4F4"); // Rimuove lo stile CSS
-                        }, 1500);
-                    });
-                });
-
-            </script>
         </div>
+
+        <div class="bg-gradient-to-b h-52 w-full  from-[#96BA14] to-[#007231]"></div>
+        <!--    BG Orto Terra -->
+        <div class="w-full">
+            <img class="w-full" src="/bg/bgOrtoTerra.png" alt="Sfondo di un paesaggio"/>
+        </div>
+
+        <div class="bg-[#38231E] min-h-screen w-full">
+            <div class="container px-4 mx-auto">
+                <div class="text-4xl text-giallo1 mb-4">Lista Zolle Libere:</div>
+                <div th:each="zolla, iStat : ${zolle}" class="mt-4">
+                    <div th:if="${zolla.getOrtaggio() == null}"
+                         th:id="'desc-zolla-'+${zolla.getId()}" class="w-full rounded-3xl border-rosso1 border-8 bg-[#F4F4F4] p-8 text-center text-3xl transition-all duration-300
+                   grid grid-cols-1 md:grid-cols-3 justify-items-center place-items-center">
+                        <!--Parte Sinistra  -->
+                        <div class="flex flex-col gap-4 text-verde1 text-xl md:text-3xl "></div>
+                        <!--Parte Centrale  -->
+                        <div class="flex flex-col items-center justify-center ">
+                            <div class="text-3xl text-verde1"><span th:text="${zolla.getNome()}"></span></div>
+                            <div class="aspect-[193/125] w-32 my-12"
+                                 th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true')}"></div>
+                            <div class="">Tipo terreno: <span th:text="${zolla.getTipoTerreno()}"></span></div>
+                        </div>
+                        <!--Parte Destra  -->
+                        <div class="justify-self-end flex flex-col gap-4 text-verde1 text-xl md:text-3xl "></div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            $(document).ready(function () {
+                $("[id^='zolla-']").click(function () {
+                    let idCliccato = $(this).attr('id');
+                    let idDaTrovare = "#desc-" + idCliccato;
+                    $('html, body').animate({
+                        scrollTop: $(idDaTrovare).offset().top
+                    }, 1000);
+                    $(idDaTrovare).css("background-color", "#BAEBB9"); // Evidenzia il div
+                    setTimeout(function () {
+                        $(idDaTrovare).css("background-color", "#F4F4F4"); // Rimuove lo stile CSS
+                    }, 1500);
+                });
+            });
+        </script>
+
     </div>
 </div>
 </body>
