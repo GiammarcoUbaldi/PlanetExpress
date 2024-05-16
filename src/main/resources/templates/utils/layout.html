@@ -5,20 +5,30 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Planet Express</title>
+    <!--    Favicon   -->
     <link rel="icon" type="image/x-icon" href="/icon.png">
+
+    <!--    Css   -->
     <link rel="stylesheet" href="/output.css">
     <link rel="stylesheet" href="/global.css">
+
+    <!--    Font   -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Quicksand:wght@300..700&family=Titan+One&display=swap"
+          rel="stylesheet">
+
+    <!--    Script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
-<body class="bg-gradient-to-b from-cyan-100 to-green-100 min-h-screen w-full">
-<header class="w-full flex flex-row justify-center">
-    <div class="titolo2 flex flex-row items-center">
-        <a class="image-button" href="/">
-            <img src="/icon.png" alt="Logo PlanetExpress" class="w-[48px]">
-        </a>
-        <h1 class="text-2xl font-bold">PlanetExpress</h1>
-    </div>
-    <button class="login-btn  absolute right-3 rounded-full" onclick="window.location.href='/login'">Login</button>
+<body class="bg-bianco2 min-h-screen w-full">
+<header class="w-full flex flex-row justify-between bg-verde1 px-4 py-2">
+    <a class="flex flex-row items-center" href="/">
+        <img src="/icon.png" alt="Logo PlanetExpress" class="w-[48px] mr-2">
+        <h1 class="text-2xl font-medium">PlanetExpress</h1>
+    </a>
+    <button class="rounded-full px-2 py-0.5 font-medium text-lg bg-verdeSuccessoBG text-verde1" onclick="window.location.href='/login'">Login</button>
 </header>
 <div class="" layout:fragment="contenuto"></div>
 </body>
