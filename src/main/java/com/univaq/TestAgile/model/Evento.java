@@ -34,9 +34,11 @@ public class Evento {
     @Column(name = "link_img")
     private String link_img;
 
+    // Passato, futuro, presente
     @Column(name = "stato_evento")
     private String statoEvento;
 
+    //IN sospeso rifiutato e accettato
     @Column(name = "accettazione")
     private String accettato;
     /*
@@ -44,12 +46,16 @@ public class Evento {
     private String adminResponsabile;
 */
 
-        @Column(name = "referente")
+    @Column(name = "referente")
     private String nomeReferente;
 
-    public Evento(String nome, String referente, LocalDateTime dataOraEvento, String luogo, String descrizione, LocalDateTime dataOraCreazione, String link_img, String statoEvento, String accettato) {
+    @Column(name = "id_Referente")
+    private Long idReferente;
+
+    public Evento(String nome, String referente, Long idReferente, LocalDateTime dataOraEvento, String luogo, String descrizione, LocalDateTime dataOraCreazione, String link_img, String statoEvento, String accettato) {
         this.nomeEvento = nome;
         this.nomeReferente = referente;
+        this.idReferente = idReferente;
         this.dataOraEvento = dataOraEvento;
         this.luogo = luogo;
         this.descrizione = descrizione;
@@ -130,6 +136,16 @@ public class Evento {
 
     public Long getId() {
         return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getIdReferente() {
+        return idReferente;
+    }
+    public void setIdReferente(Long idRef) {
+        this.idReferente = idRef;
     }
 
     public String getAccettato() {

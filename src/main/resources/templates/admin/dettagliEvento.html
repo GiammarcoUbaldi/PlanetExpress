@@ -6,7 +6,119 @@
 <body>
 
 <div  layout:fragment="contenuto">
-    <div class="bg-white m-8 rounded-md py-12 2xl:px-20 md:px-6 px-4">
+
+    <div class="container bg-bianco2 min-h-screen mx-auto">
+
+        <div class="">
+            <h6 class=" text-verde1 py-10 font-extrabold text-5xl  text-center" th:text="${datiDettagli.nomeEvento}">
+            </h6>
+        </div>
+
+        <div class="grid-cols-2 grid">
+            <div class="aspect-square bg-blue-500 ">
+                <div class="aspect-[3/4] bg-verde1 m-10">
+                    <img class="w-full rounded-3xl" alt="Locandina dell'evento" th:src="${datiDettagli.getLink_img()}" />
+                </div>
+            </div>
+
+            <div class="aspect-square">
+                <div class="aspect-[3/4] m-10 bg-[#FFE8A3] border-verde1 border-2 p-8 rounded-lg">
+
+                    <div class="flex flex-col">
+
+                        <div class="text-3xl font-extrabold text-verde1 text-center">
+                            DETTAGLI
+                        </div>
+                        <div class="text-2xl text-verde1 text-center">
+                            Numero Partecipanti
+                        </div>
+                        <div class="pb-3 flex flex-row justify-between relative">
+                            <div class="text-2xl text-verde1">
+                                0
+                            </div>
+                            <div class="text-2xl text-verde1">
+                                max:70
+                            </div>
+                            <div class="h-[6px] bg-black rounded-full w-[75%] absolute  bottom-[-4px]"></div>
+                            <!-- <div class="h-[6px] bg-black rounded-full w-full absolute top-0 bottom-[-4px]"></div> -->
+                            <div class="rounded-full text-white bg-black px-2 py-1 absolute bottom-[-16px]
+                            transform -translate-x-[50%] left-[75%]">
+                                75
+                            </div>
+                        </div>
+
+                        <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
+
+                        <div class="py-3 flex flex-row justify-between">
+                            <div class="text-2xl text-verde1">
+                                Costo biglietti
+                            </div>
+                            <div class="text-2xl text-verde1 flex flex-row">
+                                <img src="/icons/money_details.svg" alt="icona" class="w-8 h-8 mr-2">
+                                10$
+                            </div>
+                        </div>
+
+                        <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
+
+                        <div class="py-3 flex flex-row justify-between">
+                            <div class="text-2xl text-verde1">
+                                Durata
+                            </div>
+                            <div class="text-2xl text-verde1">
+
+                                2:20h
+                            </div>
+                        </div>
+
+                        <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
+
+                        <div class="py-3 flex flex-row justify-between">
+                            <div class="text-2xl text-verde1">
+                                Tema evento
+                            </div>
+                            <div class="text-2xl text-verde1">
+                                Gara di ballo
+                            </div>
+                        </div>
+
+                        <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
+
+                        <div class="py-3 flex flex-row justify-between">
+                            <div class="">
+                                <img src="" loading="lazy" alt="" class="w-8 h-8">
+                                <p class="text-2xl text-verde1" th:text="${#temporals.format(datiDettagli.getDataOraEvento(), 'yyyy-MM-dd')}"> </p>
+
+                            </div>
+                            <div class="text-2xl text-verde1">
+                                03/12/2024
+                            </div>
+                        </div>
+
+                        <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
+
+                        <div class="py-3 flex flex-row justify-between ">
+                            <div class="text-2xl text-verde1">
+                                Luogo
+                            </div>
+                            <div class="text-2xl text-verde1">
+                                L'Aquila via Roma
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <!--
+    <div class="bg-bianco2 m-8 rounded-md py-12 2xl:px-20 md:px-6 px-4">
         <div class="md:flex items-start justify-center">
             <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
                 <img class="w-full rounded-3xl" alt="Locandina dell'evento" th:src="${datiDettagli.getLink_img()}" />
@@ -34,6 +146,7 @@
                         <img src="/date.svg" loading="lazy" alt="" class="w-8 h-8">
                         <p class="px-2 text-base leading-4 text-gray-800 dark:text-black "> Data e Orario</p>
                     </div>
+                    <img src="/date.svg" loading="lazy" alt="" class="w-8 h-8">
                     <p class="text-sm leading-none text-gray-600 dark:text-black mr-3" th:text="${#temporals.format(datiDettagli.getDataOraEvento(), 'yyyy-MM-dd')}"> </p>
 
                 </div>
@@ -61,6 +174,7 @@
 
         </div>
     </div>
+    -->
 </div>
 </body>
 </html>
