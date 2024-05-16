@@ -13,19 +13,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up JDK 11
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
-          java-version: '11'
+          distribution: 'temurin'
+          java-version: '17'
 
       - name: Build with Maven
         run: mvn clean install
+        working-directory: ./your-spring-boot-app
 
       - name: Start Spring Boot server
         run: |
           nohup mvn spring-boot:run &
           sleep 30
+        working-directory: ./your-spring-boot-app
 
       - name: Install Node.js
         uses: actions/setup-node@v2
@@ -37,10 +39,10 @@ jobs:
 
       - name: Run Lighthouse
         run: |
-          npx lighthouse http://localhost:8080 --output json --output-path ./lighthouse-report.json
-          
+          npx lighthouse http://localhost:8080 --output json --output-path ./your-spring-boot-app/lighthouse-report.json
+
       - name: Upload Lighthouse Report
         uses: actions/upload-artifact@v2
         with:
           name: lighthouse-report
-          path: ./lighthouse-report.json
+          path: ./your-spring-boot-app/lighthouse-report.json
