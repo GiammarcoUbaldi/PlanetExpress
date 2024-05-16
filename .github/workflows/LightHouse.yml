@@ -21,13 +21,13 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install
-        working-directory: ./your-spring-boot-app
 
-      - name: Start Spring Boot server
+
+      - name: Start Spring PlanetExpress
         run: |
           nohup mvn spring-boot:run &
           sleep 30
-        working-directory: ./your-spring-boot-app
+
 
       - name: Install Node.js
         uses: actions/setup-node@v2
@@ -45,4 +45,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: lighthouse-report
-          path: ./your-spring-boot-app/lighthouse-report.json
+          path: ./PlanetExpress/lighthouse-report.json
