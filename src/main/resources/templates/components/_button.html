@@ -1,0 +1,30 @@
+<!--Componente Button -->
+<div th:switch="${tipo + ' ' + colore}" th:fragment="button" th:class="${size?:'text-xl'}">
+
+    <a th:case="'normale verde'" th:href="${href}"
+       class="rounded-full border-[2px] font-jua  font-semibold
+     bg-verdeSuccessoBG text-verde1 border-verde1  hover:bg-[#66E153]
+     px-4 py-2 transition-all duration-150 flex items-center justify-center w-max">
+        <img th:if="${iconaSrc}" alt="icona" th:src="${iconaSrc}" th:class="'h-'+${dimIcona}+' w-'+${dimIcona}">
+        <span class="ml-1" th:text="${nome}"></span>
+    </a>
+
+    <a th:case="'normale rosso'" th:text="${nome}" th:href="${href}"
+       class="rounded-full border-[2px] font-jua  font-semibold
+        bg-rossoInSuccessoBg text-rossoInSuccessoText border-rossoInSuccessoText hover:bg-rosso1
+     px-4 py-2  transition-all duration-150 flex items-center justify-center w-max">
+        <img th:if="${iconaSrc}" alt="icona" th:src="${iconaSrc}" th:class="'h-'+${dimIcona}+' w-'+${dimIcona}">
+        <span class="ml-1" th:text="${nome}"></span>
+    </a>
+
+    <a th:case="'normale giallo'" th:text="${nome}" th:href="${href}"
+       class="rounded-full border-[2px] font-jua font-semibold
+        hover:bg-giallo2 bg-gialloSecondarioBG text-gialloSecondarioText border-gialloSecondarioText
+     px-4 py-2 transition-all duration-150 flex items-center justify-center w-max">
+        <img th:if="${iconaSrc}" alt="icona" th:src="${iconaSrc}" th:class="'h-'+${dimIcona}+' w-'+${dimIcona}">
+        <span class="ml-1" th:text="${nome}"></span>
+    </a>
+
+    <button th:case="*" th:text="''" th:style="'background-color:' + ${colore}"></button>
+</div>
+

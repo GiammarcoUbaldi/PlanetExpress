@@ -38,6 +38,7 @@ public class HomeController {
     @GetMapping("/login")
     public String login() {return "/login/login";}
 
+
     @GetMapping("/riempiDb")
     public String riempiDb() {
         riempiDbCotroller.inserisciDati();
@@ -71,11 +72,6 @@ public class HomeController {
         return "/admin/dettagliEvento";
     }
 
-    @GetMapping("/form-richiesta-orto-referente")
-    public String mostraFormRichiestaOrtoReferente(Model model) {
-        return "/referente/formRichiestaOrtoReferete";
-    }
-
 
     @GetMapping("/utente/dashboardModifica")
     public String utenteDashboardModifica(Model model,@RequestParam("utenteId") Long utenteId) {
@@ -87,6 +83,5 @@ public class HomeController {
         }
         return "redirect:/";
     }
-
 
 }
