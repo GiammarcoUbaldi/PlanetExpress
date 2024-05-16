@@ -30,13 +30,11 @@ public class EventoController {
         return (List<Evento>) eventoRepository.findByAccettato("In sospeso");
     }
 
-    /*
-    @GetMapping("/proposti")
-    public List<Evento> getEventiProposti() {
-        return (List<Evento>) eventoRepository.findByProposto("");
+//--------------------------------------
+    @GetMapping("/eventiRef")
+    public List<Evento> getEventiProposti(Long id) {
+        return (List<Evento>) eventoRepository.findByIdReferente(id);
     }
-
-     */
 
     @PostMapping
     public Evento createEvento(@RequestBody Evento evento) {
@@ -55,5 +53,10 @@ public class EventoController {
     @GetMapping("/get/{id}/")
     public Evento getEventoById(@PathVariable long id) {
         return eventoRepository.findById(id).get();
+    }
+
+    @GetMapping("/getEveRef/{id}/")
+    public List<Evento> getEventiByIdRef(@PathVariable long id) {
+        return eventoRepository.findByIdReferente(id);
     }
 }

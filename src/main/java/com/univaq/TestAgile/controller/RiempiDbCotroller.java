@@ -46,8 +46,10 @@ public class RiempiDbCotroller {
                 "Orto Comunale - Via Roma",
                 "Preparazione del terreno per la semina e il trapianto",
                 LocalDateTime.now(),
+
                 "https://source.unsplash.com/random/300x400?seed=1234345",
                 "Organizzato",
+                              
                 "Rifiutato"));
         eventi.add(new Evento("Semina ortaggi primaverili",
                 "Marta Verdi",

@@ -65,15 +65,15 @@ public class HomeController {
         model.addAttribute("EventoInSospeso", eventiInSospesoDb);
         return "/admin/listaEventi";
     }
-    /*
-    @GetMapping("/mostraEventi")
-    public String mostraEventiReferente(Model model) {
-        List<Evento> eventiAccettatiDb = eventoController.getEventiProposti();
 
-        return "/admin/listaEventi";
+    @GetMapping("/mostraEventiRef/{id}")
+    public String mostraEventiReferente(Model model, @PathVariable long id) {
+        List<Evento> eventiRefe = eventoController.getEventiByIdRef(id);
+        model.addAttribute("EventiRefe", eventiRefe);
+        return "/referente/listaEventiReferente";
     }
     
-     */
+
 
     @GetMapping("/mostraDettagliEvento/{id}")
     public String mostraDettagliEvento(Model model, @PathVariable long id) {
