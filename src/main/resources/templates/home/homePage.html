@@ -32,17 +32,6 @@
         </div>
     </div>
 
-  <!--       
-    <div class="forum mt-4">
-        <div class="btn-container ">
-            <a href="pagina_forum.html"><button class="btn events-forum-btn">Forum</button></a>
-        </div>
-       <div th:each="post: ${listaPost}">
-           <div th:text="${post.getTitolo()}"></div>
-           <div th:text="${post.getDescrizione()}"></div>
-           <div th:text="${post.getUsername()}"></div>
-
-       </div>-->
 
 
 <!--        Stacchetto Home 1-->
@@ -51,6 +40,32 @@
 </div>
 <div class="bg-rosso1 h-full py-4 px-4 min-h-screen">
     <div class="container text-center mx-auto">
+
+        <!--        Eventi-->
+        <h6 class="mt-16 mx-14 text-4xl text-left text-verde1 font-extrabold mb-0 ">Eventi Proposti</h6>
+
+        <div class="mx-10 flex flex-row justify-around rounded-3xl bg-gialloSecondarioBG border-verde1 border-2">
+            <div class="my-5 flex flex-col bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl" th:each="evento : ${EventiRefe}">
+
+                <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline  ">
+                    <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
+
+                    <div class=" px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+
+
+            <h6 class="mt-16 mx-14 text-4xl text-left text-verde1 font-extrabold mb-0 ">Post nel Forum</h6>
+            <div class="my-5 flex flex-col  bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl" th:each="post: ${listaPost}">
+            <div th:each="post: ${listaPost}">
+                <div th:text="${post.getTitolo()}"></div>
+                <div th:text="${post.getDescrizione()}"></div>
+                <div th:text="${post.getUsername()}"></div>
+            </div>
 
     </div>
 </div>

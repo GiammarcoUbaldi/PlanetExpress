@@ -4,7 +4,6 @@ package com.univaq.TestAgile.controller;
 import com.univaq.TestAgile.model.Evento;
 
 
-
 import com.univaq.TestAgile.repository.PostRepository;
 
 import com.univaq.TestAgile.model.Utente;
@@ -42,11 +41,15 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("listaPost", postRepository.findAll());
+        List<Evento> eventiRefe = eventoController.getEventiAccettati();
+        model.addAttribute("EventiRefe", eventiRefe);
         return "/home/homePage";
     }
 
     @GetMapping("/login")
-    public String login() {return "/login/login";}
+    public String login() {
+        return "/login/login";
+    }
 
 
     @GetMapping("/riempiDb")
@@ -72,7 +75,6 @@ public class HomeController {
         model.addAttribute("EventiRefe", eventiRefe);
         return "/referente/listaEventiReferente";
     }
-    
 
 
     @GetMapping("/mostraDettagliEvento/{id}")
@@ -84,11 +86,11 @@ public class HomeController {
 
 
     @GetMapping("/utente/dashboardModifica")
-    public String utenteDashboardModifica(Model model,@RequestParam("utenteId") Long utenteId) {
+    public String utenteDashboardModifica(Model model, @RequestParam("utenteId") Long utenteId) {
         Utente utente = utenteRepository.findById(utenteId).get();
         System.out.println(utente);
-        if(utente!=null){
-            model.addAttribute("utente",utente);
+        if (utente != null) {
+            model.addAttribute("utente", utente);
             return "/Registrazione/modificaDati";
         }
         return "redirect:/";
