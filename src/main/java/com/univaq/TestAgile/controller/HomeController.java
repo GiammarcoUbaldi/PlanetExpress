@@ -4,8 +4,12 @@ package com.univaq.TestAgile.controller;
 import com.univaq.TestAgile.model.Evento;
 
 
+
+import com.univaq.TestAgile.repository.PostRepository;
+
 import com.univaq.TestAgile.model.Utente;
 import com.univaq.TestAgile.repository.UtenteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,10 +32,16 @@ public class HomeController {
 
 
     @Autowired
+    private PostRepository postRepository;
+
+
+    @Autowired
     UtenteRepository utenteRepository;
 
+
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("listaPost", postRepository.findAll());
         return "/home/homePage";
     }
 
@@ -84,4 +94,8 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/creaPost")
+    public String creaPost() {
+        return "/Post/ScriviPost";
+    }
 }
