@@ -47,7 +47,7 @@ public class RiempiDbCotroller {
                 "Preparazione del terreno per la semina e il trapianto",
                 LocalDateTime.now(),
                 "https://source.unsplash.com/random/300x300?seed=1234345",
-                "Organizzato",
+                "Organizzatooo",
                 "Rifiutato"));
         eventi.add(new Evento("Semina ortaggi primaverili",
                 "Marta Verdi",

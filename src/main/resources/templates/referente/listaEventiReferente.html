@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="/utils/layout">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<div class="" layout:fragment="contenuto" >
+    <div class="grid-rows-3 grid">
+
+        <div class="bg-rosso1">
+            <h6 class="mt-16 mx-14 text-4xl text-left text-verde1 font-extrabold mb-0 ">Eventi da Te Proposti</h6>
+
+            <div class="mx-10 flex flex-row justify-around rounded-3xl bg-gialloSecondarioBG border-verde1 border-2">
+                <div class="my-5 flex flex-col bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl" th:each="evento,x : ${EventiRefe}">
+
+                    <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline  ">
+                        <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
+
+                        <div class=" px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
+                        </div>
+                    </a>
+                </div>
+
+               <!-- <div class="w-[2px] h-full bg-verde1 rounded-full my-10">  </div>  barra verticale-->
+            </div>
+
+        </div>
+
+        <div class="bg-rosso1">
+            <h6 class="mt-16 text-4xl text-right text-verde1 font-extrabold mb-0 mr-16 ">Eventi in attesa</h6>
+
+            <div class="mx-10 flex flex-row justify-around rounded-3xl bg-viola1 border-verde1 border-2">
+                <div class="my-5 flex flex-col bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl" th:each="evento,x : ${EventiRefe}">
+
+                    <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
+                        <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
+
+                        <div class=" px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
+                        </div>
+                    </a>
+
+                    </div>
+
+                <!-- <div class="w-[2px] h-full bg-verde1 rounded-full my-10">  </div>  barra verticale-->
+            </div>
+
+        </div>
+
+        <div class="bg-rosso1">
+            <h6 class="mt-16 mx-14 text-4xl text-left text-verde1 font-extrabold mb-0 ">I tuoi prossimi eventi</h6>
+
+            <div class="mx-10 mb-10 flex flex-row justify-around rounded-3xl bg-verde2 border-verde1 border-2">
+                <div class="my-5 flex flex-col bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl" th:each="evento,x : ${EventiRefe}">
+
+                    <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
+                        <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
+
+                        <div class=" px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- <div class="w-[2px] h-full bg-verde1 rounded-full my-10">  </div>  barra verticale-->
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>
