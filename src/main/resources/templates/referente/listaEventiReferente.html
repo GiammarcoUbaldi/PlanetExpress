@@ -12,7 +12,7 @@
             <h6 class="mt-16 mx-14 text-4xl text-left text-verde1 font-extrabold mb-0 ">Eventi da Te Proposti</h6>
 
             <div class="mx-10 flex flex-row justify-around rounded-3xl bg-gialloSecondarioBG border-verde1 border-2">
-                <div class="my-5 flex flex-col bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl" th:each="evento,x : ${EventiRefe}">
+                <div class="my-5 flex flex-col bg-bianco1 border-verde1 max-w-[200px] rounded-3xl" th:each="evento,x : ${EventiRefe}">
 
                     <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline  ">
                         <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
