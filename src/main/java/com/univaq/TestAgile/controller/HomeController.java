@@ -31,7 +31,7 @@ public class HomeController {
 
 
     @Autowired
-    private PostRepository postRepository;
+    PostRepository postRepository;
 
 
     @Autowired
