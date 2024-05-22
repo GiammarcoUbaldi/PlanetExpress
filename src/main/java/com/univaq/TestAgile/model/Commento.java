@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @EnableJpaRepositories
@@ -27,17 +28,17 @@ public class Commento {
     private String descrizione;
 
     @Column(name = "dataCreazione")
-    private LocalDate dataCreazione;
+    private LocalDateTime dataCreazione;
 
     public Commento() {
     }
 
-    public Commento(Long id, Post post, String username, String descrizione, LocalDate dataCreazione) {
+    public Commento(Long id, Post post, String username, String descrizione) {
         this.id = id;
         this.post = post;
         this.username = username;
         this.descrizione = descrizione;
-        this.dataCreazione = dataCreazione;
+        this.dataCreazione = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -72,11 +73,11 @@ public class Commento {
         this.descrizione = descrizione;
     }
 
-    public LocalDate getDataCreazione() {
+    public LocalDateTime getDataCreazione() {
         return dataCreazione;
     }
 
-    public void setDataCreazione(LocalDate dataCreazione) {
+    public void setDataCreazione(LocalDateTime dataCreazione) {
         this.dataCreazione = dataCreazione;
     }
 }
