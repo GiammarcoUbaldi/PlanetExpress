@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @EnableJpaRepositories
 @Entity
@@ -29,6 +30,9 @@ public class Post {
 
     @Column(name = "dataCreazione")
     private LocalDate dataCreazione;
+
+    @OneToMany(mappedBy = "post")
+    private List<Commento> commenti;
 
     public Post() {
     }

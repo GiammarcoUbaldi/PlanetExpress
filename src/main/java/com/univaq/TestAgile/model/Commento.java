@@ -18,7 +18,7 @@ public class Commento {
 
     @ManyToOne
     @JoinColumn(name = "post_id")
-    private Post post_id;
+    private Post post;
 
     @Column(name = "username")
     private String username;
@@ -32,9 +32,9 @@ public class Commento {
     public Commento() {
     }
 
-    public Commento(Long id, Post post_id, String username, String descrizione, LocalDate dataCreazione) {
+    public Commento(Long id, Post post, String username, String descrizione, LocalDate dataCreazione) {
         this.id = id;
-        this.post_id = post_id;
+        this.post = post;
         this.username = username;
         this.descrizione = descrizione;
         this.dataCreazione = dataCreazione;
@@ -48,12 +48,12 @@ public class Commento {
         this.id = id;
     }
 
-    public Post getPost_id() {
-        return post_id;
+    public Post getPost() {
+        return post;
     }
 
-    public void setPost_id(Post post_id) {
-        this.post_id = post_id;
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     public String getUsername() {
