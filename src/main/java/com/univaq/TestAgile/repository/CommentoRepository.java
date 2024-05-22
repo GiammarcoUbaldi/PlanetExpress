@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface CommentoRepository extends CrudRepository<Commento, Long> {
-    List<Commento> findByTipo(String tipo);
+    List<Commento> findByUsername(String username);
 }

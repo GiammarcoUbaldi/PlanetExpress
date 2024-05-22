@@ -20,7 +20,6 @@ public class PostController {
     @PostMapping("/creaPost")
     public String createPost(@ModelAttribute Post post) {
         postRepository.save(post);
-        System.out.println(post);
         return "redirect:/";
     }
 }

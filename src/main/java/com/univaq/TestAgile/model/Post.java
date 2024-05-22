@@ -4,6 +4,8 @@ package com.univaq.TestAgile.model;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import java.util.Date;
+
 @EnableJpaRepositories
 @Entity
 @Table
@@ -25,14 +27,19 @@ public class Post {
     @Column(name = "descrizione")
     private String descrizione;
 
+    @Column(name = "dataCreazione")
+    private Date dataCreazione;
+
     public Post() {
     }
 
-    public Post(String username, String tipo, String titolo, String descrizione) {
+    public Post(Long id, String username, String tipo, String titolo, String descrizione, Date dataCreazione) {
+        this.id = id;
         this.username = username;
         this.tipo = tipo;
         this.titolo = titolo;
         this.descrizione = descrizione;
+        this.dataCreazione = dataCreazione;
     }
 
     public Long getId() {
@@ -75,4 +82,11 @@ public class Post {
         this.descrizione = descrizione;
     }
 
+    public Date getDataCreazione() {
+        return dataCreazione;
+    }
+
+    public void setDataCreazione(Date dataCreazione) {
+        this.dataCreazione = dataCreazione;
+    }
 }

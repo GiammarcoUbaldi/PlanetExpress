@@ -4,6 +4,8 @@ package com.univaq.TestAgile.model;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import java.util.Date;
+
 @EnableJpaRepositories
 @Entity
 @Table
@@ -13,26 +15,28 @@ public class Commento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post_id;
+
     @Column(name = "username")
     private String username;
-
-    @Column(name = "tipo")
-    private String tipo;
-
-    @Column(name = "titolo")
-    private String titolo;
 
     @Column(name = "descrizione")
     private String descrizione;
 
+    @Column(name = "dataCreazione")
+    private Date dataCreazione;
+
     public Commento() {
     }
 
-    public Commento(String username, String tipo, String titolo, String descrizione) {
+    public Commento(Long id, Post post_id, String username, String descrizione, Date dataCreazione) {
+        this.id = id;
+        this.post_id = post_id;
         this.username = username;
-        this.tipo = tipo;
-        this.titolo = titolo;
         this.descrizione = descrizione;
+        this.dataCreazione = dataCreazione;
     }
 
     public Long getId() {
@@ -43,28 +47,20 @@ public class Commento {
         this.id = id;
     }
 
+    public Post getPost_id() {
+        return post_id;
+    }
+
+    public void setPost_id(Post post_id) {
+        this.post_id = post_id;
+    }
+
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getTitolo() {
-        return titolo;
-    }
-
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
     }
 
     public String getDescrizione() {
@@ -75,4 +71,11 @@ public class Commento {
         this.descrizione = descrizione;
     }
 
+    public Date getDataCreazione() {
+        return dataCreazione;
+    }
+
+    public void setDataCreazione(Date dataCreazione) {
+        this.dataCreazione = dataCreazione;
+    }
 }
