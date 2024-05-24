@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/api/post")
@@ -23,4 +26,11 @@ public class PostController {
         System.out.println(post);
         return "redirect:/";
     }
+  /*  public List<Post> getPostsByCategory(@RequestParam(required = false) String category) {
+        if (category == null || category.isEmpty()) {
+            return PostRepository.findAll();
+        } else {
+            return postRepository.findByTipo(tipo);
+        }
+    } */
 }

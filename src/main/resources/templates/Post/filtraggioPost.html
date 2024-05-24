@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+
+    <link rel="stylesheet" href="/global.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Lista dei Post</h1>
+    <label for="type-select">Filtra per Tipo:</label>
+    <select id="type-select">
+        <option value="">Tutti</option>
+        <option value="announcement">Il tuo Orto</option>
+        <option value="discussion">Eventi</option>
+        <option value="question">Ortaggi</option>
+        <option value="other">Altro</option>
+    </select>
+    <label for="title-filter">Filtro per Titolo:</label>
+    <input type="text" id="title-filter">
+    <hr>
+    <div id="post-container"></div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        function loadPosts(type, title) {
+            $.ajax({
+                url: '/api/posts',
+                type: 'GET',
+                data: {
+                    tipo: type,
+                    title: title
+                },
+                success: function (data) {
+                    var postContainer = $('#post-container');
+                    postContainer.empty();
+                    data.forEach(function (post) {
+                        var postElement = '<div class="post">' +
+                            '<h2>' + post.title + '</h2>' +
+                            '<p>' + post.description + '</p>' +
+                            '</div>';
+                        postContainer.append(postElement);
+                    });
+                },
+                error: function () {
+                    console.log('Errore durante il caricamento dei post.');
+                }
+            });
+        }
+
+        $('#type-select, #title-filter').change(function () {
+            var selectedType = $('#type-select').val();
+            var title = $('#title-filter').val();
+            loadPosts(selectedType, title);
+        });
+
+        loadPosts('', '');
+    });
+</script>
+</body>
+</html>
