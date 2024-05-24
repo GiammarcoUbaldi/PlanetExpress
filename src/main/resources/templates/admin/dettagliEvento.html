@@ -15,8 +15,8 @@
         </div>
 
         <div class="grid-cols-2 grid">
-            <div class="aspect-square bg-blue-500 ">
-                <div class="aspect-[3/4] bg-verde1 m-10">
+            <div class="aspect-square ">
+                <div class="aspect-[3/4]  m-10">
                     <img class="w-full rounded-3xl" alt="Locandina dell'evento" th:src="${datiDettagli.getLink_img()}" />
                 </div>
             </div>
@@ -85,14 +85,12 @@
                         <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
 
                         <div class="py-3 flex flex-row justify-between">
-                            <div class="">
-                                <img src="" loading="lazy" alt="" class="w-8 h-8">
+                            <div class="flex flex-row gap-2 items-center">
+                                <img src="/icons/calendar_details.svg" loading="lazy" alt="" class="w-8 h-8">
+                                 <div class="text-xl font-medium">Data</div>
+                            </div>
                                 <p class="text-2xl text-verde1" th:text="${#temporals.format(datiDettagli.getDataOraEvento(), 'yyyy-MM-dd')}"> </p>
 
-                            </div>
-                            <div class="text-2xl text-verde1">
-                                03/12/2024
-                            </div>
                         </div>
 
                         <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>

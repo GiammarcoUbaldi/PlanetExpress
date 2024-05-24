@@ -43,7 +43,7 @@
                      th:id="'desc-zolla-'+${zolla.getId()}" class="w-full rounded-3xl border-verde1 border-8 bg-[#F4F4F4] p-8 text-center text-3xl transition-all duration-300
                    grid grid-cols-1 md:grid-cols-3 justify-items-center place-items-center">
                     <!--Parte Sinistra  -->
-                    <div class="flex flex-col gap-4 text-verde1 text-xl md:text-3xl ">
+                    <div class="flex flex-col gap-4 text-verde1 text-xl md:text-2xl ">
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/piantina.svg" alt="icona pianta" class="w-10">
                             <div class="">Ortaggio: <span th:text="${zolla.getOrtaggio()}"></span></div>
@@ -77,7 +77,7 @@
                         <div class="">Tipo terreno: <span th:text="${zolla.getTipoTerreno()}"></span></div>
                     </div>
                     <!--Parte Destra  -->
-                    <div class="justify-self-end flex flex-col gap-4 text-verde1 text-xl md:text-3xl ">
+                    <div class="justify-self-end flex flex-col gap-4 text-verde1 text-xl md:text-2xl ">
                         <div class="flex flex-row items-end gap-4">
                             <img src="/icons/timer.svg" alt="icona timer" class="w-10">
                             <div class="">Data Scadenza: <span
@@ -112,16 +112,16 @@
                          th:id="'desc-zolla-'+${zolla.getId()}" class="w-full rounded-3xl border-rosso1 border-8 bg-[#F4F4F4] p-8 text-center text-3xl transition-all duration-300
                    grid grid-cols-1 md:grid-cols-3 justify-items-center place-items-center">
                         <!--Parte Sinistra  -->
-                        <div class="flex flex-col gap-4 text-verde1 text-xl md:text-3xl "></div>
+                        <div class="flex flex-col gap-4 text-verde1 text-xl md:text-2xl "></div>
                         <!--Parte Centrale  -->
                         <div class="flex flex-col items-center justify-center ">
-                            <div class="text-3xl text-verde1"><span th:text="${zolla.getNome()}"></span></div>
+                            <div class="text-2xl text-verde1"><span th:text="${zolla.getNome()}"></span></div>
                             <div class="aspect-[193/125] w-32 my-12"
                                  th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true')}"></div>
                             <div class="">Tipo terreno: <span th:text="${zolla.getTipoTerreno()}"></span></div>
                         </div>
                         <!--Parte Destra  -->
-                        <div class="justify-self-end flex flex-col gap-4 text-verde1 text-xl md:text-3xl "></div>
+                        <div class="justify-self-end flex flex-col gap-4 text-verde1 text-xl md:text-2xl "></div>
                         <div>
                         </div>
                     </div>

@@ -10,12 +10,14 @@ import com.univaq.TestAgile.model.Utente;
 import com.univaq.TestAgile.repository.UtenteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +52,21 @@ public class HomeController {
     public String login() {
         return "/login/login";
     }
+
+
+    @GetMapping("/admin/a")
+    public String adminDashboard() {
+        return "/Post/ScriviPost";
+    }
+
+    @GetMapping("/user/a")
+    public String dashboard() {
+        return "/Post/ScriviPost";
+    }
+//    @GetMapping("/user")
+//    public String dashboard() {
+//        return "login/dashboard";
+//    }
 
 
     @GetMapping("/riempiDb")
