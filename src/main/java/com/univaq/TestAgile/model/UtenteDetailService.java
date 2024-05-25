@@ -18,7 +18,7 @@ public class UtenteDetailService implements UserDetailsService {
         Utente utente = utenteRepository.findByEmail(email);
         if(utente != null){
             return User.builder()
-                    .username(utente.getNome())
+                    .username(utente.getEmail())
                     .password(utente.getPassword())
                     .roles(getRoles(utente))
                     .build();

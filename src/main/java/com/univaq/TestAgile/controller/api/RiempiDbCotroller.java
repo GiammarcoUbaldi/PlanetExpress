@@ -1,4 +1,4 @@
-package com.univaq.TestAgile.controller;
+package com.univaq.TestAgile.controller.api;
 
 import com.univaq.TestAgile.model.Evento;
 import com.univaq.TestAgile.model.OrtoReferente;

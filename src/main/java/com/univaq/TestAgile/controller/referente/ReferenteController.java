@@ -1,5 +1,9 @@
-package com.univaq.TestAgile.controller;
+package com.univaq.TestAgile.controller.referente;
 
+import com.univaq.TestAgile.controller.api.EventoController;
+import com.univaq.TestAgile.controller.api.OrtoReferenteController;
+import com.univaq.TestAgile.controller.api.ZollaController;
+import com.univaq.TestAgile.model.Evento;
 import com.univaq.TestAgile.model.OrtoReferente;
 import com.univaq.TestAgile.model.Zolla;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,10 @@ public class ReferenteController {
     @Autowired
     ZollaController zollaController;
 
+    @Autowired
+    EventoController eventoController;
+
+
     @GetMapping("/orto/{id}")
     public String mostraOrtoReferente(Model model, @PathVariable long id) {
         OrtoReferente ortoReferente = ortoReferenteController.getEventoById(id);
@@ -32,6 +40,18 @@ public class ReferenteController {
     @GetMapping("/form-richiesta-orto")
     public String mostraFormRichiestaOrtoReferente(Model model) {
         return "/referente/formRichiestaOrtoReferete";
+    }
+
+    @GetMapping("/mostraEventiRef/{id}")
+    public String mostraEventiReferente(Model model, @PathVariable long id) {
+        List<Evento> eventiRefe = eventoController.getEventiByIdRef(id);
+        model.addAttribute("EventiRefe", eventiRefe);
+        return "/referente/listaEventiReferente";
+    }
+
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "referente/dashboardReferente";
     }
 
 

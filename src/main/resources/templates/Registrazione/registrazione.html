@@ -4,6 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function validatePasswords(event) {
+            // Previeni la sottomissione del modulo
+            event.preventDefault();
+
+            // Recupera i valori delle password
+            var password = document.getElementById('password').value;
+            var confermaPassword = document.getElementById('confermaPassword').value;
+
+            // Recupera l'elemento per il messaggio di errore
+            var errorMessage = document.getElementById('errorMessage');
+
+            // Controlla se le password coincidono
+            if (password !== confermaPassword) {
+                // Mostra il messaggio di errore
+                errorMessage.textContent = "Le password non coincidono.";
+                errorMessage.style.display = 'block';
+            } else {
+                // Nascondi il messaggio di errore
+                errorMessage.style.display = 'none';
+                // Sottometti il modulo
+                event.target.submit();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Aggiungi il listener per la sottomissione del modulo
+            document.getElementById('registrationForm').addEventListener('submit', validatePasswords);
+        });
+    </script>
 </head>
 <body>
 <div layout:fragment="contenuto" class="flex items-center justify-center gap-4 flex-col mt-4">
@@ -11,7 +41,7 @@
         <div class="w-full max-w-sm p-4 mx-auto bg-white shadow-md rounded-lg">
             <h1 class="text-2xl font-bold text-center mb-4">Registrazione</h1>
 
-            <form action="/api/registrazione/submit" method="post">
+            <form id="registrationForm" action="/register/submit" method="post">
                 <div class="mb-4">
                     <label for="nome" class="block text-gray-700">Nome:</label>
                     <input type="text" id="nome" name="nome"
@@ -27,7 +57,7 @@
                 <!--                Sesso-->
                 <div>
                     <label for="sesso">Sesso:</label>
-                    <select id="sesso" name="sesso" class="border " required>
+                    <select id="sesso" name="sesso" class="border" required>
                         <option value="Maschio">Maschio</option>
                         <option value="Femmina">Femmina</option>
                         <option value="Altro">Altro</option>
@@ -75,14 +105,18 @@
                 </div>
 
                 <!--Conferma Password-->
-                <div>
+                <div class="mb-4">
                     <label for="confermaPassword" class="block text-gray-700">Conferma Password:</label>
                     <input type="password" id="confermaPassword" name="confermaPassword"
                            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                            required>
                 </div>
+
+                <!--                Messaggio di errore -->
+                <div id="errorMessage" class="text-red-500 text-lg font-medium my-2 text-center" style="display:none;"></div>
+
                 <!--                Tipo Utente-->
-                <input type="hidden" id="tipoUtente" name="tipoUtente" value="normale" required>
+                <input type="hidden" id="tipoUtente" name="tipoUtente" value="USER" required>
 
                 <!--                Gestione Errore-->
                 <div th:if="${error}" class="text-red-500 text-lg font-medium my-2 text-center">

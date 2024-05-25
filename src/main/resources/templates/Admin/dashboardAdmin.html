@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="/utils/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
+<div layout:fragment="contenuto" class="flex items-center gap-4 flex-col">
+    <h1 class="text-3xl font-bold">Dashboard</h1>
+    <div class="text-xl font-medium">
+        <h2>Tipo di Utente:
+            <span th:text="${Utente.getTipoUtente()}"></span></h2>
+        </br>
+        <a href="/admin/richieste-orto-referente" class="px-3 py-2 bg-green-400 rounded-full">Visualizza Richieste
+            Orti</a>
+        </br>
+        </br>
+        </br>
+        <a href="/mostraEventi" class="px-3 py-2 bg-yellow-400 rounded-full">Visualizza Eventi</a>
+    </div>
+
+    <div>
+        <form action="/utente/dashboardModifica" method="get">
+            <input type="hidden" name="utenteId" th:value="${Utente.getId()}">
+            <button type="submit" value="Modifica Dati" class="bg-rosso1 px-2 py-1 text-verde1 rounded-full mt-8 mb-4">
+                Modifica Dati
+            </button>
+        </form>
+        <a href="/creaPost" class="bg-celeste1 px-2 py-1 text-verde1 rounded-full mt-8">Scrivi un Post</a>
+    </div>
+
+
+</div>
+</div>
+
+</body>
+</html>

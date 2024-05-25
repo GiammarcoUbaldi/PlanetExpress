@@ -48,7 +48,7 @@
                 <div class="my-5 flex flex-col bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl"
                      th:each="evento : ${EventiRefe}">
 
-                    <a th:href="${'/mostraDettagliEvento/'+evento.getId()}"
+                    <a th:href="${'/no-user/mostraDettagliEvento/'+evento.getId()}"
                        class="transition w-full h-full  border-verde1 no-underline  ">
                         <img class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}" alt="img"/>
 
