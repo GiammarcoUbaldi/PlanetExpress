@@ -46,8 +46,10 @@ public class RiempiDbCotroller {
                 "Orto Comunale - Via Roma",
                 "Preparazione del terreno per la semina e il trapianto",
                 LocalDateTime.now(),
-
                 "https://source.unsplash.com/random/300x400?seed=1234345",
+                "20$",
+                "2:00 ore",
+                "Agricoltura",
                 "Organizzato",
                               
                 "Rifiutato"));
@@ -59,6 +61,9 @@ public class RiempiDbCotroller {
                 "Semina di pomodori, lattuga, carote e altre verdure",
                 LocalDateTime.now(),
                 "https://source.unsplash.com/random/300x400?seed=2312345",
+                "30$",
+                "1 giorno",
+                "Vegetali",
                 "In Corso",
                 "In sospeso"));
         eventi.add(new Evento("Corso di irrigazione efficiente",
@@ -69,6 +74,9 @@ public class RiempiDbCotroller {
                 "Tecniche per un'irrigazione efficiente e sostenibile",
                 LocalDateTime.now(),
                 "https://source.unsplash.com/random/300x400?seed=1234435",
+                "5$",
+                "3:00 ore",
+                "Acqua",
                 "Passato",
                 "Accettato"));
         eventi.add(new Evento("Festa di inaugurazione orto",
@@ -79,6 +87,9 @@ public class RiempiDbCotroller {
                 "Festa per celebrare l'apertura dell'orto e conoscere i nuovi partecipanti",
                 LocalDateTime.now(),
                 "https://source.unsplash.com/random/300x400?seed=1232345",
+                "Gratuito",
+                "5:00 ore",
+                "Inaugurazione",
                 "Prossimo",
                 "Accettato"));
         eventi.add(new Evento(
@@ -90,6 +101,9 @@ public class RiempiDbCotroller {
                 "Porta i tuoi semi e piantine in eccedenza e scambiali con gli altri",
                 LocalDateTime.now(),
                 "https://source.unsplash.com/random/300x400?seed=134245",
+                "20$",
+                "2:00 ore",
+                "Orto",
                 "Passato",
                 "In sospeso"));
         eventi.add(new Evento("Laboratorio di compostaggio",
@@ -100,6 +114,9 @@ public class RiempiDbCotroller {
                 "Impara a creare il tuo compost per nutrire il tuo orto in modo naturale",
                 LocalDateTime.now(),
                 "https://source.unsplash.com/random/300x400?seed=12345",
+                "Gratuito",
+                "2:00 ore",
+                "Cibo",
                 "Aperto",
                 "Rifiutato"));
         eventoRepository.deleteAll();
