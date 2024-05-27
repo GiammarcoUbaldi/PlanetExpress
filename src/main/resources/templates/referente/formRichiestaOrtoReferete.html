@@ -14,7 +14,84 @@
         <h1 class="my-4 font-semibold text-gray-800 text-center text-3xl">Form per richiedere di condividere un orto
         </h1>
         <div class="max-w-[400px] mx-auto flex items-center justify-center">
-            <form action="/api/orto-referente/add-richiesta-orto" method="post">
+            <form action="/register/referenteSubmit" method="post">
+                <div class="mb-4">
+                    <label for="nome" class="block text-gray-700">Nome:</label>
+                    <input type="text" id="nomeUtente" name="nomeUtente"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                <div class="mb-4">
+                    <label for="cognome" class="block text-gray-700">Cognome:</label>
+                    <input type="text" id="cognome" name="cognome"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                <!--                Sesso-->
+                <div>
+                    <label for="sesso">Sesso:</label>
+                    <select id="sesso" name="sesso" class="border" required>
+                        <option value="Maschio">Maschio</option>
+                        <option value="Femmina">Femmina</option>
+                        <option value="Altro">Altro</option>
+                    </select>
+                </div>
+                <!--                Indirizzo-->
+                <div class="mb-4">
+                    <label for="indirizzo" class="block text-gray-700">Indirizzo:</label>
+                    <input type="text" id="indirizzo" name="indirizzo"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+
+                <!--                Nazione-->
+                <div class="mb-4">
+                    <label for="nazione" class="block text-gray-700">Nazione:</label>
+                    <input type="text" id="nazione" name="nazione"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+
+                <!--         Numero di Telefono       -->
+
+                <div>
+                    <label for="numeroTelefono" class="block text-gray-700">Numero di Telefono:</label>
+                    <input type="tel" id="numeroTelefono" name="numeroTelefono"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+
+                <!--                Email-->
+                <div>
+                    <label for="email" class="block text-gray-700">Email:</label>
+                    <input type="email" id="email" name="email"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+
+                <!--          Password      -->
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700">Password:</label>
+                    <input type="password" id="password" name="password"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+
+                <!--Conferma Password-->
+                <div class="mb-4">
+                    <label for="confermaPassword" class="block text-gray-700">Conferma Password:</label>
+                    <input type="password" id="confermaPassword" name="confermaPassword"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+
+                <!--                Messaggio di errore -->
+                <div id="errorMessage" class="text-red-500 text-lg font-medium my-2 text-center" style="display:none;"></div>
+
+                <!--                Tipo Utente-->
+                <input type="hidden" id="tipoUtente" name="tipoUtente" value="REFERENTE" required>
+
+
                 <label for="nome" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Nome
                     Orto:</label>
                 <input type="text" id="nome" name="nome" required

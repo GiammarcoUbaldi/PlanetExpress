@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface OrtoReferenteRepository extends CrudRepository<OrtoReferente, Long> {
     List<OrtoReferente> findByStato(String stato);
+
+    List<OrtoReferente> findById(String stato);
+
 }

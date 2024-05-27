@@ -13,9 +13,7 @@
         <h2>Tipo di Utente:
             <span th:text="${Utente.getTipoUtente()}"></span></h2>
     </div>
-
     <a href="/logout">Logout</a>
-
     <div>
         <form action="/user/dashboardModifica" method="get">
             <input type="hidden" name="utenteId" th:value="${Utente.getId()}">

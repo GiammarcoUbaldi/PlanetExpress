@@ -34,7 +34,7 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/", "/register/**","/registrazione").permitAll();
+                    registry.requestMatchers("/", "/register/**", "/registrazione").permitAll();
                     registry.requestMatchers("/no-user/**").permitAll();
                     registry.requestMatchers("/**.css", "/**.png", "/**.svg", "/icons/**", "/bg/**").permitAll();
                     registry.requestMatchers("/admin/**").hasRole("ADMIN");
@@ -48,8 +48,13 @@ public class SecurityConfig {
                     httpSecurityFormLoginConfigurer
                             .loginPage("/login")
                             .permitAll();
-                })
-               // .exceptionHandling().accessDeniedPage("/403")
+                }).logout(logout ->
+                        logout
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/")
+                                .permitAll()
+                )
+                // .exceptionHandling().accessDeniedPage("/403")
                 .build();
 
 

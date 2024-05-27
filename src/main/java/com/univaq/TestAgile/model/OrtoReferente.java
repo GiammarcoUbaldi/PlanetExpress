@@ -19,6 +19,7 @@ public class OrtoReferente {
     @OneToMany(mappedBy = "orto")
     private List<Zolla> zolle;
 
+
     @Column(name = "nome")
     private String nome;
 

@@ -30,17 +30,14 @@ public class ReferenteController {
 
     @GetMapping("/orto/{id}")
     public String mostraOrtoReferente(Model model, @PathVariable long id) {
-        OrtoReferente ortoReferente = ortoReferenteController.getEventoById(id);
+        OrtoReferente ortoReferente = ortoReferenteController.getOrtoById(id);
         List<Zolla> zolle = zollaController.getListZolleByOrto(ortoReferente);
         model.addAttribute("ortoReferente", ortoReferente);
         model.addAttribute("zolle", zolle);
         return "/referente/orto/visualizzaOrtoReferente";
     }
 
-    @GetMapping("/form-richiesta-orto")
-    public String mostraFormRichiestaOrtoReferente(Model model) {
-        return "/referente/formRichiestaOrtoReferete";
-    }
+
 
     @GetMapping("/mostraEventiRef/{id}")
     public String mostraEventiReferente(Model model, @PathVariable long id) {
@@ -50,7 +47,9 @@ public class ReferenteController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard() {
+    public String dashboard(Model model) {
+//        List<OrtoReferente> ortiReferente = ortoReferenteController.get
+//        model.addAttribute("ortiDelReferente", ortiReferente);
         return "referente/dashboardReferente";
     }
 

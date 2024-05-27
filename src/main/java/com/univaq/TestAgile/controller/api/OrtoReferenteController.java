@@ -42,11 +42,6 @@ public class OrtoReferenteController {
     }
 
 
-    @PostMapping("/add-richiesta-orto")
-    public String createEvento(@ModelAttribute OrtoReferente ortoRichiesta) {
-        ortoReferenteRepository.save(ortoRichiesta);
-        return "redirect:/";
-    }
 
     @GetMapping("/accetta-richiesta/{id}/{stato}")
     public String accettaRichiestaOrto(@PathVariable Long id, @PathVariable String stato) {
@@ -63,9 +58,14 @@ public class OrtoReferenteController {
     }
 
     @GetMapping("/get/{id}/")
-    public OrtoReferente getEventoById(@PathVariable long id) {
+    public OrtoReferente getOrtoById(@PathVariable long id) {
         return ortoReferenteRepository.findById(id).get();
     }
+
+//    @GetMapping("/getAll/{id}/")
+//    public List<OrtoReferente> getAllOrtoById(@PathVariable long id) {
+//        return ortoReferenteRepository.find;
+//    }
 
     @GetMapping("/insertZolleVuote/{orto}/")
     public void insertZolleVuote(@PathVariable OrtoReferente orto) {

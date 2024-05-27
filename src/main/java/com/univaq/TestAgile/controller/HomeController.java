@@ -47,12 +47,12 @@ public class HomeController {
     //Autenticazione e Registrazione
     @GetMapping("/login")
     public String login() {
-        return "/login/login";
+        return "/autenticazione/login";
     }
 
     @GetMapping("/registrazione")
     public String registrazioneForm(Utente utente) {
-        return "/Registrazione/registrazione";
+        return "/autenticazione/registrazione";
     }
 
     //Usato per lo sviluppo
@@ -68,6 +68,11 @@ public class HomeController {
         Evento evento = eventoController.getEventoById(id);
         model.addAttribute("datiDettagli", evento);
         return "/admin/dettagliEvento";
+    }
+
+    @GetMapping("/no-user/form-richiesta-orto")
+    public String mostraFormRichiestaOrtoReferente(Model model) {
+        return "/referente/formRichiestaOrtoReferete";
     }
 
 }

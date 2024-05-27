@@ -22,7 +22,7 @@ public class ZollaController {
 
     @GetMapping("/getListZolleByIdOrto/{idOrto}")
     public List<Zolla> getListZolleByIdOrto(@PathVariable long idOrto) {
-        OrtoReferente ortoReferente = ortoReferenteController.getEventoById(idOrto);
+        OrtoReferente ortoReferente = ortoReferenteController.getOrtoById(idOrto);
         return zollaRepository.findByOrto(ortoReferente);
     }
 

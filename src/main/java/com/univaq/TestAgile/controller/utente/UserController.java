@@ -16,6 +16,11 @@ public class UserController {
     @Autowired
     UtenteRepository utenteRepository;
 
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "admin/dashboardAdmin";
+    }
+
     @GetMapping("/creaPost")
     public String creaPost() {
         return "/Post/ScriviPost";
@@ -27,7 +32,7 @@ public class UserController {
         System.out.println(utente);
         if (utente != null) {
             model.addAttribute("utente", utente);
-            return "/Registrazione/modificaDati";
+            return "/autenticazione/modificaDati";
         }
         return "redirect:/";
     }

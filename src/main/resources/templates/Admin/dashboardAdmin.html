@@ -20,9 +20,9 @@
         </br>
         <a href="/mostraEventi" class="px-3 py-2 bg-yellow-400 rounded-full">Visualizza Eventi</a>
     </div>
-
+    <a href="/logout">Logout</a>
     <div>
-        <form action="/utente/dashboardModifica" method="get">
+        <form action="/user/dashboardModifica" method="get">
             <input type="hidden" name="utenteId" th:value="${Utente.getId()}">
             <button type="submit" value="Modifica Dati" class="bg-rosso1 px-2 py-1 text-verde1 rounded-full mt-8 mb-4">
                 Modifica Dati
