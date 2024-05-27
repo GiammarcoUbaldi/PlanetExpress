@@ -16,6 +16,9 @@
 
     <a href="/logout">Logout</a>
 
+    <div th:if="${ortoDelReferente != null}">
+        <a th:href="@{'/referente/orto/' + ${ortoDelReferente.id}}">Il tuo orto <span th:text="${ortoDelReferente.id}"></span></a>
+    </div>
     <div>
         <form action="/user/dashboardModifica" method="get">
             <input type="hidden" name="utenteId" th:value="${Utente.getId()}">

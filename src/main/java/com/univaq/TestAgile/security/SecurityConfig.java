@@ -29,6 +29,9 @@ public class SecurityConfig {
     @Autowired
     UtenteDetailService utenteDetailService;
 
+    @Autowired
+    CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -47,6 +50,7 @@ public class SecurityConfig {
                 .formLogin(httpSecurityFormLoginConfigurer -> {
                     httpSecurityFormLoginConfigurer
                             .loginPage("/login")
+                            .successHandler(customAuthenticationSuccessHandler)
                             .permitAll();
                 }).logout(logout ->
                         logout

@@ -62,10 +62,10 @@ public class OrtoReferenteController {
         return ortoReferenteRepository.findById(id).get();
     }
 
-//    @GetMapping("/getAll/{id}/")
-//    public List<OrtoReferente> getAllOrtoById(@PathVariable long id) {
-//        return ortoReferenteRepository.find;
-//    }
+    @GetMapping("/getByRef/{id}/")
+    public List<OrtoReferente> getOrtoByIdRef(@PathVariable long id) {
+        return ortoReferenteRepository.findByUtente_Id(id);
+    }
 
     @GetMapping("/insertZolleVuote/{orto}/")
     public void insertZolleVuote(@PathVariable OrtoReferente orto) {
