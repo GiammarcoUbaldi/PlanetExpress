@@ -53,7 +53,7 @@ public class ReferenteController {
             }
         }
 
-    return "redirect:/login";
+        return "redirect:/login";
 
     }
 
@@ -70,9 +70,8 @@ public class ReferenteController {
         Utente utente = utenteController.getUtenteLoggato();
         if (utente != null) {
             List<OrtoReferente> ortiDelReferente = ortoReferenteRepository.findByUtente(utente);
-            System.out.println("ASD");
-            System.out.println(ortiDelReferente);
-            model.addAttribute("ortoDelReferente", ortiDelReferente.get(0));
+            if (!ortiDelReferente.isEmpty())
+                model.addAttribute("ortoDelReferente", ortiDelReferente.get(0));
         }
         return "referente/dashboardReferente";
     }
