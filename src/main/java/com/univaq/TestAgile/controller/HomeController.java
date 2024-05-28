@@ -73,6 +73,10 @@ public class HomeController {
     public String mostraEventiReferente(Model model, @PathVariable long id) {
         List<Evento> eventiRefe = eventoController.getEventiByIdRef(id);
         model.addAttribute("EventiRefe", eventiRefe);
+        List<Evento> eventiRefeFuturi = eventoController.getEventiFuturiRef(id);
+        model.addAttribute("EventiRefeFuturi", eventiRefeFuturi);
+        List<Evento> eventiInSospeso = eventoController.getEventiAccettatiRef(id);
+        model.addAttribute("EventiRefeInSospeso", eventiInSospeso);
         return "/referente/listaEventiReferente";
     }
 
