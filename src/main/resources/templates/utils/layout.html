@@ -10,7 +10,7 @@
 
     <!--    Css   -->
     <link rel="stylesheet" href="/output.css">
-    <link rel="stylesheet" href="/global.css">
+    <link rel="stylesheet" href="/css/global.css">
 
     <!--    Font   -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,12 +30,28 @@
     </a>
     <div>
         <!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
-        <a th:href="'/'+${Utente.getTipoUtente().toLowerCase()}+'/dashboard'" th:if="${Utente != null}" class="flex flex-row items-center gap-2">
+        <a th:if="${Utente != null}" th:href="'/'+${Utente.getTipoUtente().toLowerCase()}+'/dashboard'"  class="flex flex-row items-center gap-2">
            <span>Ciao, <span th:text="${Utente.getNome()}"></span></span>
             <?xml version="1.0" encoding="utf-8"?>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#FFF7DF"  class="h-8 w-8 " viewBox="0 0 24 24"><path
-        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-        </a>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#FFF7DF"  class="h-12 w-12 "  data-name="Layer 1" viewBox="-1.6 -3.2 35.2 43.2" x="0px"
+                 y="0px">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            stroke-width: 0px;
+                        }
+                    </style>
+                </defs>
+                <path class="cls-1"
+                      d="m13.74,4.36h-6.94c-1.65,0-3,1.35-3,3v6.94c0,1.65,1.35,3,3,3h6.94c1.65,0,3-1.35,3-3v-6.94c0-1.65-1.35-3-3-3Zm1,9.94c0,.55-.45,1-1,1h-6.94c-.55,0-1-.45-1-1v-6.94c0-.55.45-1,1-1h6.94c.55,0,1,.45,1,1v6.94Z" />
+                <path class="cls-1"
+                      d="m23.95,8.56h-2.74c-1.65,0-3,1.35-3,3v2.74c0,1.65,1.35,3,3,3h2.74c1.65,0,3-1.35,3-3v-2.74c0-1.65-1.35-3-3-3Zm1,5.74c0,.55-.45,1-1,1h-2.74c-.55,0-1-.45-1-1v-2.74c0-.55.45-1,1-1h2.74c.55,0,1,.45,1,1v2.74Z" />
+                <path class="cls-1"
+                      d="m23.95,18.83h-2.74c-1.65,0-3,1.35-3,3v2.74c0,1.65,1.35,3,3,3h2.74c1.65,0,3-1.35,3-3v-2.74c0-1.65-1.35-3-3-3Zm1,5.74c0,.55-.45,1-1,1h-2.74c-.55,0-1-.45-1-1v-2.74c0-.55.45-1,1-1h2.74c.55,0,1,.45,1,1v2.74Z" />
+                <path class="cls-1"
+                      d="m13.74,18.83h-2.74c-1.65,0-3,1.35-3,3v2.74c0,1.65,1.35,3,3,3h2.74c1.65,0,3-1.35,3-3v-2.74c0-1.65-1.35-3-3-3Zm1,5.74c0,.55-.45,1-1,1h-2.74c-.55,0-1-.45-1-1v-2.74c0-.55.45-1,1-1h2.74c.55,0,1,.45,1,1v2.74Z" />
+            </svg>
+       </a>
         <button th:if="${Utente == null}"
                 class="rounded-full px-2 py-0.5 font-medium text-lg bg-verdeSuccessoBG text-verde1"
                 onclick="window.location.href='/login'">Login

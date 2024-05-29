@@ -3,9 +3,11 @@ package com.univaq.TestAgile.controller;
 
 import com.univaq.TestAgile.controller.api.EventoController;
 import com.univaq.TestAgile.controller.api.RiempiDbCotroller;
+import com.univaq.TestAgile.controller.api.UtenteController;
 import com.univaq.TestAgile.model.Evento;
 
 
+import com.univaq.TestAgile.model.OrtoReferente;
 import com.univaq.TestAgile.repository.PostRepository;
 
 import com.univaq.TestAgile.model.Utente;
@@ -24,6 +26,9 @@ public class HomeController {
 
     @Autowired
     EventoController eventoController;
+
+    @Autowired
+    UtenteController utenteController;
 
     @Autowired
     RiempiDbCotroller riempiDbCotroller;
@@ -59,6 +64,23 @@ public class HomeController {
     @GetMapping("/riempiDb")
     public String riempiDb() {
         riempiDbCotroller.inserisciDati();
+        return "redirect:/";
+    }
+
+    //per la dashboard
+    @GetMapping("/dashboard")
+    public String mostraDashboard() {
+        Utente utente = utenteController.getUtenteLoggato();
+        if (utente != null) {
+            switch (utente.getTipoUtente()) {
+                case "USER":
+                    return "redirect:/user/dashboard";
+                case "ADMIN":
+                    return "redirect:/admin/dashboard";
+                case "REFERENTE":
+                    return "redirect:/referente/dashboard";
+            }
+        }
         return "redirect:/";
     }
 

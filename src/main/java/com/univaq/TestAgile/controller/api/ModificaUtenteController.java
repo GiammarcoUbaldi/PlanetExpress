@@ -27,7 +27,7 @@ public class ModificaUtenteController {
     public String mostraModificaUtente(@RequestParam Long id, Model model) {
         Utente utente = utenteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Utente non trovato"));
       //  model.addAttribute("utente", utente);
-        return "/modifica-utente/form";
+        return "/autenticazione-utente/form";
     }
 
 
@@ -36,12 +36,12 @@ public class ModificaUtenteController {
     public String modificaUtente(Model model, Utente utente, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("success", "no");
-            return "/Registrazione/modificaDati";
+            return "/autenticazione/modificaDati";
         }
 
         utenteRepository.save(utente);
         model.addAttribute("success", "ok");
         model.addAttribute("utente", utente);
-        return "/Registrazione/modificaDati";
+        return "redirect:/dashboard";
     }
 }
