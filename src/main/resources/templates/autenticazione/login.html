@@ -11,10 +11,11 @@
         <div class="w-full max-w-sm p-4 mx-auto bg-white shadow-md rounded-lg">
             <h1 class="text-2xl font-bold text-center mb-4">Accedi</h1>
 
-            <form action="/api/login/richiestaAccesso" method="get">
+            <form action="/login" method="post">
+<!--            <form action="/api/login/richiestaAccesso" method="get">-->
                 <div class="mb-4">
                     <label for="email" class="block text-gray-700">Nome Utente:</label>
-                    <input type="email" id="email" name="email"
+                    <input type="email" id="email" name="username"
                            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                            required>
                 </div>
@@ -26,8 +27,8 @@
                            required>
                 </div>
                 <!--                Gestione Errore-->
-                <div th:if="${error}" class="text-red-500 text-lg font-medium my-2 text-center">
-                    <p th:text="${error}"></p>
+                <div th:if="${param.error}" class="text-red-500 text-lg font-medium my-2 text-center">
+                    <p th:text="'Credenziali errate. Per favore riprova.'"></p>
                 </div>
                 <button type="submit"
                         class="w-full py-2 px-4 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -35,7 +36,7 @@
                 </button>
             </form>
 
-            <p class="mt-4 text-center">Non hai ancora un account? <a href="/api/registrazione/form"
+            <p class="mt-4 text-center">Non hai ancora un account? <a href="/registrazione"
                                                                       class="text-blue-500">Registrati</a></p>
         </div>
     </div>

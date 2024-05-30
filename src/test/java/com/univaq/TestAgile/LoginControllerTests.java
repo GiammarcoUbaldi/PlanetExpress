@@ -1,6 +1,6 @@
 package com.univaq.TestAgile;
 
-import com.univaq.TestAgile.controller.UtenteController;
+import com.univaq.TestAgile.controller.api.UtenteController;
 import com.univaq.TestAgile.model.Utente;
 import com.univaq.TestAgile.repository.UtenteRepository;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;

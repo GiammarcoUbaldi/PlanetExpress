@@ -8,25 +8,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlanetExpress</title>
-    <link rel="stylesheet" href="/global.css">
+
+    <link rel="stylesheet" href="/css/splide.min.css">
+    <link rel="stylesheet" href="/css/splide-core.min.css">
+
+    <script src="/js/splide.min.js"></script>
+
 </head>
 <body>
 <div layout:fragment="contenuto">
-    <div class="container lg:px-32 text-center mx-auto">
+<!--    <img class="absolute h-screen w-screen object-cover top-0 left-0" src="/bg/bgGrass.jpg"  alt="img orto 1" />-->
+    <!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
+    <div class="container lg:px-32 pt-8 text-center mx-auto z-10 relative bg-bianco2">
         <!--        Title -->
-        <div class="mx-4 mt-8 lg:mx-32">
-            <img src="/bg/titleHome.svg" alt="Title Coltiva nel tuo orto" class="w-full ">
+        <div class="mx-4 lg:mx-32 z-10">
+            <img src="/bg/titleHome.svg" alt="Title Coltiva nel tuo orto" class="w-full z-10">
         </div>
+
+
+
+
+
+        <!--  Slider  -->
+        <section class="splide mt-12" aria-label="Splide Basic HTML Example">
+            <div class="splide__track">
+                <ul class="splide__list rounded-3xl">
+                    <li class="splide__slide"><img src="/img/orto%20(1).jpg" alt="img orto 1"
+                                                   class=" h-[400px] w-full object-cover rounded-3xl"></li>
+                    <li class="splide__slide"><img src="/img/orto%20(2).jpg" alt="img orto 2"
+                                                   class=" h-[400px] w-full object-cover rounded-3xl"></li>
+                    <li class="splide__slide"><img src="/img/orto%20(3).jpg" alt="img orto 3"
+                                                   class=" h-[400px] w-full object-cover rounded-3xl"></li>
+                    <li class="splide__slide"><img src="/img/orto%20(5).jpg" alt="img orto 3"
+                                                   class=" h-[400px] w-full object-cover rounded-3xl"></li>
+                    <li class="splide__slide"><img src="/img/orto%20(6).jpg" alt="img orto 3"
+                                                   class=" h-[400px] w-full object-cover rounded-3xl"></li>
+                </ul>
+            </div>
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var splide = new Splide('.splide', {
+                    type: 'loop',
+                    perPage: 1,
+                    autoplay: true,
+                });
+                splide.mount();
+            });
+        </script>
 
         <div class="max-w-[350px] flex flex-col items-center justify-center my-32 w-full mx-auto">
             <!-- Button inizia a coltivare -->
-            <a href="/login"
+            <a href="/login" th:if="${Utente == null}"
                class="flex flex-row items-center gap-2 px-4 py-2 bg-verde4 text-white rounded-full font-medium text-xl boxShadowHomeButtonVerde">
                 <img src="/icons/farmer1.svg" alt="Icona Farmer" class="w-12 ">
                 Inizia a coltivare</a>
 
             <!-- Button Candidati come referente -->
-            <a href="/referente/form-richiesta-orto"
+            <a href="/no-user/form-richiesta-orto" th:if="${Utente == null}"
                class="flex flex-row items-center gap-2 px-4 py-2 bg-rosso1 text-verde1 rounded-full boxShadowHomeButtonRosso font-medium text-xl mt-12">
                 <img src="/icons/corona.svg" alt="Icona Farmer" class="w-12 ">
                 Condividi il tuo orto e' diventa referente</a>
@@ -48,7 +88,7 @@
                 <div class="my-5 flex flex-col bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl"
                      th:each="evento : ${EventiRefe}">
 
-                    <a th:href="${'/mostraDettagliEvento/'+evento.getId()}"
+                    <a th:href="${'/no-user/mostraDettagliEvento/'+evento.getId()}"
                        class="transition w-full h-full  border-verde1 no-underline  ">
                         <img class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}" alt="img"/>
 
@@ -62,22 +102,22 @@
 
             <h6 class="mt-16 mx-14 text-4xl text-left text-verde1 font-extrabold mb-0 ">Post nel Forum</h6>
             <div class="flex flex-  bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl">
-            <div class="my-5 flex flex-row items-center justify-center"
-                 th:each="post: ${listaPost}">
-                <div class="">
-                    <div class="text-lg font-bold" th:text="${post.getTitolo()}"></div>
-                    <div class="text-md font-normal" th:text="${post.getDescrizione()}"></div>
-                    <!--                    <div class="text-xl font-bold" th:text="${post.getUsername()}"></div>-->
+                <div class="my-5 flex flex-row items-center justify-center"
+                     th:each="post: ${listaPost}">
+                    <div class="">
+                        <div class="text-lg font-bold" th:text="${post.getTitolo()}"></div>
+                        <div class="text-md font-normal" th:text="${post.getDescrizione()}"></div>
+                        <!--                    <div class="text-xl font-bold" th:text="${post.getUsername()}"></div>-->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="bg-rosso1 w-full">
-        <img src="/bg/footerTemporaneo.png" alt="PianteFooter" class="w-full ">
-    </div>
+        <div class="bg-rosso1 w-full">
+            <img src="/bg/footerTemporaneo.png" alt="PianteFooter" class="w-full ">
+        </div>
 
-</div>
+    </div>
 </div>
 </body>
 </html>

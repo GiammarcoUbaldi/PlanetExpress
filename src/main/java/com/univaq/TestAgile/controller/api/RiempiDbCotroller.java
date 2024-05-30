@@ -1,4 +1,4 @@
-package com.univaq.TestAgile.controller;
+package com.univaq.TestAgile.controller.api;
 
 import com.univaq.TestAgile.model.Evento;
 import com.univaq.TestAgile.model.OrtoReferente;
@@ -179,63 +179,63 @@ public class RiempiDbCotroller {
 
     public void inserisciDatiOrtoReferente() {
         List<OrtoReferente> eventi = new ArrayList<OrtoReferente>();
-        eventi.add(new OrtoReferente(
-                "Orto 'Il Giardino degli Amici'",
-                "Via Roma, 123 - L'Aquila",
-                "Spazioso orto con terreno fertile e soleggiato. Ideale per coltivare ortaggi e verdure di stagione.",
-                50,
-                30,
-                400,
-                "Vicino a fermata autobus e parcheggio",
-                "Mario Rossi",
-                "rifiutato"));
-        eventi.add(new OrtoReferente(
-                "Orto 'Erbe aromatiche e spezie'",
-                "Cortile interno - Condominio 'Le Palme'",
-                "Piccolo orto dedicato alle erbe aromatiche e alle spezie. Perfetto per insaporire i tuoi piatti.",
-                20,
-                15,
-                100,
-                "Accesso su richiesta",
-                "Anna Bianchi",
-                "accettato"));
-        eventi.add(new OrtoReferente(
-                "Orto 'Condividiamo la Natura'",
-                "Zona periferica - L'Aquila",
-                "Ampio orto immerso nel verde. Ideale per coltivare in gruppo e condividere i prodotti.",
-                100,
-                80,
-                1200,
-                "Attrezzi e compost a disposizione",
-                "Team Ortolani Volontari",
-                "accettato"));
-        eventi.add(new OrtoReferente("Orto 'Il Giardino degli Amici'",
-                "Via Roma, 123 - L'Aquila",
-                "Spazioso orto con terreno fertile e soleggiato. Ideale per coltivare ortaggi e verdure di stagione.",
-                50,
-                30,
-                400,
-                "Vicino a fermata autobus e parcheggio",
-                "Mario Rossi",
-                "indefinito"));
-        eventi.add(new OrtoReferente("Orto 'Erbe aromatiche e spezie'",
-                "Cortile interno - Condominio 'Le Palme'",
-                "Piccolo orto dedicato alle erbe aromatiche e alle spezie. Perfetto per insaporire i tuoi piatti.",
-                20,
-                15,
-                100,
-                "Accesso su richiesta",
-                "Anna Bianchi",
-                "indefinito"));
-        eventi.add(new OrtoReferente("Orto 'Condividiamo la Natura'",
-                "Zona periferica - L'Aquila",
-                "Ampio orto immerso nel verde. Ideale per coltivare in gruppo e condividere i prodotti.",
-                100,
-                80,
-                1200,
-                "Attrezzi e compost a disposizione",
-                "Team Ortolani Volontari",
-                "indefinito"));
+//        eventi.add(new OrtoReferente(
+//                "Orto 'Il Giardino degli Amici'",
+//                "Via Roma, 123 - L'Aquila",
+//                "Spazioso orto con terreno fertile e soleggiato. Ideale per coltivare ortaggi e verdure di stagione.",
+//                50,
+//                30,
+//                400,
+//                "Vicino a fermata autobus e parcheggio",
+//                "Mario Rossi",
+//                "rifiutato"));
+//        eventi.add(new OrtoReferente(
+//                "Orto 'Erbe aromatiche e spezie'",
+//                "Cortile interno - Condominio 'Le Palme'",
+//                "Piccolo orto dedicato alle erbe aromatiche e alle spezie. Perfetto per insaporire i tuoi piatti.",
+//                20,
+//                15,
+//                100,
+//                "Accesso su richiesta",
+//                "Anna Bianchi",
+//                "accettato"));
+//        eventi.add(new OrtoReferente(
+//                "Orto 'Condividiamo la Natura'",
+//                "Zona periferica - L'Aquila",
+//                "Ampio orto immerso nel verde. Ideale per coltivare in gruppo e condividere i prodotti.",
+//                100,
+//                80,
+//                1200,
+//                "Attrezzi e compost a disposizione",
+//                "Team Ortolani Volontari",
+//                "accettato"));
+//        eventi.add(new OrtoReferente("Orto 'Il Giardino degli Amici'",
+//                "Via Roma, 123 - L'Aquila",
+//                "Spazioso orto con terreno fertile e soleggiato. Ideale per coltivare ortaggi e verdure di stagione.",
+//                50,
+//                30,
+//                400,
+//                "Vicino a fermata autobus e parcheggio",
+//                "Mario Rossi",
+//                "indefinito"));
+//        eventi.add(new OrtoReferente("Orto 'Erbe aromatiche e spezie'",
+//                "Cortile interno - Condominio 'Le Palme'",
+//                "Piccolo orto dedicato alle erbe aromatiche e alle spezie. Perfetto per insaporire i tuoi piatti.",
+//                20,
+//                15,
+//                100,
+//                "Accesso su richiesta",
+//                "Anna Bianchi",
+//                "indefinito"));
+//        eventi.add(new OrtoReferente("Orto 'Condividiamo la Natura'",
+//                "Zona periferica - L'Aquila",
+//                "Ampio orto immerso nel verde. Ideale per coltivare in gruppo e condividere i prodotti.",
+//                100,
+//                80,
+//                1200,
+//                "Attrezzi e compost a disposizione",
+//                "Team Ortolani Volontari",
+//                "indefinito"));
         ortoReferenteRepository.deleteAll();
         ortoReferenteRepository.saveAll(eventi);
     }

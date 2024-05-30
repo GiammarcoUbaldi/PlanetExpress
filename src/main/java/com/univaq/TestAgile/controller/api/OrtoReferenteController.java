@@ -1,4 +1,4 @@
-package com.univaq.TestAgile.controller;
+package com.univaq.TestAgile.controller.api;
 
 import com.univaq.TestAgile.model.Evento;
 import com.univaq.TestAgile.model.OrtoReferente;
@@ -21,7 +21,6 @@ public class OrtoReferenteController {
     @Autowired
     private ZollaRepository zollaRepository;
 
-
     @GetMapping("/all")
     public List<OrtoReferente> getAllRichiesteOrti() {
         return (List<OrtoReferente>) ortoReferenteRepository.findAll();
@@ -43,11 +42,6 @@ public class OrtoReferenteController {
     }
 
 
-    @PostMapping("/add-richiesta-orto")
-    public String createEvento(@ModelAttribute OrtoReferente ortoRichiesta) {
-        ortoReferenteRepository.save(ortoRichiesta);
-        return "redirect:/";
-    }
 
     @GetMapping("/accetta-richiesta/{id}/{stato}")
     public String accettaRichiestaOrto(@PathVariable Long id, @PathVariable String stato) {
@@ -64,8 +58,13 @@ public class OrtoReferenteController {
     }
 
     @GetMapping("/get/{id}/")
-    public OrtoReferente getEventoById(@PathVariable long id) {
+    public OrtoReferente getOrtoById(@PathVariable long id) {
         return ortoReferenteRepository.findById(id).get();
+    }
+
+    @GetMapping("/getByRef/{id}/")
+    public List<OrtoReferente> getOrtoByIdRef(@PathVariable long id) {
+        return ortoReferenteRepository.findByUtente_Id(id);
     }
 
     @GetMapping("/insertZolleVuote/{orto}/")

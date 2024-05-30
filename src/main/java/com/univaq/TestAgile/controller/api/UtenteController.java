@@ -1,8 +1,11 @@
-package com.univaq.TestAgile.controller;
+package com.univaq.TestAgile.controller.api;
 
 import com.univaq.TestAgile.model.Utente;
 import com.univaq.TestAgile.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,4 +62,12 @@ public class UtenteController {
     }
 
      */
+    public Utente getUtenteLoggato() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+            return utenteRepository.findByEmail(username);
+        }
+        return null;
+    }
 }

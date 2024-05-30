@@ -4,6 +4,8 @@ import com.univaq.TestAgile.model.Utente;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
+
 public interface UtenteRepository extends CrudRepository<Utente, Long> {
     Utente findByNomeAndPassword(String nome, String password);
 
@@ -12,6 +14,8 @@ public interface UtenteRepository extends CrudRepository<Utente, Long> {
 
     Utente findByEmail(String email);
 
+
+//    Optional<Utente> findByEmail(String email);
 
     Utente findByEmailAndPassword(String nome, String password);
 }

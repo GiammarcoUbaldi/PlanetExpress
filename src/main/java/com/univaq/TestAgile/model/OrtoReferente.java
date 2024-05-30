@@ -19,6 +19,10 @@ public class OrtoReferente {
     @OneToMany(mappedBy = "orto")
     private List<Zolla> zolle;
 
+    @ManyToOne
+    @JoinColumn(name = "utente_id", referencedColumnName = "id")
+    private Utente utente;
+
     @Column(name = "nome")
     private String nome;
 
@@ -46,7 +50,7 @@ public class OrtoReferente {
     @Column(name = "stato")
     private String stato;
 
-    public OrtoReferente(String nome, String posizione, String descrizione, Integer dimensioneX, Integer dimensioneY, Integer numeroZolle, String infoAggiuntive, String nome_referente, String stato) {
+    public OrtoReferente(String nome, String posizione, String descrizione, Integer dimensioneX, Integer dimensioneY, Integer numeroZolle, String infoAggiuntive, String nome_referente, String stato, Utente utente) {
         this.nome = nome;
         this.posizione = posizione;
         this.descrizione = descrizione;
@@ -56,6 +60,7 @@ public class OrtoReferente {
         this.infoAggiuntive = infoAggiuntive;
         this.nomeReferente = nome_referente;
         this.stato = stato;
+        this.utente = utente;
     }
 
     public OrtoReferente() {
@@ -73,6 +78,14 @@ public class OrtoReferente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     public String getPosizione() {

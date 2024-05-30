@@ -132,6 +132,41 @@ header {
 }
 
 
+
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #004322 #fff7df;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 14px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #fff7df;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #004322;
+    border-radius: 60px;
+    border: 25px solid #ffffff;
+}
+
+
+
+
+.grid-rows-custom-dash {
+    grid-template-rows: repeat(6, 200px); /* Definisce 6 righe di 200px ciascuna */
+}
+
+
+
+
+
 /*****   Cerchio con percentuale              **/
 /****************************************************************
  *
