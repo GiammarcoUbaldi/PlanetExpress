@@ -3,6 +3,8 @@ package com.univaq.TestAgile.model;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import java.util.List;
+
 @EnableJpaRepositories
 @Entity
 @Table(name = "utenti")
@@ -40,6 +42,17 @@ public class Utente {
     private String numeroTelefono;
 
     public Utente() {
+    }
+
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Commento> commenti;
+
+    public List<Commento> getCommenti() {
+        return commenti;
+    }
+
+    public void setCommenti(List<Commento> commenti) {
+        this.commenti = commenti;
     }
 
     public Utente(String nome, String cognome, String email, String password, String tipoUtente, String sesso, String indirizzo, String nazione, String numeroTelefono) {
