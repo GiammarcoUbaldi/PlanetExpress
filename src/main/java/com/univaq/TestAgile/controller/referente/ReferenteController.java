@@ -77,4 +77,16 @@ public class ReferenteController {
     }
 
 
+    @GetMapping("/form-richiesta-orto")
+    public String mostraFormRichiestaOrtoReferente(Model model) {
+        return "/referente/formRichiestaOrtoReferete";
+    }
+
+    @GetMapping("/form-richiesta-evento")
+    public String mostraFormRichiestaEventoReferente(Model model) {
+        return "/referente/formRichiestaEventoReferente";
+    }
+
+
+
 }
