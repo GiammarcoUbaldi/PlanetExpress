@@ -72,7 +72,7 @@ public class HomeController {
     }
 
     //Usato per lo sviluppo
-    @GetMapping("/riempiDb")
+    @GetMapping("/no-user/riempiDb")
     public String riempiDb() {
         riempiDbCotroller.inserisciDati();
         return "redirect:/";
@@ -97,20 +97,10 @@ public class HomeController {
 
 
     //Evento Utente non Registrato
+
+
+
     @GetMapping("/no-user/mostraDettagliEvento/{id}")
-    //@GetMapping("/mostraEventiRef/{id}")
-    public String mostraEventiReferente(Model model, @PathVariable long id) {
-        List<Evento> eventiRefe = eventoController.getEventiByIdRef(id);
-        model.addAttribute("EventiRefe", eventiRefe);
-        List<Evento> eventiRefeFuturi = eventoController.getEventiFuturiRef(id);
-        model.addAttribute("EventiRefeFuturi", eventiRefeFuturi);
-        List<Evento> eventiInSospeso = eventoController.getEventiAccettatiRef(id);
-        model.addAttribute("EventiRefeInSospeso", eventiInSospeso);
-        return "/referente/listaEventiReferente";
-    }
-
-
-    @GetMapping("/mostraDettagliEvento/{id}")
     public String mostraDettagliEvento(Model model, @PathVariable long id) {
         Evento evento = eventoController.getEventoById(id);
         model.addAttribute("datiDettagli", evento);

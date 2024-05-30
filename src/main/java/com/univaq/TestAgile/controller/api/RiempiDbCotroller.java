@@ -241,20 +241,21 @@ public class RiempiDbCotroller {
     }
 
     public void inserisciDati() {
-        inserisciDatiEvento();
-        inserisciDatiOrtoReferente();
+     //   inserisciDatiEvento();
+     //   inserisciDatiOrtoReferente();
         inserisciDatiUtente();
     }
 
     @Autowired
     private UtenteRepository utenteRepository;
     private void inserisciDatiUtente() {
-//        List<Utente> eventi = new ArrayList<Utente>();
-////        eventi.add(new Utente("utente", "password", "utente"));
-////        eventi.add(new Utente("admin", "password", "admin"));
-////        eventi.add(new Utente("referent", "password", "referente"));
-//        utenteRepository.deleteAll();
-//        utenteRepository.saveAll(eventi);
+        List<Utente> eventi = new ArrayList<Utente>();
+        eventi.add(new Utente("Giovanni","Altieri","giovanni.alt1@gmail.com","$2a$10$QS7ZDUF1wg2NAFKWs9PrUedrFvzKa.otRCAgRPehLfV7pdv7xl2/m","USER","maschio","lentella","italia","333232323"));
+        eventi.add(new Utente("Luca","Di Cicco","ref@ref.com","$2a$10$QS7ZDUF1wg2NAFKWs9PrUedrFvzKa.otRCAgRPehLfV7pdv7xl2/m","REFERENTE","maschio","roma","italia","343232323"));
+        eventi.add(new Utente("Mario","Rossi","admin@admin.com","$2a$10$QS7ZDUF1wg2NAFKWs9PrUedrFvzKa.otRCAgRPehLfV7pdv7xl2/m","ADMIN","femmina","vasto","italia","333233423"));
+
+        utenteRepository.deleteAll();
+        utenteRepository.saveAll(eventi);
 
     }
 }

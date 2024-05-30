@@ -18,22 +18,8 @@ public class UserController {
 
     @GetMapping("/dashboard")
     public String dashboard() {
-        return "admin/dashboardAdmin";
+        return "utente/dashboardUtente";
     }
 
-    @GetMapping("/creaPost")
-    public String creaPost() {
-        return "/Post/ScriviPost";
-    }
 
-    @GetMapping("/dashboardModifica")
-    public String utenteDashboardModifica(Model model, @RequestParam("utenteId") Long utenteId) {
-        Utente utente = utenteRepository.findById(utenteId).get();
-        System.out.println(utente);
-        if (utente != null) {
-            model.addAttribute("utente", utente);
-            return "/autenticazione/modificaDati";
-        }
-        return "redirect:/";
-    }
 }

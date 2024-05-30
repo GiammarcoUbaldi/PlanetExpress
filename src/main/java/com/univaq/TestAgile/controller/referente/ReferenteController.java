@@ -58,10 +58,21 @@ public class ReferenteController {
     }
 
 
-    @GetMapping("/mostraEventiRef/{id}")
+    //    @GetMapping("/mostraEventiRef/{id}")
+//    public String mostraEventiReferente(Model model, @PathVariable long id) {
+//        List<Evento> eventiRefe = eventoController.getEventiByIdRef(id);
+//        model.addAttribute("EventiRefe", eventiRefe);
+//        return "/referente/listaEventiReferente";
+//    }
+    @GetMapping("/mostraDettagliEvento/{id}")
+//@GetMapping("/mostraEventiRef/{id}")
     public String mostraEventiReferente(Model model, @PathVariable long id) {
         List<Evento> eventiRefe = eventoController.getEventiByIdRef(id);
         model.addAttribute("EventiRefe", eventiRefe);
+        List<Evento> eventiRefeFuturi = eventoController.getEventiFuturiRef(id);
+        model.addAttribute("EventiRefeFuturi", eventiRefeFuturi);
+        List<Evento> eventiInSospeso = eventoController.getEventiAccettatiRef(id);
+        model.addAttribute("EventiRefeInSospeso", eventiInSospeso);
         return "/referente/listaEventiReferente";
     }
 
@@ -86,7 +97,6 @@ public class ReferenteController {
     public String mostraFormRichiestaEventoReferente(Model model) {
         return "/referente/formRichiestaEventoReferente";
     }
-
 
 
 }

@@ -1,39 +1,125 @@
-<!DOCTYPE html>
+
 <html lang="it" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="/utils/layout">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
 <!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
-<div layout:fragment="contenuto" class="flex items-center gap-4 flex-col">
-    <h1 class="text-3xl font-bold">Dashboard</h1>
-    <div class="text-xl font-medium">
-        <h2>Tipo di Utente:
-            <span th:text="${Utente.getTipoUtente()}"></span></h2>
-        </br>
-        <a href="/admin/richieste-orto-referente" class="px-3 py-2 bg-green-400 rounded-full">Visualizza Richieste
-            Orti</a>
-        </br>
-        </br>
-        </br>
-        <a href="/mostraEventi" class="px-3 py-2 bg-yellow-400 rounded-full">Visualizza Eventi</a>
-    </div>
-    <a href="/logout">Logout</a>
-    <div>
-        <form action="/user/dashboardModifica" method="get">
-            <input type="hidden" name="utenteId" th:value="${Utente.getId()}">
-            <button type="submit" value="Modifica Dati" class="bg-rosso1 px-2 py-1 text-verde1 rounded-full mt-8 mb-4">
-                Modifica Dati
-            </button>
-        </form>
-        <a href="/creaPost" class="bg-celeste1 px-2 py-1 text-verde1 rounded-full mt-8">Scrivi un Post</a>
+<div layout:fragment="contenuto" class="flex items-center gap-4 flex-col px-4 container mx-auto relative">
+    <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold mt-12 text-verde1">Dashboard Admin</h1>
+
+    <div class="grid grid-cols-6 grid-rows-custom-dash gap-4 h-full w-full mt-10">
+        <!--        ORTO REFERENTE-->
+        <a href="/admin/richieste-orto-referente" id="content-1"
+           class="col-span-6 h-full row-span-2 md:col-span-3 lg:col-span-4 bg-verdeSuccessoBG transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 flex flex-col items-center cursor-pointer shadow-lg hover:shadow-2xl">
+            <div class="text-3xl font-bold text-verde1">Gestisci Richieste Orti</div>
+            <div class="flex-grow w-full flex items-center justify-center overflow-hidden">
+                <img src="/img/tipoNelOrto.png" class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
+            </div>
+        </a>
+        <!-- modifica profilo-->
+        <a th:href="@{'/user/dashboardModifica'(utenteId=${Utente.getId()})}" id="content-2"
+           class="col-span-6 md:col-span-3 lg:col-span-2 h-full  bg-celeste1 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center cursor-pointer shadow-lg hover:shadow-2xl">
+            <div class="text-3xl font-bold text-verde1 text-center">Modifica il tuo Profilo</div>
+            <div class="flex-grow w-full flex items-center justify-center overflow-hidden h-full">
+                <img th:src="${(Utente.getSesso().toLowerCase()== 'maschio')?'/img/tipoUomo.png' : '/img/tipaDonna.png'}"
+                     class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
+            </div>
+        </a>
+        <!-- Logout-->
+        <a href="/logout" id="content-3"
+           class="col-span-6 md:col-span-3 lg:col-span-2 max-h-[200px] h-[200px] bg-rossoInSuccessoBg transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center gap-2 cursor-pointer shadow-lg hover:shadow-2xl">
+            <div class="text-3xl font-bold text-verde1 text-center flex-grow ">Logout</div>
+            <div class="flex-grow w-full flex items-center justify-center overflow-hidden h-full">
+                <img src="/img/exit.png"
+                     class="max-h-full max-w-full h-full object-cover" alt="tipo in un orto"/>
+            </div>
+        </a>
+
+        <!-- Richieste Eventi -->
+        <a href="/admin/mostraEventi" id="content-4"
+           class="col-span-6 md:col-span-3 lg:col-span-2 h-full  bg-fuchsia-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center cursor-pointer shadow-lg hover:shadow-2xl">
+            <div class="text-3xl font-bold text-verde1 text-center">Gestisci Richieste Eventi</div>
+            <div class="flex-grow w-full flex items-center justify-center overflow-hidden h-full">
+                <img th:src="${(Utente.getSesso().toLowerCase()== 'maschio')?'/img/tipoUomo.png' : '/img/tipaDonna.png'}"
+                     class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
+            </div>
+        </a>
+        <!-- non lo so 2-->
+        <a href="/post/creaPost" id="content-5"
+           class="col-span-6 md:col-span-3 lg:col-span-2 h-full  bg-slate-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center cursor-pointer shadow-lg hover:shadow-2xl">
+            <div class="text-3xl font-bold text-verde1 text-center">Crea un Post</div>
+            <div class="flex-grow w-full flex items-center justify-center overflow-hidden h-full">
+                <img src="/img/tipiChat.png"
+                     class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
+            </div>
+        </a>
+        <!--        Eventi-->
+<!--        <a th:href="@{'/referente/orto/' + ${ortoDelReferente.id}}" id="content-6"-->
+<!--           class="col-span-6 h-full row-span-2 md:col-span-3 lg:col-span-2 bg-orange-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 flex flex-col items-center cursor-pointer shadow-lg hover:shadow-2xl">-->
+<!--            <div class="text-3xl font-bold text-verde1">Eventi</div>-->
+<!--            <div class="flex-grow w-full flex items-center justify-center overflow-hidden">-->
+<!--                <img src="/img/tipiFesta.png" class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>-->
+<!--            </div>-->
+<!--        </a>-->
+        <!--Chat-->
+        <a href="/no-user/forum" id="content-7"
+           class="col-span-6 row-span-1 md:row-span-2 md:col-span-3 lg:col-span-4 max-h-[200px] h-[200px] bg-indigo-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center gap-2 cursor-pointer shadow-lg hover:shadow-2xl">
+            <div class="text-3xl font-bold text-verde1 text-center flex-grow ">Chatta sul Forum</div>
+            <div class="flex-grow w-full flex items-center justify-center overflow-hidden h-full">
+                <img src="/img/tipiChat.png"
+                     class="max-h-full max-w-full h-full object-cover" alt="tipo in un orto"/>
+            </div>
+        </a>
+
     </div>
 
+
+    <!--    <div class="text-xl font-medium">-->
+    <!--        <h2>Tipo di Utente:-->
+    <!--            <span th:text="${Utente.getTipoUtente()}"></span></h2>-->
+    <!--    </div>-->
+
+    <!--    <a href="/logout">Logout</a>-->
+
+    <!--    <div th:if="${ortoDelReferente != null}">-->
+    <!--        <a th:href="@{'/referente/orto/' + ${ortoDelReferente.id}}">Il tuo orto <span th:text="${ortoDelReferente.id}"></span></a>-->
+    <!--    </div>-->
+    <!--    <div>-->
+    <!--            <form action="/user/dashboardModifica" method="get">-->
+    <!--                <input type="hidden" name="utenteId" th:value="${Utente.getId()}">-->
+    <!--                <button type="submit" value="Modifica Dati" class="bg-rosso1 px-2 py-1 text-verde1 rounded-full mt-8 mb-4">-->
+    <!--                    Modifica Dati-->
+    <!--                </button>-->
+    <!--            </form>-->
+    <!--        <a href="/creaPost" class="bg-celeste1 px-2 py-1 text-verde1 rounded-full mt-8">Scrivi un Post</a>-->
+    <!--    </div>-->
+    <script>
+        // Funzione per animare gli elementi
+        function animateContent(element, translate, opacity) {
+            anime({
+                targets: element,
+                translateX: translate, // Parte da 250 e arriva a 0
+                translateY: opacity, // Parte da 250 e arriva a 0
+                opacity: [0,1], // Opacità da 0 a 1
+                easing: 'easeInOutQuad', // Puoi modificare il tipo di easing
+                duration: 800, // Durata dell'animazione in millisecondi
+                delay: anime.stagger(100) // Delay tra ogni animazione per creare un effetto di sequenza
+            });
+        }
+
+        // Nascondi tutti gli elementi all'inizio
+        var contentElements = document.querySelectorAll('[id^="content-"]');
+        contentElements.forEach(function(element) {
+            element.style.opacity = 0;
+        });
+
+        // Animazione per ciascun elemento
+        animateContent('#content-1', [-250, 0], [0, 0]);
+        animateContent('#content-2', [200, 0], [0, 0]);
+        animateContent('#content-3', [0, 0], [-250, 0]);
+        animateContent('#content-4', [100, 0], [0, 0]);
+        animateContent('#content-5', [0, 0], [-300, 0]);
+        animateContent('#content-6', [-150, 0], [0, 0]);
+        animateContent('#content-7', [0, 0], [200, 0]);
+    </script>
 
 </div>
-</div>
-
-</body>
 </html>
