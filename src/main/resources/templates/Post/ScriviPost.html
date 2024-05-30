@@ -7,15 +7,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>homePage</title>
+    <title>ScriviPost</title>
+
     <link rel="stylesheet" href="/global.css">
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
 <div layout:fragment="contenuto">
     <div class="container text-center mx-auto">
         <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md mt-20">
             <h2 class="text-2xl font-semibold text-verde1 mb-6">Crea un Post</h2>
-            <form action="/api/post/creaPost" method="POST">
+
+            <form action="/api/post/creaPost" method="POST" enctype="multipart/form-data">
+
 
                 <!-- Tipo Input -->
                 <div class="mb-4">
@@ -25,7 +30,9 @@
                         <option value="announcement">Il tuo Orto</option>
                         <option value="discussion">Eventi</option>
                         <option value="question">Ortaggi</option>
-                        <option value="question">Altro</option>
+
+                        <option value="other">Altro</option>
+
                     </select>
                 </div>
 
@@ -39,8 +46,17 @@
                 <!-- Descrizione Input -->
                 <div class="mb-6">
                     <label for="description" class="block text-sm font-medium text-verde1">Descrizione</label>
-                    <textarea id="description" name="descrizione" rows="3"
-                              class="mt-1 px-1 border block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+
+                    <textarea id="description" name="descrizione" rows="6"
+                              class="mt-1 px-1 py-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                </div>
+
+                <!-- Carica Immagine Input -->
+                <div class="mb-6">
+                    <label for="image" class="block text-sm font-medium text-verde1">Aggiungi Immagine</label>
+                    <input type="file" name="image" id="image"
+                           class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+
                 </div>
 
                 <!-- Pulsante di Pubblicazione -->

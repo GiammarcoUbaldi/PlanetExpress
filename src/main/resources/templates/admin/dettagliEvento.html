@@ -15,28 +15,44 @@
         </div>
 
         <div class="grid-cols-2 grid">
+
             <div class="aspect-square ">
                 <div class="aspect-[3/4]  m-10">
                     <img class="w-full rounded-3xl" alt="Locandina dell'evento" th:src="${datiDettagli.getLink_img()}" />
+
+
                 </div>
             </div>
 
-            <div class="aspect-square">
-                <div class="aspect-[3/4] m-10 bg-[#FFE8A3] border-verde1 border-2 p-8 rounded-lg">
+            <div class="relative">
+
+                <div class="absolute h-24 w-24 -right-6">
+                    <svg viewBox="0 0 453 437" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M221.055 214.439C222.377 211.471 223.265 209.03 224.549 206.719C237.441 183.357 255.263 163.585 274.879 145.233C277.184 143.089 279.944 141.152 282.85 140.035C284.416 139.428 287.252 140.024 288.747 141.13C289.866 141.976 290.339 144.639 289.835 146.016C288.916 148.651 287.443 151.263 285.614 153.484C273.58 168.166 261.49 182.772 249.273 197.292C244.688 202.711 239.909 208.032 235.197 213.364C233.646 215.167 231.969 216.883 230.246 218.459C228.344 220.27 225.763 221.109 223.603 219.364C222.186 218.204 220.591 217.281 221.055 214.439Z" fill="black"/>
+                        <path d="M301.68 326.344C298.499 325.294 294.753 324.285 291.206 322.91C277.223 317.445 263.24 311.98 249.346 306.397C246.333 305.176 243.472 303.449 240.915 301.572C237.479 299.089 236.619 296.229 237.706 293.422C238.792 290.615 241.536 289.206 245.832 289.841C248.768 290.254 251.887 290.829 254.57 291.93C272.152 299.309 289.712 306.817 307.194 314.378C309.15 315.228 311.112 316.477 312.465 318.024C315.894 321.833 313.858 326.607 308.624 327.013C306.577 327.143 304.364 326.583 301.68 326.344Z" fill="black"/>
+                        <path d="M138.796 121.965C139.563 118.973 140.739 116.048 142.04 113.21C143.221 110.684 145.431 109.121 148.534 109.362C151.151 109.59 153.539 112.5 153.42 115.797C153.258 120.213 153.017 124.684 152.107 128.978C149.365 141.927 146.341 154.896 143.259 167.789C142.213 172.062 140.894 176.29 139.44 180.496C138.925 181.937 138.128 183.398 137.054 184.417C134.136 187.323 129.824 186.354 128.703 182.524C128.078 180.366 128.07 177.844 128.429 175.648C129.269 168.358 136.162 132.544 138.796 121.965Z" fill="black"/>
+                    </svg>
+                </div>
+                <div class="aspect-[3/4] m-10 border-verde1 border-2 p-8 rounded-3xl bg-gialloSecondarioBG">
 
                     <div class="flex flex-col">
 
                         <div class="text-3xl font-extrabold text-verde1 text-center">
                             DETTAGLI
                         </div>
-                        <div class="text-2xl text-verde1 text-center">
-                            Numero Partecipanti
+
+                        <div class="text-xl text-verde1 flex flex-row">
+                            <div class="text-xl text-verde1 text-center">
+                                Numero Partecipanti
+                            </div>
+                           <!-- SVG da esportare da figma -->
+
                         </div>
                         <div class="pb-3 flex flex-row justify-between relative">
-                            <div class="text-2xl text-verde1">
+                            <div class="text-xl text-verde1">
                                 0
                             </div>
-                            <div class="text-2xl text-verde1">
+                            <div class="text-xl text-verde1">
                                 max:70
                             </div>
                             <div class="h-[6px] bg-black rounded-full w-[75%] absolute  bottom-[-4px]"></div>
@@ -50,129 +66,129 @@
                         <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
 
                         <div class="py-3 flex flex-row justify-between">
-                            <div class="text-2xl text-verde1">
+                            <div class="text-xl text-verde1">
                                 Costo biglietti
                             </div>
-                            <div class="text-2xl text-verde1 flex flex-row">
+                            <div class="text-xl text-verde1 flex flex-row">
                                 <img src="/icons/money_details.svg" alt="icona" class="w-8 h-8 mr-2">
-                                10$
+                                <h6 class="text-xl text-verde1" th:text="${datiDettagli.getPrezzo()}">
+                                </h6>
                             </div>
                         </div>
 
                         <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
 
                         <div class="py-3 flex flex-row justify-between">
-                            <div class="text-2xl text-verde1">
+                            <div class="text-xl text-verde1">
                                 Durata
                             </div>
-                            <div class="text-2xl text-verde1">
-
-                                2:20h
+                            <div class="text-xl text-verde1 flex flex-row">
+                                <img src="/icons/time_details.svg" alt="icona" class="w-8 h-8 mr-2">
+                                <h6 class=" text-xl text-verde1" th:text="${datiDettagli.getDurataEvento()}">
+                                </h6>
                             </div>
                         </div>
 
                         <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
 
                         <div class="py-3 flex flex-row justify-between">
-                            <div class="text-2xl text-verde1">
+                            <div class="text-xl text-verde1">
                                 Tema evento
                             </div>
-                            <div class="text-2xl text-verde1">
-                                Gara di ballo
+                            <div class="text-xl text-verde1 flex flex-row">
+                                <img src="/icons/party_details.svg" alt="icona" class="w-8 h-8 mr-2">
+                                <h6 class=" text-xl text-verde1r" th:text="${datiDettagli.getTemaEvento()}">
+                                </h6>
                             </div>
                         </div>
 
                         <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
 
                         <div class="py-3 flex flex-row justify-between">
+
                             <div class="flex flex-row gap-2 items-center">
                                 <img src="/icons/calendar_details.svg" loading="lazy" alt="" class="w-8 h-8">
-                                 <div class="text-xl font-medium">Data</div>
+                                 <div class="text-xl font-medium">Data Evento</div>
                             </div>
                                 <p class="text-2xl text-verde1" th:text="${#temporals.format(datiDettagli.getDataOraEvento(), 'yyyy-MM-dd')}"> </p>
+
 
                         </div>
 
                         <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
 
                         <div class="py-3 flex flex-row justify-between ">
-                            <div class="text-2xl text-verde1">
+                            <div class="text-xl text-verde1">
                                 Luogo
                             </div>
-                            <div class="text-2xl text-verde1">
-                                L'Aquila via Roma
+                            <div class=" text-verde1 flex flex-row">
+                                <img src="/icons/place_details.svg" alt="icona" class="w-8 h-8 mr-2">
+                                <h6 class=" text-verde1" th:text="${datiDettagli.getLuogo()}">
+                                </h6>
                             </div>
+                        </div>
+
+                        <div class="" >
+                        <iframe class="bg-verde1 border-2"  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7825.546738292003!2d13.394863367167751!3d42.35853921129754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sit!4v1716416856536!5m2!1sen!2sit" width="100%" height="100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
 
                     </div>
 
                 </div>
             </div>
-
         </div>
 
+        <div class="">
+            <div class="absolute h-24 w-24">
 
+                <svg  viewBox="0 0 428 428" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_547_3420)">
+                        <mask id="mask0_547_3420" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="428" height="428">
+                            <path d="M428 0H0V428H428V0Z" fill="white"/>
+                        </mask>
+                        <g mask="url(#mask0_547_3420)">
+                            <path d="M214 0L247.786 87.9082L321 28.6706L306.306 121.694L399.329 107L340.091 180.214L428 214L340.091 247.786L399.329 321L306.306 306.306L321 399.329L247.786 340.091L214 428L180.214 340.091L107 399.329L121.694 306.306L28.6706 321L87.9082 247.786L0 214L87.9082 180.214L28.6706 107L121.694 121.694L107 28.6706L180.214 87.9082L214 0Z" fill="#F3896B"/>
+                        </g>
+                    </g>
+                </svg>
+
+            </div>
+        <div class="mx-7 text-3xl font-extrabold text-verde1 text-left">
+            Descrizione
+        </div>
+        <h6 class="mx-7 mt-2 w-full text-verde1 text-xl" th:text="${datiDettagli.getDescrizione()}"> </h6>
+        </div>
+
+        <div class="m-5 border-verde1 border-2 p-4 rounded-3xl w-full bg-gialloSecondarioBG">
+            <div class="flex flex-col">
+
+                <div class="py-3 flex flex-row justify-between">
+                    <div class="text-xl text-verde1">
+                        Referente Evento
+                    </div>
+                    <div class="text-xl text-verde1 flex flex-row">
+                        <img src="/icons/farmer_details.svg" alt="icona" class="w-8 h-8 mr-2">
+                        <h6 class="w-full text-verde1" th:text="${datiDettagli.getNomeReferente()}"> </h6>
+                    </div>
+                </div>
+
+                <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
+
+                <div class="py-3 flex flex-row justify-between">
+                    <div class="text-xl text-verde1">
+                        Data e Ora Creazione
+                    </div>
+                    <div class="text-xl text-verde1 flex flex-row">
+                        <img src="/icons/calendar_details.svg" alt="icona" class="w-8 h-8 mr-2">
+                        <p class="text-xl text-verde1" th:text="${#temporals.format(datiDettagli.getDataOraEvento(), 'yyyy-MM-dd hh:mm')}"> </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </div>
 
-    <!--
-    <div class="bg-bianco2 m-8 rounded-md py-12 2xl:px-20 md:px-6 px-4">
-        <div class="md:flex items-start justify-center">
-            <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
-                <img class="w-full rounded-3xl" alt="Locandina dell'evento" th:src="${datiDettagli.getLink_img()}" />
-
-            </div>
-
-            <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
-                <div class=" px-6 py-1 pb-2 bg-amber-200 font-semibold text-gray-600 text-center text-xs uppercase rounded-full">
-                    <h6 class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-black mt-2"
-                    th:text="${datiDettagli.nomeEvento}">
-                    </h6>
-                </div>
-
-                <div class="py-4 border-b border-gray-200 flex items-center justify-between">
-
-                    <div class="flex flex-row items-center">
-                        <img src="/marker.svg" loading="lazy" alt="" class="w-8 h-8">
-                        <p class="px-2 text-base leading-4 text-gray-800 dark:text-black">Luogo</p>
-                    </div>
-                    <p class="text-sm leading-none text-gray-600 dark:text-black" th:text="${datiDettagli.getLuogo()}">  </p>
-                </div>
-
-                <div class="py-4 border-b border-gray-200 flex items-center justify-between">
-                    <div class="flex flex-row items-center">
-                        <img src="/date.svg" loading="lazy" alt="" class="w-8 h-8">
-                        <p class="px-2 text-base leading-4 text-gray-800 dark:text-black "> Data e Orario</p>
-                    </div>
-                    <img src="/date.svg" loading="lazy" alt="" class="w-8 h-8">
-                    <p class="text-sm leading-none text-gray-600 dark:text-black mr-3" th:text="${#temporals.format(datiDettagli.getDataOraEvento(), 'yyyy-MM-dd')}"> </p>
-
-                </div>
-
-                <div class="px-3 py-2">
-                    <p class="text-base leading-4 text-gray-800 dark:text-black"> Descrizione: </p>
-                    <p class="xl:pr-48 text-base lg:leading-tight leading-normal text-gray-600 dark:text-black mt-7" th:text="${datiDettagli.getDescrizione()}"> </p>
-                </div>
-
-            </div>
-        </div>
-
-        <div class=" py-4 border-b border-gray-200 flex items-center justify-between ">
-
-            <div class="flex flex-row items-center justify-center">
-                <img src="/farmer.svg" loading="lazy" alt="" class="w-8 h-8">
-                <p class="px-2 text-base leading-4 text-gray-800 dark:text-black"> Referente: </p>
-                <p class="text-sm leading-none text-gray-600 dark:text-black mr-3" th:text="${datiDettagli.getNomeReferente()}"> </p>
-            </div>
-
-            <div class="flex flex-row items-center justify-center">
-                <p class="text-base leading-4 text-gray-800 dark:text-black"> Data creazione: </p>
-                <p class="text-sm leading-none text-gray-600 dark:text-black mr-3" th:text="${#temporals.format(datiDettagli.getDataOraEvento(), 'yyyy-MM-dd')}"> </p>
-            </div>
-
-        </div>
-    </div>
-    -->
 </div>
 </body>
 </html>

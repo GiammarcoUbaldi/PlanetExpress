@@ -1,0 +1,99 @@
+<!DOCTYPE html><div layout:fragment="contenuto" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="/utils/layout">
+    <div class="container mx-auto">
+        <!--    Titolo-->
+        <div class="text-4xl lg: text-6xl text-verde1 font-bold text-center my-12">Forum</div>
+        <!--    Filtri -->
+        <div class="flex flex-row gap-4 items-center justify-center w-full ">
+            <div class="relative pt-2">
+                <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-full text-sm focus:outline-none"
+                       type="search" name="search" placeholder="Search">
+                <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+                    <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 56.966 56.966">
+                        <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="bg-celeste1 px-4 flex flex-row gap-2 items-center justify-center py-2 rounded-full">
+                <label for="type-select">Categoria:</label>
+                <select id="type-select" class="bg-celeste1">
+                    <option value="">Tutti</option>
+                    <option value="announcement">Il tuo Orto</option>
+                    <option value="discussion">Eventi</option>
+                    <option value="question">Ortaggi</option>
+                    <option value="other">Altro</option>
+                </select>
+            </div>
+            <a href="/creaPost" class="bg-giallo2 px-4 py-2 rounded-full text-lg font-medium">Crea un Post</a>
+        </div>
+
+        <!--        Sezione Post-->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4">
+            <div class="bg-bianco1 rounded-3xl flex flex-col items-center w-full p-4">
+                <div class="flex flex-col">
+                    <div class="flex flex-row justify-between">
+                        <div class="text-blue-500 font-medium text-lg">@Giovanni</div>
+                        <div class="bg-giallo1 px-2 py-1 rounded-full font-medium text-lg">Categoria</div>
+                    </div>
+                    <div class="text-black font-medium text-lg mt-4">Aiuto, come faccio a far maturare prima i miei pomodori  ???
+                    </div>
+                </div>
+                <!--                Stacchetto-->
+                <div class="w-full h-2 bg-rosso1 rounded-full my-4"></div>
+                <!--                Corpo-->
+                <div class="w-full text-lg text-black ">Qui all’Entella non riesco a far crescere i miei pomodori, nelle due
+                    foto laterali sono il tipo di qualità dei pomodori mentre quella centrale sono i mie pomodori che
+                    non riesco a maturare :(. Come posso fare per riuscire a farli maturare, così che poi posso
+                    utilizzarli per le mie preparazioni in cucina ???
+                </div>
+                <!--                footer-->
+                <div class="w-full flex flex-row justify-between mt-3">
+                    <div class="bg-gialloSecondarioBG px-2 py-1 rounded-full font-medium text-verde1 text-lg">Visualizza Commenti</div>
+                    <div class="bg-verdeSuccessoBG px-2 py-1 rounded-full font-medium text-verde1 text-lg">Commenta</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        function loadPosts(type, title) {
+            $.ajax({
+                url: '/api/posts',
+                type: 'GET',
+                data: {
+                    tipo: type,
+                    title: title
+                },
+                success: function (data) {
+                    var postContainer = $('#post-container');
+                    postContainer.empty();
+                    data.forEach(function (post) {
+                        var postElement = '<div class="post">' +
+                            '<h2>' + post.title + '</h2>' +
+                            '<p>' + post.description + '</p>' +
+                            '</div>';
+                        postContainer.append(postElement);
+                    });
+                },
+                error: function () {
+                    console.log('Errore durante il caricamento dei post.');
+                }
+            });
+        }
+
+        $('#type-select, #title-filter').change(function () {
+            var selectedType = $('#type-select').val();
+            var title = $('#title-filter').val();
+            loadPosts(selectedType, title);
+        });
+
+        loadPosts('', '');
+    });
+</script>

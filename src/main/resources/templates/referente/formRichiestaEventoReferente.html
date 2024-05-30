@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="/utils/layout">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
+<div layout:fragment="contenuto">
+    <div class="bg-white p-4 m-4 mt-8 rounded-3xl max-w-[500px] mx-auto w-full shadow-2xl">
+        <h1 class="my-4 font-semibold text-gray-800 text-center text-3xl">Form per richiedere di organizzare un Evento
+        </h1>
+        <div class="max-w-[400px] mx-auto flex items-center justify-center">
+            <form action="/api/orto-referente/add-richiesta-orto" method="post">
+                <label for="nome" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Nome Evento:</label>
+                <input type="text" id="nome" name="nome" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                <label for="dettagli" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Dettagli Evento:</label>
+                <input type="text" id="dettagli" name="dettagli" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                <label for="temaEvento" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Tema Evento:</label>
+                <input type="text" id="temaEvento" name="temaEvento" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                <div class="input-container">
+                    <label for="costoBiglietti" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Costo Biglietto:</label>
+                    <input type="number" id="costoBiglietti" name="costoBiglietti" required min="0"
+                           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 pl-8 pr-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                </div>
+
+                <label for="partecipantiMax"
+                       class="mb-1 block text-base font-medium text-[#07074D] mt-1">Numero di Partecipanti Massimo:</label>
+                <input type="number" id="partecipantiMax" name="partecipantiMax" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                <label for="indirizzo"
+                       class="mb-1 block text-base font-medium text-[#07074D] mt-1">Indirizzo:</label>
+                <input type="text" id="indirizzo" name="indirizzo" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                <label for="data" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Data Evento:</label>
+                <input type="date" id="data" name="data" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                <label for="durata" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Durata Evento:</label>
+                <input type="number" id="durata" name="durata" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                <label for="infoAggiuntive" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Info
+                    Aggiuntive:</label>
+                <input type="text" id="infoAggiuntive" name="infoAggiuntive"
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+
+                <button type="submit"
+                        class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none mt-2 float-end">
+                    Invia
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('costoBiglietti').addEventListener('input', function () {
+            if (this.value < 0) {
+                this.value = 0;
+            }
+        });
+    </script>
+
+</div>
+
+</body>
+</html>

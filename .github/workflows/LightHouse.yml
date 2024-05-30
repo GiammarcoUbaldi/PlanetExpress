@@ -22,7 +22,10 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
+      - name: Setup MySQL
+        uses: mirromutth/mysql-action@v1.1
 
+            
       - name: Start Spring PlanetExpress
         run: |
           nohup mvn spring-boot:run &

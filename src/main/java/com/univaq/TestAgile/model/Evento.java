@@ -34,25 +34,32 @@ public class Evento {
     @Column(name = "link_img")
     private String link_img;
 
+    @Column(name = "prezzo")
+    private String prezzo;
+
+    @Column(name = "durata")
+    private String durataEvento;
+
+    @Column(name = "tema")
+    private String temaEvento;
+
+
     // Passato, futuro, presente
-    @Column(name = "stato_evento")
+    @Column(name = "stato_evento_tempo")
     private String statoEvento;
 
     //IN sospeso rifiutato e accettato
-    @Column(name = "accettazione")
+    @Column(name = "accettazione_add")
     private String accettato;
-    /*
-    @Column(name = "admin_responsabile")
-    private String adminResponsabile;
-*/
 
+// dati del referente
     @Column(name = "referente")
     private String nomeReferente;
 
     @Column(name = "id_Referente")
     private Long idReferente;
 
-    public Evento(String nome, String referente, Long idReferente, LocalDateTime dataOraEvento, String luogo, String descrizione, LocalDateTime dataOraCreazione, String link_img, String statoEvento, String accettato) {
+    public Evento(String nome, String referente, Long idReferente, LocalDateTime dataOraEvento, String luogo, String descrizione, LocalDateTime dataOraCreazione, String link_img, String prezzo, String durataEvento, String temaEvento, String statoEvento, String accettato) {
         this.nomeEvento = nome;
         this.nomeReferente = referente;
         this.idReferente = idReferente;
@@ -61,6 +68,9 @@ public class Evento {
         this.descrizione = descrizione;
         this.dataOraCreazione = dataOraCreazione;
         this.link_img = link_img;
+        this.prezzo = prezzo;
+        this.durataEvento = durataEvento;
+        this.temaEvento = temaEvento;
         this.statoEvento = statoEvento;
         this.accettato = accettato;
 
@@ -154,5 +164,29 @@ public class Evento {
 
     public void setAccettato(String accettato) {
         this.accettato = accettato;
+    }
+
+    public String getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(String prezzo) {
+        this.prezzo = prezzo;
+    }
+
+    public String getDurataEvento() {
+        return durataEvento;
+    }
+
+    public void setDurataEvento(String durataEvento) {
+        this.durataEvento = durataEvento;
+    }
+
+    public String getTemaEvento() {
+        return temaEvento;
+    }
+
+    public void setTemaEvento(String temaEvento) {
+        this.temaEvento = temaEvento;
     }
 }

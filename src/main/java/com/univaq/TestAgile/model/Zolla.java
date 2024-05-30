@@ -36,6 +36,7 @@ public class Zolla {
 
     @Column(name = "stato")
     private String stato;
+
     @Column(name = "data_scadenza")
     private Date dataScadenza;
 

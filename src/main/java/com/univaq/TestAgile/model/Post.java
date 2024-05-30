@@ -4,6 +4,12 @@ package com.univaq.TestAgile.model;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+
 @EnableJpaRepositories
 @Entity
 @Table
@@ -25,15 +31,33 @@ public class Post {
     @Column(name = "descrizione")
     private String descrizione;
 
+    @Column(name = "dataCreazione")
+    private LocalDateTime dataCreazione;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Commento> commenti;
+
+    @ManyToOne
+    @JoinColumn(name = "utente_id")
+    private Utente utente;
+
     public Post() {
     }
 
-    public Post(String username, String tipo, String titolo, String descrizione) {
+    public Post(String username, String tipo, String titolo, String descrizione, Utente utente) {
         this.username = username;
         this.tipo = tipo;
         this.titolo = titolo;
         this.descrizione = descrizione;
+        this.utente = utente;
     }
+
+    @PrePersist
+    protected void onCreate() {
+        this.dataCreazione = LocalDateTime.now();
+    }
+
+    // Getter e Setter
 
     public Long getId() {
         return id;
@@ -75,4 +99,27 @@ public class Post {
         this.descrizione = descrizione;
     }
 
+    public Date getDataCreazione() {
+        return Date.from(dataCreazione.atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    public void setDataCreazione(LocalDateTime dataCreazione) {
+        this.dataCreazione = dataCreazione;
+    }
+
+    public List<Commento> getCommenti() {
+        return commenti;
+    }
+
+    public void setCommenti(List<Commento> commenti) {
+        this.commenti = commenti;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
 }
