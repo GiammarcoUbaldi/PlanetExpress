@@ -92,8 +92,7 @@ public class Evento {
         return nomeReferente;
     }
 
-    public void setNomeReferente(String nomeReferente) {
-        this.nomeEvento = nomeReferente;
+    public void setNomeReferente(String nomeReferente) {this.nomeReferente = nomeReferente;
     }
 
     public LocalDateTime getDataOraEvento() {
