@@ -1,45 +1,38 @@
-<!DOCTYPE html>
-<html lang="it"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="/utils/layout" xmlns="">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orto Referente</title>
-
-</head>
-<body>
-
-<div  layout:fragment="contenuto">
-    <div class="max-w-4xl mx-auto py-8 container">
-        <div class="max-w-4xl mx-auto py-8">
-            <!-- Intestazione del post -->
-            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-2" th:text="${post.getTitolo()}">Titolo del Post</h2>
-                <p class="text-gray-600 mb-4" th:text="${post.getDescrizione()}">Descrizione del Post</p>
-                <p class="text-gray-600 mb-4" th:text="${post.getTipo()}">Categoria del Post</p>
-                <p class="text-sm text-gray-500" th:text="'Autore: ' + ${post.getUsername()}">Autore: Nome Utente</p>
-                <p class="text-sm text-gray-500"  th:text="${#dates.format(post.getDataCreazione(), 'dd-MM-yyyy HH:mm')}">Data di Creazione: 01-01-2024 12:00</p>
-            </div>
-
-            <!-- Commenti -->
-            <div class="bg-white rounded-lg shadow-md">
-                <div class="p-6 border-b border-gray-200">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Commenti</h3>
-                    <!-- Loop attraverso i commenti -->
-                    <div class="space-y-4">
-                        <div class="bg-gray-100 p-4 rounded-lg" th:each="commento : ${commenti}">
-                            <p class="text-gray-800" th:text="${commento.getDescrizione()}">Descrizione del Commento</p>
-                            <p class="text-sm text-gray-500" th:text="'Autore: ' + ${commento.getUsername()}">Autore: Nome Utente</p>
-                            <p class="text-sm text-gray-500" th:text="${#dates.format(commento.getDataCreazione(), 'dd-MM-yyyy HH:mm')}">Data di Creazione: 01-01-2024 12:00</p>
-                        </div>
-                        <!-- Aggiungi altri commenti qui -->
+<div layout:fragment="contenuto" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="/utils/layout">
+    <div class="container mx-auto relative">
+        <a class="absolute left-4 top-4" href="/no-user/forum">Torna hai post</a>
+        <!--        Sezione Post-->
+        <div class="grid grid-cols-1 mt-8 max-w-[500px] mx-auto bg-orange-200  rounded-3xl pb-4">
+            <div class="bg-bianco1 rounded-3xl flex flex-col items-center w-full p-4 mb-4">
+                <div class="flex flex-col w-full">
+                    <div class="flex flex-row justify-between">
+                        <div class="text-blue-500 font-medium text-lg" th:text="'@' + ${post.getUsername()}"></div>
+                        <div class="bg-giallo1 px-2 py-1 rounded-full font-medium text-lg" th:text="${post.getTipo()}"></div>
                     </div>
+                    <div class="text-black font-medium text-lg mt-4" th:text="${post.getTitolo()}"> </div>
                 </div>
+                <!--                Stacchetto-->
+                <div class="w-full h-2 bg-rosso1 rounded-full my-4"></div>
+                <!--                Corpo-->
+                <div class="w-full text-lg text-black " th:text="${post.getDescrizione()}">  </div>
             </div>
+            <!--            Sezione Commenti-->
+            <div class="w-full flex flex-col px-4" th:each="commento : ${commenti}">
+                <div class="flex flex-row justify-between" >
+                    <div class="text-lg text-blue-500 font-medium" th:text="'@' + ${commento.getUsername()}">  </div>
+                    <div class="text-lg text-black font-normal" th:text="${#dates.format(commento.getDataCreazione(), 'dd-MM-yyyy HH:mm')}"> </div>
+                </div>
+                <div class="text-md text-black break-all " th:text="${commento.getDescrizione()}"></div>
+                <div class="rounded-full h-2 bg-[#c27bed] my-4"></div>
+            </div>
+
+            <form class="flex flex-row gap-4 items-center justify-between px-4" action="/api/post/aggiungiCommento" method="post">
+                <input class="border-2 border-green-400 w-full bg-bianco1 h-10 px-5 pr-16 rounded-full text-sm focus:outline-none"
+                       type="search" name="commentoPost" placeholder="Scrivi un commento...">
+                <input type="hidden" th:value="${post.getId()}" name="postId">
+                <button class="bg-verdeSuccessoBG px-2 py-1 rounded-full font-medium text-verde1 text-lg" type="submit">Pubblica
+                </button>
+            </form>
         </div>
     </div>
-</body>
-</html>
+

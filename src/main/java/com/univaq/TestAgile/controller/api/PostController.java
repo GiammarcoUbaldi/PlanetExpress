@@ -4,6 +4,7 @@ package com.univaq.TestAgile.controller.api;
 import com.univaq.TestAgile.model.Commento;
 import com.univaq.TestAgile.model.OrtoReferente;
 import com.univaq.TestAgile.model.Post;
+import com.univaq.TestAgile.model.Utente;
 import com.univaq.TestAgile.repository.CommentoRepository;
 import com.univaq.TestAgile.repository.PostRepository;
 import jakarta.transaction.Transactional;
@@ -26,10 +27,14 @@ public class PostController {
 
     @Autowired
     private CommentoRepository commentoRepository;
+
+    @Autowired
+    UtenteController utenteController;
+
     @PostMapping("/creaPost")
     public String createPost(@ModelAttribute Post post) {
         postRepository.save(post);
-        return "redirect:/";
+        return "redirect:/no-user/forum";
     }
 
 
@@ -38,43 +43,24 @@ public class PostController {
                                    @RequestParam("commentoPost") String commentoPost,
                                    Model model) {
         Optional<Post> optionalPost = postRepository.findById(postId);
-        if (optionalPost.isPresent()) {
+        Utente u = utenteController.getUtenteLoggato();
+        if (optionalPost.isPresent() && u != null) {
             Post post = optionalPost.get();
             Commento commento = new Commento();
             commento.setPost(post);
             commento.setDescrizione(commentoPost);
 
-            //Dopo il merge di secure-root aggiungere lo username di chi scrive
-            //commento.setUsername(); //Gli va passato Utente
+            commento.setUsername(u.getNome() + " " + u.getCognome());
+            commento.setUtente(u);
 
             commentoRepository.save(commento);
 
             model.addAttribute("post", post);
             model.addAttribute("commenti", post.getCommenti());
 
-            return "redirect:/" + postId; // Reindirizza alla pagina del post con i commenti aggiornati
+            return "redirect:/no-user/forum/" + postId; // Reindirizza alla pagina del post con i commenti aggiornati
         }
         return "redirect:/"; // Reindirizza alla homepage o a una pagina di errore se il post non esiste
-    }
-
-
-    @GetMapping("/view/{postId}")
-    public String visualizzaPost(@PathVariable Long postId, Model model) {
-        // Trova il post per ID
-        Optional<Post> optionalPost = postRepository.findById(postId);
-        if (optionalPost.isPresent()) {
-            Post post = optionalPost.get();
-            // Ottieni tutti i commenti relativi al post
-            List<Commento> commenti = commentoRepository.findByPost(post);
-            // Aggiungi il post e i relativi commenti al modello
-            model.addAttribute("post", post);
-            model.addAttribute("commenti", commenti);
-            // Ritorna il nome della vista per visualizzare il post e i commenti
-            return "/Post/SingoloPost";
-        } else {
-            // Se il post non esiste, reindirizza alla homepage o a una pagina di errore
-            return "redirect:/";
-        }
     }
 
 
@@ -88,6 +74,7 @@ public class PostController {
             return false;
         }
     }
+
     @Transactional
     @GetMapping("/rimuoviCommento")
     public Boolean eliminaCommento(@RequestParam Long commentoId) {
@@ -103,11 +90,21 @@ public class PostController {
     public List<Post> getTuttiPost() {
         return postRepository.findAll();
     }
+
     @GetMapping("/byTipo")
     public List<Post> getPostByTipo(@RequestParam("tipo") String tipo) {
         return postRepository.findByTipo(tipo);
     }
 
+
+    // Esempio di metodo nel controller dei post per cercare i post
+    public List<Post> searchPosts(String query) {
+        if (query == null || query.isEmpty()) {
+            return getTuttiPost(); // Restituisce tutti i post se la query è vuota
+        }
+        // Cerca i post in base alla query
+        return postRepository.findByQuery(query);
+    }
 
 
 

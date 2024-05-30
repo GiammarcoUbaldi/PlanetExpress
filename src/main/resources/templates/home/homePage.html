@@ -17,16 +17,13 @@
 </head>
 <body>
 <div layout:fragment="contenuto">
-<!--    <img class="absolute h-screen w-screen object-cover top-0 left-0" src="/bg/bgGrass.jpg"  alt="img orto 1" />-->
+    <!--    <img class="absolute h-screen w-screen object-cover top-0 left-0" src="/bg/bgGrass.jpg"  alt="img orto 1" />-->
     <!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
     <div class="container lg:px-32 pt-8 text-center mx-auto z-10 relative bg-bianco2">
         <!--        Title -->
         <div class="mx-4 lg:mx-32 z-10">
             <img src="/bg/titleHome.svg" alt="Title Coltiva nel tuo orto" class="w-full z-10">
         </div>
-
-
-
 
 
         <!--  Slider  -->
@@ -101,13 +98,25 @@
 
 
             <h6 class="mt-16 mx-14 text-4xl text-left text-verde1 font-extrabold mb-0 ">Post nel Forum</h6>
-            <div class="flex flex-  bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl">
-                <div class="my-5 flex flex-row items-center justify-center"
-                     th:each="post: ${listaPost}">
-                    <div class="">
-                        <div class="text-lg font-bold" th:text="${post.getTitolo()}"></div>
-                        <div class="text-md font-normal" th:text="${post.getDescrizione()}"></div>
-                        <!--                    <div class="text-xl font-bold" th:text="${post.getUsername()}"></div>-->
+            <a href="/no-user/forum" class="bg-celeste1 text-verde1 px-3 py-2 rounded-full">Vai al Forum</a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4 gap-4" id="posts-container">
+                <div class="bg-bianco1 rounded-3xl flex flex-col items-center w-full p-4" th:each="post : ${ListaPost}">
+                    <div class="flex flex-col w-full">
+                        <div class="flex flex-row justify-between">
+                            <div class="text-blue-500 font-medium text-lg" th:text="'@'+${post.username}"></div>
+                            <div class="bg-giallo1 px-2 py-1 rounded-full font-medium text-lg" th:text="${post.tipo}">
+                                Categoria
+                            </div>
+                        </div>
+                        <div class="text-black font-medium text-lg mt-4" th:text="${post.titolo}"></div>
+                    </div>
+                    <div class="w-full h-2 bg-rosso1 rounded-full my-4"></div>
+                    <div class="w-full text-lg text-black" th:text="${post.descrizione}"></div>
+                    <div class="w-full flex flex-row justify-between mt-3">
+                        <a class="bg-gialloSecondarioBG px-2 py-1 rounded-full font-medium text-verde1 text-lg"
+                           th:href="'/no-user/forum/'+${post.id}">Visualizza Commenti</a>
+                        <a class="bg-verdeSuccessoBG px-2 py-1 rounded-full font-medium text-verde1 text-lg"
+                           th:href="'/no-user/forum/'+${post.id}">Commenta</a>
                     </div>
                 </div>
             </div>

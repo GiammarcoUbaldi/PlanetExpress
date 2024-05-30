@@ -14,6 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
+<!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
 <div layout:fragment="contenuto">
     <div class="container text-center mx-auto">
         <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md mt-20">
@@ -27,11 +28,10 @@
                     <label for="type" class="block text-sm font-medium text-verde1">Categoria</label>
                     <select id="type" name="tipo"
                             class="mt-1 block py-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        <option value="announcement">Il tuo Orto</option>
-                        <option value="discussion">Eventi</option>
-                        <option value="question">Ortaggi</option>
-
-                        <option value="other">Altro</option>
+                        <option value="il tuo Orto">Il tuo Orto</option>
+                        <option value="eventi">Eventi</option>
+                        <option value="ortaggi">Ortaggi</option>
+                        <option value="altro">Altro</option>
 
                     </select>
                 </div>
@@ -58,6 +58,10 @@
                            class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
 
                 </div>
+
+                <input type="hidden" name="utente" th:value="${Utente.getId()}"/>
+                <input type="hidden" name="username" th:value="${Utente.getNome()}+' '+${Utente.getCognome()}"/>
+
 
                 <!-- Pulsante di Pubblicazione -->
                 <div class="flex justify-center">

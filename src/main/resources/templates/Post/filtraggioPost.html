@@ -1,9 +1,8 @@
 <!DOCTYPE html><div layout:fragment="contenuto" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="/utils/layout">
+    <!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
     <div class="container mx-auto">
-        <!--    Titolo-->
-        <div class="text-4xl lg: text-6xl text-verde1 font-bold text-center my-12">Forum</div>
-        <!--    Filtri -->
-        <div class="flex flex-row gap-4 items-center justify-center w-full ">
+        <div class="text-4xl lg:text-6xl text-verde1 font-bold text-center my-12">Forum</div>
+        <div class="flex flex-row gap-4 items-center justify-center w-full">
             <div class="relative pt-2">
                 <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-full text-sm focus:outline-none"
                        type="search" name="search" placeholder="Search">
@@ -17,83 +16,120 @@
             <div class="bg-celeste1 px-4 flex flex-row gap-2 items-center justify-center py-2 rounded-full">
                 <label for="type-select">Categoria:</label>
                 <select id="type-select" class="bg-celeste1">
-                    <option value="">Tutti</option>
-                    <option value="announcement">Il tuo Orto</option>
-                    <option value="discussion">Eventi</option>
-                    <option value="question">Ortaggi</option>
-                    <option value="other">Altro</option>
+                    <option value="tutti">Tutti</option>
+                    <option value="il tuo orto">Il tuo Orto</option>
+                    <option value="eventi">Eventi</option>
+                    <option value="ortaggi">Ortaggi</option>
+                    <option value="altro">Altro</option>
                 </select>
             </div>
-            <a href="/creaPost" class="bg-giallo2 px-4 py-2 rounded-full text-lg font-medium">Crea un Post</a>
+            <a href="/post/creaPost" class="bg-giallo2 px-4 py-2 rounded-full text-lg font-medium">Crea un Post</a>
         </div>
 
-        <!--        Sezione Post-->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4">
-            <div class="bg-bianco1 rounded-3xl flex flex-col items-center w-full p-4">
-                <div class="flex flex-col">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4 gap-4" id="posts-container">
+            <div class="bg-bianco1 rounded-3xl flex flex-col items-center w-full p-4" th:each="post : ${ListaPost}">
+                <div class="flex flex-col w-full">
                     <div class="flex flex-row justify-between">
-                        <div class="text-blue-500 font-medium text-lg">@Giovanni</div>
-                        <div class="bg-giallo1 px-2 py-1 rounded-full font-medium text-lg">Categoria</div>
+                        <div class="text-blue-500 font-medium text-lg" th:text="'@'+${post.username}"></div>
+                        <div class="bg-giallo1 px-2 py-1 rounded-full font-medium text-lg" th:text="${post.tipo}">Categoria</div>
                     </div>
-                    <div class="text-black font-medium text-lg mt-4">Aiuto, come faccio a far maturare prima i miei pomodori  ???
-                    </div>
+                    <div class="text-black font-medium text-lg mt-4" th:text="${post.titolo}"></div>
                 </div>
-                <!--                Stacchetto-->
                 <div class="w-full h-2 bg-rosso1 rounded-full my-4"></div>
-                <!--                Corpo-->
-                <div class="w-full text-lg text-black ">Qui all’Entella non riesco a far crescere i miei pomodori, nelle due
-                    foto laterali sono il tipo di qualità dei pomodori mentre quella centrale sono i mie pomodori che
-                    non riesco a maturare :(. Come posso fare per riuscire a farli maturare, così che poi posso
-                    utilizzarli per le mie preparazioni in cucina ???
-                </div>
-                <!--                footer-->
+                <div class="w-full text-lg text-black" th:text="${post.descrizione}"></div>
                 <div class="w-full flex flex-row justify-between mt-3">
-                    <div class="bg-gialloSecondarioBG px-2 py-1 rounded-full font-medium text-verde1 text-lg">Visualizza Commenti</div>
-                    <div class="bg-verdeSuccessoBG px-2 py-1 rounded-full font-medium text-verde1 text-lg">Commenta</div>
+                    <a class="bg-gialloSecondarioBG px-2 py-1 rounded-full font-medium text-verde1 text-lg" th:href="'/no-user/forum/'+${post.id}">Visualizza Commenti</a>
+                    <a class="bg-verdeSuccessoBG px-2 py-1 rounded-full font-medium text-verde1 text-lg" th:href="'/no-user/forum/'+${post.id}">Commenta</a>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 
-
-
 <script>
-    $(document).ready(function () {
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectElement = document.getElementById('type-select');
+        const searchInput = document.querySelector('input[name="search"]');
+        const postsContainer = document.querySelector('.grid');
 
-        function loadPosts(type, title) {
-            $.ajax({
-                url: '/api/posts',
-                type: 'GET',
-                data: {
-                    tipo: type,
-                    title: title
-                },
-                success: function (data) {
-                    var postContainer = $('#post-container');
-                    postContainer.empty();
-                    data.forEach(function (post) {
-                        var postElement = '<div class="post">' +
-                            '<h2>' + post.title + '</h2>' +
-                            '<p>' + post.description + '</p>' +
-                            '</div>';
-                        postContainer.append(postElement);
+        selectElement.addEventListener('change', function(event) {
+            const categoria = event.target.value;
+
+            fetch(`/no-user/forum/filter?categoria=${categoria}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Svuota il contenitore dei post
+                    postsContainer.innerHTML = '';
+
+                    console.log("Dati ricevuti:");
+                    console.log(data);
+
+                    // Aggiungi i nuovi post
+                    data.forEach(post => {
+                        const postElement = document.createElement('div');
+                        postElement.className = 'bg-bianco1 rounded-3xl flex flex-col items-center w-full p-4';
+
+                        postElement.innerHTML = `
+                        <div class="flex flex-col w-full">
+                            <div class="flex flex-row justify-between">
+                                <div class="text-blue-500 font-medium text-lg">@${post.username}</div>
+                                <div class="bg-giallo1 px-2 py-1 rounded-full font-medium text-lg">${post.tipo}</div>
+                            </div>
+                            <div class="text-black font-medium text-lg mt-4">${post.titolo}</div>
+                        </div>
+                        <div class="w-full h-2 bg-rosso1 rounded-full my-4"></div>
+                        <div class="w-full text-lg text-black">${post.descrizione}</div>
+                        <div class="w-full flex flex-row justify-between mt-3">
+                            <a class="bg-gialloSecondarioBG px-2 py-1 rounded-full font-medium text-verde1 text-lg" href="/no-user/forum/${post.id}">Visualizza Commenti</a>
+                            <a class="bg-verdeSuccessoBG px-2 py-1 rounded-full font-medium text-verde1 text-lg" href="/no-user/forum/${post.id}">Commenta</a>
+                        </div>
+                    `;
+
+                        postsContainer.appendChild(postElement);
                     });
-                },
-                error: function () {
-                    console.log('Errore durante il caricamento dei post.');
-                }
-            });
-        }
-
-        $('#type-select, #title-filter').change(function () {
-            var selectedType = $('#type-select').val();
-            var title = $('#title-filter').val();
-            loadPosts(selectedType, title);
+                })
+                .catch(error => console.error('Errore:', error));
         });
 
-        loadPosts('', '');
+        searchInput.addEventListener('input', function(event) {
+            const query = event.target.value;
+
+            fetch(`/no-user/forum/search?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Svuota il contenitore dei post
+                    postsContainer.innerHTML = '';
+
+                    console.log("Risultati della ricerca:");
+                    console.log(data);
+
+                    // Aggiungi i nuovi post
+                    data.forEach(post => {
+                        const postElement = document.createElement('div');
+                        postElement.className = 'bg-bianco1 rounded-3xl flex flex-col items-center w-full p-4';
+
+                        postElement.innerHTML = `
+                        <div class="flex flex-col w-full">
+                            <div class="flex flex-row justify-between">
+                                <div class="text-blue-500 font-medium text-lg">@${post.username}</div>
+                                <div class="bg-giallo1 px-2 py-1 rounded-full font-medium text-lg">${post.tipo}</div>
+                            </div>
+                            <div class="text-black font-medium text-lg mt-4">${post.titolo}</div>
+                        </div>
+                        <div class="w-full h-2 bg-rosso1 rounded-full my-4"></div>
+                        <div class="w-full text-lg text-black">${post.descrizione}</div>
+                        <div class="w-full flex flex-row justify-between mt-3">
+                            <a class="bg-gialloSecondarioBG px-2 py-1 rounded-full font-medium text-verde1 text-lg" href="/no-user/forum/${post.id}">Visualizza Commenti</a>
+                            <a class="bg-verdeSuccessoBG px-2 py-1 rounded-full font-medium text-verde1 text-lg" href="/no-user/forum/${post.id}">Commenta</a>
+                        </div>
+                    `;
+
+                        postsContainer.appendChild(postElement);
+                    });
+                })
+                .catch(error => console.error('Errore:', error));
+        });
     });
+
 </script>

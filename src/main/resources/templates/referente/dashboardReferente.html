@@ -49,11 +49,11 @@
             </div>
         </a>
         <!-- non lo so 2-->
-        <a th:href="@{'/user/dashboardModifica'(utenteId=${Utente.getId()})}" id="content-5"
+        <a href="/post/creaPost" id="content-5"
            class="col-span-6 md:col-span-3 lg:col-span-2 h-full  bg-slate-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center cursor-pointer shadow-lg hover:shadow-2xl">
-            <div class="text-3xl font-bold text-verde1 text-center">I tuoi Eventi Prenotati</div>
+            <div class="text-3xl font-bold text-verde1 text-center">Crea un Post</div>
             <div class="flex-grow w-full flex items-center justify-center overflow-hidden h-full">
-                <img th:src="${(Utente.getSesso().toLowerCase()== 'maschio')?'/img/tipoUomo.png' : '/img/tipaDonna.png'}"
+                <img src="/img/tipiChat.png"
                      class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
             </div>
         </a>
@@ -65,8 +65,8 @@
                 <img src="/img/tipiFesta.png" class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
             </div>
         </a>
-        <!-- non lo so 3-->
-        <a href="/creaPost" id="content-7"
+        <!--Chat-->
+        <a href="/no-user/forum" id="content-7"
            class="col-span-6 row-span-1 md:row-span-2 md:col-span-3 lg:col-span-4 max-h-[200px] h-[200px] bg-indigo-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center gap-2 cursor-pointer shadow-lg hover:shadow-2xl">
             <div class="text-3xl font-bold text-verde1 text-center flex-grow ">Chatta sul Forum</div>
             <div class="flex-grow w-full flex items-center justify-center overflow-hidden h-full">

@@ -41,7 +41,7 @@ public class SecurityConfig {
                     registry.requestMatchers("/no-user/**").permitAll();
                     registry.requestMatchers("/**.css", "/**.png", "/**.svg", "/icons/**", "/bg/**", "/js/**", "/css/**", "/img/**").permitAll();
                     registry.requestMatchers("/admin/**").hasRole("ADMIN");
-                    registry.requestMatchers("/api/**").hasAnyRole("USER","REFERENTE","ADMIN");
+                    registry.requestMatchers("/api/**","/post/**").hasAnyRole("USER","REFERENTE","ADMIN");
                     registry.requestMatchers("/user/dashboardModifica").hasAnyRole("USER","REFERENTE");
                     registry.requestMatchers("/user/**").hasRole("USER");
                     registry.requestMatchers("/referente/**").hasRole("REFERENTE");
