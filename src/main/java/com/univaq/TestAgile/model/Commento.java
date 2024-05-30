@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 
 @EnableJpaRepositories
@@ -21,6 +23,10 @@ public class Commento {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @ManyToOne
+    @JoinColumn(name = "utente_id")
+    private Utente utente;
+
     @Column(name = "username")
     private String username;
 
@@ -33,13 +39,19 @@ public class Commento {
     public Commento() {
     }
 
-    public Commento(Long id, Post post, String username, String descrizione) {
-        this.id = id;
+    public Commento(Post post, Utente utente, String username, String descrizione) {
         this.post = post;
+        this.utente = utente;
         this.username = username;
         this.descrizione = descrizione;
+    }
+
+    @PrePersist
+    protected void onCreate() {
         this.dataCreazione = LocalDateTime.now();
     }
+
+    // Getter e Setter
 
     public Long getId() {
         return id;
@@ -55,6 +67,14 @@ public class Commento {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     public String getUsername() {
@@ -73,8 +93,8 @@ public class Commento {
         this.descrizione = descrizione;
     }
 
-    public LocalDateTime getDataCreazione() {
-        return dataCreazione;
+    public Date getDataCreazione() {
+        return Date.from(dataCreazione.atZone(ZoneId.systemDefault()).toInstant());
     }
 
     public void setDataCreazione(LocalDateTime dataCreazione) {
