@@ -26,39 +26,58 @@
                 Inizia a coltivare</a>
 
             <!-- Button Candidati come referente -->
-            <a href="/referente/form-richiesta-orto" class="flex flex-row items-center gap-2 px-4 py-2 bg-rosso1 text-verde1 rounded-full boxShadowHomeButtonRosso font-medium text-xl mt-12">
+            <a href="/referente/form-richiesta-orto"
+               class="flex flex-row items-center gap-2 px-4 py-2 bg-rosso1 text-verde1 rounded-full boxShadowHomeButtonRosso font-medium text-xl mt-12">
                 <img src="/icons/corona.svg" alt="Icona Farmer" class="w-12 ">
                 Condividi il tuo orto e' diventa referente</a>
         </div>
     </div>
 
-  <!--       
-    <div class="forum mt-4">
-        <div class="btn-container ">
-            <a href="pagina_forum.html"><button class="btn events-forum-btn">Forum</button></a>
-        </div>
-       <div th:each="post: ${listaPost}">
-           <div th:text="${post.getTitolo()}"></div>
-           <div th:text="${post.getDescrizione()}"></div>
-           <div th:text="${post.getUsername()}"></div>
 
-       </div>-->
-
-
-<!--        Stacchetto Home 1-->
-<div class="w-full mt-32">
-    <img src="/bg/homeStack1.png" alt="Stacchetto Home 1" class="w-full ">
-</div>
-<div class="bg-rosso1 h-full py-4 px-4 min-h-screen">
-    <div class="container text-center mx-auto">
-
+    <!--        Stacchetto Home 1-->
+    <div class="w-full mt-32">
+        <img src="/bg/homeStack1.png" alt="Stacchetto Home 1" class="w-full ">
     </div>
-</div>
+    <div class="bg-rosso1 h-full py-4 px-4 min-h-screen">
+        <div class="container text-center mx-auto">
+
+            <!--        Eventi-->
+            <h6 class="mt-16 mx-14 text-4xl text-left text-verde1 font-extrabold mb-0 ">Eventi Proposti</h6>
+
+            <div class="mx-10 flex flex-row justify-around rounded-3xl bg-gialloSecondarioBG border-verde1 border-2">
+                <div class="my-5 flex flex-col bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl"
+                     th:each="evento : ${EventiRefe}">
+
+                    <a th:href="${'/mostraDettagliEvento/'+evento.getId()}"
+                       class="transition w-full h-full  border-verde1 no-underline  ">
+                        <img class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}" alt="img"/>
+
+                        <div class=" px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center"
+                             th:text="${evento.nomeEvento}">
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <h6 class="mt-16 mx-14 text-4xl text-left text-verde1 font-extrabold mb-0 ">Post nel Forum</h6>
+            <div class="flex flex-  bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl">
+            <div class="my-5 flex flex-row items-center justify-center"
+                 th:each="post: ${listaPost}">
+                <div class="">
+                    <div class="text-lg font-bold" th:text="${post.getTitolo()}"></div>
+                    <div class="text-md font-normal" th:text="${post.getDescrizione()}"></div>
+                    <!--                    <div class="text-xl font-bold" th:text="${post.getUsername()}"></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="bg-rosso1 w-full">
         <img src="/bg/footerTemporaneo.png" alt="PianteFooter" class="w-full ">
     </div>
 
+</div>
 </div>
 </body>
 </html>

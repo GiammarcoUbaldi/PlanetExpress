@@ -10,14 +10,14 @@
 	</parent>
 	<groupId>com.univaq</groupId>
 	<artifactId>PlanetExpress</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>PlanetExpress</name>
 	<description>Progetto Planet Express Viva la banda</description>
 
 
 
 	<properties>
-		<java.version>22</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -65,11 +65,7 @@
 			<artifactId>spring-data-commons</artifactId>
 			<version>3.2.4</version>
 		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-fxml</artifactId>
-			<version>18.0.1</version>
-		</dependency>
+
 	</dependencies>
 
 
@@ -86,7 +82,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
 				<configuration>
-					<skipTests>true</skipTests>
+					<skipTests>false</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>

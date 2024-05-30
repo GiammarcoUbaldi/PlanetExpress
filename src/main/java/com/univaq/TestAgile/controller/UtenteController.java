@@ -26,6 +26,16 @@ public class UtenteController {
         return utenteRepository.findById(id);
     }
 
+    @GetMapping("/email/{id}")
+    public Utente getUtenteByEmail(@PathVariable String id) {
+        return utenteRepository.findByEmail(id);
+    }
+
+    @PostMapping("/utente/registrazione")
+    public Utente registraUtente(@RequestBody Utente utente) {
+        return utenteRepository.save(utente);
+    }
+
     @PostMapping
     public Utente createUtente(@RequestBody Utente utente) {
         return utenteRepository.save(utente);

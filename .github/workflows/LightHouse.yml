@@ -1,0 +1,52 @@
+name: Lighthouse
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      - name: Setup MySQL
+        uses: mirromutth/mysql-action@v1.1
+
+            
+      - name: Start Spring PlanetExpress
+        run: |
+          nohup mvn spring-boot:run &
+          sleep 30
+
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install Lighthouse
+        run: npm install -g lighthouse
+
+      - name: Run Lighthouse
+        run: |
+          npx lighthouse http://localhost:8080 --output json --output-path lighthouse-report.json
+
+
+      - name: Upload Lighthouse Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: lighthouse-report
+          path: ./PlanetExpress/lighthouse-report.json

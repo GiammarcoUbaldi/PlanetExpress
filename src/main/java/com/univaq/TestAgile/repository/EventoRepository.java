@@ -8,7 +8,7 @@ import java.util.List;
 public interface EventoRepository extends CrudRepository<Evento, Long> {
 
     List<Evento> findByAccettato(String accettato);
-   // List<Evento> findByProposto(String proposto);
+   // List<Evento> findByEventiRef(Long idRef);
 
-
+    List<Evento> findByIdReferente(long id);
 }

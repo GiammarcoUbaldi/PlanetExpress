@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="/utils/layout">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body class="bg-rosso1 h-full ">
+<div  layout:fragment="contenuto" >
+
+    <div class="bg-rosso1 h-full">
+        <div class="grid-rows-3 bg-rosso1 h-full">
+
+            <div class="bg-rosso1 mt-16">
+
+                <h6 class="mx-14 text-6xl text-left text-verde1 font-extrabold mb-3 ">Eventi da Te Proposti</h6>
+
+                <div class="mx-10 flex flex-row text-center justify-around rounded-3xl bg-gialloSecondarioBG border-verde1 border-2 ">
+                    <div class="flex overflow-x-scroll hide-scroll-bar">
+                        <div class="flex flex-nowrap">
+                            <div class="my-5 ml-20 mr-20 p-2 flex flex-col bg-bianco1 border-verde1 max-w-[200px] rounded-3xl" th:each="evento,x : ${EventiRefe}">
+                                <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline  ">
+                                    <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
+
+                                    <div class=" px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+               <!-- <div class="w-[2px] h-full bg-verde1 rounded-full my-10">  </div>  barra verticale-->
+                </div>
+            </div>
+
+            <div class="bg-rosso1 mt-16">
+
+                <h6 class="mb-3 text-6xl text-right text-verde1 font-extrabold mr-16 ">Eventi in attesa di accettazione</h6>
+                <div class="mx-10 flex flex-row justify-around rounded-3xl bg-viola1 border-verde1 border-2">
+                    <div class="flex overflow-x-scroll hide-scroll-bar">
+                        <div class="flex flex-nowrap">
+
+                            <div class="my-5 ml-20 mr-20 p-2 flex flex-col bg-bianco1 border-2 border-verde1 rounded-3xl" th:each="evento,x : ${EventiRefeInSospeso}">
+
+                                <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
+                                    <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
+
+                                    <div class=" w-full text-xl pt-3 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-rosso1 mt-16">
+                <h6 class="mx-14 text-6xl text-left text-verde1 font-extrabold mb-3">I tuoi prossimi eventi</h6>
+
+                <div class="mx-10 mb-10 flex flex-row justify-around rounded-3xl bg-verde2 border-verde1 border-2">
+                        <div class="flex overflow-x-scroll hide-scroll-bar">
+                            <div class="flex flex-nowrap">
+
+                                <div class="my-5 ml-20 mr-20 p-2 flex flex-col bg-bianco1 border-2 border-verde1 rounded-3xl" th:each="evento,x : ${EventiRefeFuturi}">
+
+                                    <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
+                                        <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
+
+                                        <div class="px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
+
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -25,8 +25,9 @@
         <div>
             <form action="/utente/dashboardModifica" method="get">
                 <input type="hidden" name="utenteId" th:value="${utente.getId()}">
-                <button type="submit" value="Modifica Dati" >Modifica Dati</button>
+                <button type="submit" value="Modifica Dati" class="bg-rosso1 px-2 py-1 text-verde1 rounded-full mt-8 mb-4" >Modifica Dati</button>
             </form>
+                <a href="/creaPost"  class="bg-celeste1 px-2 py-1 text-verde1 rounded-full mt-8" >Scrivi un Post</a>
         </div>
 
 

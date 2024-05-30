@@ -4,7 +4,6 @@ package com.univaq.TestAgile.controller;
 import com.univaq.TestAgile.model.Evento;
 
 
-
 import com.univaq.TestAgile.repository.PostRepository;
 
 import com.univaq.TestAgile.model.Utente;
@@ -32,7 +31,7 @@ public class HomeController {
 
 
     @Autowired
-    private PostRepository postRepository;
+    PostRepository postRepository;
 
 
     @Autowired
@@ -42,11 +41,15 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("listaPost", postRepository.findAll());
+        List<Evento> eventiRefe = eventoController.getEventiAccettati();
+        model.addAttribute("EventiRefe", eventiRefe);
         return "/home/homePage";
     }
 
     @GetMapping("/login")
-    public String login() {return "/login/login";}
+    public String login() {
+        return "/login/login";
+    }
 
 
     @GetMapping("/riempiDb")
@@ -65,15 +68,18 @@ public class HomeController {
         model.addAttribute("EventoInSospeso", eventiInSospesoDb);
         return "/admin/listaEventi";
     }
-    /*
-    @GetMapping("/mostraEventi")
-    public String mostraEventiReferente(Model model) {
-        List<Evento> eventiAccettatiDb = eventoController.getEventiProposti();
 
-        return "/admin/listaEventi";
+    @GetMapping("/mostraEventiRef/{id}")
+    public String mostraEventiReferente(Model model, @PathVariable long id) {
+        List<Evento> eventiRefe = eventoController.getEventiByIdRef(id);
+        model.addAttribute("EventiRefe", eventiRefe);
+        List<Evento> eventiRefeFuturi = eventoController.getEventiFuturiRef(id);
+        model.addAttribute("EventiRefeFuturi", eventiRefeFuturi);
+        List<Evento> eventiInSospeso = eventoController.getEventiAccettatiRef(id);
+        model.addAttribute("EventiRefeInSospeso", eventiInSospeso);
+        return "/referente/listaEventiReferente";
     }
-    
-     */
+
 
     @GetMapping("/mostraDettagliEvento/{id}")
     public String mostraDettagliEvento(Model model, @PathVariable long id) {
@@ -84,11 +90,11 @@ public class HomeController {
 
 
     @GetMapping("/utente/dashboardModifica")
-    public String utenteDashboardModifica(Model model,@RequestParam("utenteId") Long utenteId) {
+    public String utenteDashboardModifica(Model model, @RequestParam("utenteId") Long utenteId) {
         Utente utente = utenteRepository.findById(utenteId).get();
         System.out.println(utente);
-        if(utente!=null){
-            model.addAttribute("utente",utente);
+        if (utente != null) {
+            model.addAttribute("utente", utente);
             return "/Registrazione/modificaDati";
         }
         return "redirect:/";
