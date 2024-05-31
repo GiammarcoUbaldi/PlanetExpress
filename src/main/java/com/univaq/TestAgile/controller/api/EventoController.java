@@ -1,6 +1,7 @@
 package com.univaq.TestAgile.controller.api;
 
 import com.univaq.TestAgile.model.Evento;
+import com.univaq.TestAgile.model.OrtoReferente;
 import com.univaq.TestAgile.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -106,6 +107,12 @@ public class EventoController {
     @GetMapping("/refInSospeso")
     public List<Evento> getEventiInSospesoRef() {
         return (List<Evento>) eventoRepository.findByAccettato("In sospeso");
+    }
+
+    @PostMapping("/add-richiesta-evento")
+    public String nuovoEvento(@ModelAttribute Evento eventoNuovo) {
+        eventoRepository.save(eventoNuovo);
+        return "redirect:/";
     }
 
 }
