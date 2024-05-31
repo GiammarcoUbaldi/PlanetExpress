@@ -45,7 +45,7 @@ public class AdminController {
     public String mostraDettagliEvento(Model model, @PathVariable long id) {
         Evento evento = eventoController.getEventoById(id);
         model.addAttribute("datiDettagli", evento);
-        return "/admin/dettagliEvento";
+        return "admin/dettagliEventoAdmin";
     }
 
     @GetMapping("/mostraEventi")

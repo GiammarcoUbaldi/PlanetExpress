@@ -104,7 +104,7 @@ public class HomeController {
     public String mostraDettagliEvento(Model model, @PathVariable long id) {
         Evento evento = eventoController.getEventoById(id);
         model.addAttribute("datiDettagli", evento);
-        return "/admin/dettagliEvento";
+        return "dettagliEventoAdmin";
     }
 
     @GetMapping("/no-user/form-richiesta-orto")
