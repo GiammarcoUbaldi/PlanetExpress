@@ -12,7 +12,7 @@
     <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold mt-12 text-verde1">Dashboard Referente</h1>
 
     <div class="grid grid-cols-6 grid-rows-custom-dash gap-4 h-full w-full mt-10">
-        <!--        ORTO REFERENTE-->
+        <!--        ORTO REFERENTE
         <a th:href="@{'/referente/orto/' + ${ortoDelReferente.id}}" id="content-1"
            class="col-span-6 h-full row-span-2 md:col-span-3 lg:col-span-4 bg-verdeSuccessoBG transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 flex flex-col items-center cursor-pointer shadow-lg hover:shadow-2xl">
             <div class="text-3xl font-bold text-verde1">Gestisci il tuo orto</div>
@@ -20,6 +20,7 @@
                 <img src="/img/tipoNelOrto.png" class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
             </div>
         </a>
+        -->
         <!-- modifica profilo-->
         <a th:href="@{'/user/dashboardModifica'(utenteId=${Utente.getId()})}" id="content-2"
            class="col-span-6 md:col-span-3 lg:col-span-2 h-full  bg-celeste1 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center cursor-pointer shadow-lg hover:shadow-2xl">
@@ -40,7 +41,7 @@
         </a>
 
         <!-- non lo so 1-->
-        <a th:href="@{'/user/dashboardModifica'(utenteId=${Utente.getId()})}" id="content-4"
+        <a th:href="@{'/referente/form-richiesta-evento'}" id="content-4"
            class="col-span-6 md:col-span-3 lg:col-span-2 h-full  bg-fuchsia-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center cursor-pointer shadow-lg hover:shadow-2xl">
             <div class="text-3xl font-bold text-verde1 text-center">Fai una richiesta di evento</div>
             <div class="flex-grow w-full flex items-center justify-center overflow-hidden h-full">
@@ -57,14 +58,15 @@
                      class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
             </div>
         </a>
-        <!--        Eventi-->
-        <a th:href="@{'/referente/orto/' + ${ortoDelReferente.id}}" id="content-6"
+        <!--        Eventi -->
+        <a th:href="@{'/referente/mostraEventiRef/' + ${Utente.getId()}}" id="content-6"
            class="col-span-6 h-full row-span-2 md:col-span-3 lg:col-span-2 bg-orange-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 flex flex-col items-center cursor-pointer shadow-lg hover:shadow-2xl">
             <div class="text-3xl font-bold text-verde1">Eventi</div>
             <div class="flex-grow w-full flex items-center justify-center overflow-hidden">
                 <img src="/img/tipiFesta.png" class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
             </div>
         </a>
+
         <!--Chat-->
         <a href="/no-user/forum" id="content-7"
            class="col-span-6 row-span-1 md:row-span-2 md:col-span-3 lg:col-span-4 max-h-[200px] h-[200px] bg-indigo-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center gap-2 cursor-pointer shadow-lg hover:shadow-2xl">

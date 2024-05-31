@@ -18,7 +18,7 @@
                     <div class="flex overflow-x-scroll hide-scroll-bar">
                         <div class="flex flex-nowrap">
                             <div class="my-5 ml-20 mr-20 p-2 flex flex-col bg-bianco1 border-verde1 max-w-[200px] rounded-3xl" th:each="evento,x : ${EventiRefe}">
-                                <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline  ">
+                                <a th:href="${'/referente/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline  ">
                                     <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
 
                                     <div class=" px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
@@ -40,7 +40,7 @@
 
                             <div class="my-5 ml-20 mr-20 p-2 flex flex-col bg-bianco1 border-2 border-verde1 rounded-3xl" th:each="evento,x : ${EventiRefeInSospeso}">
 
-                                <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
+                                <a th:href="${'/referente/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
                                     <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
 
                                     <div class=" w-full text-xl pt-3 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
@@ -62,7 +62,7 @@
 
                                 <div class="my-5 ml-20 mr-20 p-2 flex flex-col bg-bianco1 border-2 border-verde1 rounded-3xl" th:each="evento,x : ${EventiRefeFuturi}">
 
-                                    <a th:href="${'/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
+                                    <a th:href="${'/referente/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
                                         <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
 
                                         <div class="px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">

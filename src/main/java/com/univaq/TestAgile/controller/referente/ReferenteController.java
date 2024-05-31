@@ -67,13 +67,13 @@ public class ReferenteController {
         model.addAttribute("EventiRefeFuturi", eventiRefeFuturi);
         List<Evento> eventiInSospeso = eventoController.getEventiAccettatiRef(id);
         model.addAttribute("EventiRefeInSospeso", eventiInSospeso);
-        return "/referente/listaEventiReferente";
+        return "referente/listaEventiReferente";
     }
     @GetMapping("/mostraDettagliEvento/{id}")
     public String mostraDettagliEvento(Model model, @PathVariable long id) {
         Evento evento = eventoController.getEventoById(id);
         model.addAttribute("datiDettagli", evento);
-        return "/referente/dettagliEventoReferente";
+        return "referente/dettagliEventoReferente";
     }
 
     @GetMapping("/dashboard")
