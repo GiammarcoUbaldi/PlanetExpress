@@ -30,8 +30,14 @@ jobs:
           mysql user: 'root'
           mysql password: ''
         
-      - name: Check MySQL Service Status
-        run: sudo systemctl status mysql
+      - name: Wait for MySQL to be ready
+        run: |
+          sudo apt-get install -y netcat
+          while ! nc -z localhost 3306; do   
+            echo "Waiting for MySQL...";
+            sleep 5;
+          done;
+          echo "MySQL is up and running"
 
       - name: Start Spring PlanetExpress
         run: |
