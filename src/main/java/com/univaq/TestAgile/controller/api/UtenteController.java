@@ -18,7 +18,6 @@ public class UtenteController {
 
     @Autowired
     private UtenteRepository utenteRepository;
-
     @GetMapping
     public List<Utente> getAllUtenti() {
         return (List<Utente>) utenteRepository.findAll();

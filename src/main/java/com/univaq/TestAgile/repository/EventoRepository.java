@@ -10,5 +10,7 @@ public interface EventoRepository extends CrudRepository<Evento, Long> {
     List<Evento> findByAccettato(String accettato);
    // List<Evento> findByEventiRef(Long idRef);
 
+    List<Evento> findByLuogo(String citta);
+
     List<Evento> findByIdReferente(long id);
 }

@@ -33,7 +33,7 @@ public class EventoController {
         return (List<Evento>) eventoRepository.findByAccettato("In sospeso");
     }
 
-//--------------------------------------
+//-------------------------------------- REFERENTE
     @GetMapping("/eventiRef")
     public List<Evento> getEventiProposti(Long id) {
         return (List<Evento>) eventoRepository.findByIdReferente(id);
@@ -66,7 +66,33 @@ public class EventoController {
         return listaEventiFiltrati;
     }
 
+    @GetMapping("/refInSospeso")
+    public List<Evento> getEventiInSospesoRef() {
+        return (List<Evento>) eventoRepository.findByAccettato("In sospeso");
+    }
 
+    //-------------------------------------- USER
+
+    @GetMapping("/eventiCitta")
+    public List<Evento> getEventiCitta(String citta) {
+        List<Evento> listaEventiCitta =  eventoRepository.findByLuogo(citta);
+        List<Evento> listaEventiFiltrati = new ArrayList<>();
+
+        for(Evento evento : listaEventiCitta){
+            if(evento.getLuogo().equals(citta)) listaEventiFiltrati.add(evento);
+        }
+        return listaEventiFiltrati;
+    }
+
+    public List<Evento> getEventi3User() {
+        List<Evento> eventi = eventoRepository.findByAccettato("Accettato");
+
+        if (eventi.size() > 3) {
+            eventi = eventi.subList(0, 3);
+        }
+
+        return eventi;
+    }
 
 
     @PostMapping
@@ -102,11 +128,6 @@ public class EventoController {
         }
 
         return eventi;
-    }
-
-    @GetMapping("/refInSospeso")
-    public List<Evento> getEventiInSospesoRef() {
-        return (List<Evento>) eventoRepository.findByAccettato("In sospeso");
     }
 
     @PostMapping("/add-richiesta-evento")
