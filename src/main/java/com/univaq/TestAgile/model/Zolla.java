@@ -38,6 +38,9 @@ public class Zolla {
     @Column(name = "semina")
     private Date semina;
 
+    @Column(name = "raccolta")
+    private Date raccolta;
+
     @Column(name = "stato")
     private String stato;
 
@@ -60,6 +63,36 @@ public class Zolla {
         this.dataPrenotazione = dataPrenotazione;
         this.proprietario = proprietario;
         this.orto = orto;
+    }
+
+    public Zolla(OrtoReferente orto, Utente utente, String nome, String tipoTerreno, String ortaggio, Date semina, Date raccolta, String stato, Date dataScadenza, Date dataPrenotazione, String proprietario) {
+        this.orto = orto;
+        this.utente = utente;
+        this.nome = nome;
+        this.tipoTerreno = tipoTerreno;
+        this.ortaggio = ortaggio;
+        this.semina = semina;
+        this.raccolta = raccolta;
+        this.stato = stato;
+        this.dataScadenza = dataScadenza;
+        this.dataPrenotazione = dataPrenotazione;
+        this.proprietario = proprietario;
+    }
+
+    public OrtoReferente getOrto() {
+        return orto;
+    }
+
+    public void setOrto(OrtoReferente orto) {
+        this.orto = orto;
+    }
+
+    public Date getRaccolta() {
+        return raccolta;
+    }
+
+    public void setRaccolta(Date raccolta) {
+        this.raccolta = raccolta;
     }
 
     public Zolla() {
@@ -157,4 +190,36 @@ public class Zolla {
     public void setUtente(Utente utente) {
         this.utente = utente;
     }
+
+    public int calcolaPercentualeCrescita() {
+        int percentuale = 0;
+        System.out.println("Zolla Percent");
+        System.out.println(semina);
+        System.out.println(raccolta);
+        if(semina == null || raccolta == null) return percentuale;
+        LocalDate dataSemina = semina.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate dataRaccolta = raccolta.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate dataOdierna = LocalDate.now();
+
+        long giorniTotali = ChronoUnit.DAYS.between(dataSemina, dataRaccolta);
+        long giorniTrascorsi = ChronoUnit.DAYS.between(dataSemina, dataOdierna);
+
+        // Evitare divisioni per zero
+        if (giorniTotali == 0) {
+            return 100;
+        }
+
+        // Calcolare la percentuale
+         percentuale = (int) ((double) giorniTrascorsi / giorniTotali * 100);
+
+        // Assicurarsi che la percentuale sia tra 0 e 100
+        if (percentuale < 0) {
+            percentuale = 0;
+        } else if (percentuale > 100) {
+            percentuale = 100;
+        }
+        System.out.println(percentuale);
+        return percentuale;
+    }
 }
+

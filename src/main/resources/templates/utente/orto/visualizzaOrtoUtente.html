@@ -22,12 +22,12 @@
     </div>
     <!--    Sfondo Verde     -->
     <div class="w-full bg-verde4 min-h-screen">
-        <div class="grid p-8 container lg:px-32 mx-auto"  >
+        <div class="grid p-8 container lg:px-32 mx-auto "  >
         <!--             th:style="'grid-template-columns: repeat(' + ${ortoReferente.getDimensioneX()} + ', minmax(0, 1fr)); ' +-->
         <!--               'grid-template-rows: repeat(' + ${ortoReferente.getDimensioneY()} + ', minmax(0, 1fr));'">-->
 
         <!-- Inserisco le zolle nel orto-->
-        <div th:each="zolla, iStat : ${zolleDelUtente}">
+        <div th:each="zolla, iStat : ${zolleDelUtente}" class="w-full md:w-1/2 mx-auto">
             <div th:insert="~{/components/orto/_zollaDiTerreno ::  terra(ortaggio=${zolla.getOrtaggio()},id=${zolla.getId()})}"></div>
         </div>
     </div>
@@ -37,8 +37,8 @@
     <!--                 th:text="${i}"></div>-->
     <!--        </div>-->
 
-    <div class="p-8 container lg:px-32 mx-auto ">
-        <a href="/user/richiestaZollaAggiuntiva" class="px-4 py-2 bg-giallo1 text-verde1 rounded-full " >Richiedi una zolla aggiuntiva</a>
+    <div class="p-8 container lg:px-32 mx-auto flex flex-col items-center">
+        <a href="/user/richiestaZollaAggiuntiva" class="px-4 py-2 bg-giallo1 text-verde1 rounded-full text-center my-12 max-w-[350px]" >Richiedi una zolla aggiuntiva</a>
         <div class="text-4xl text-verde1 mb-4">Lista Zolle Occupate:</div>
         <div th:each="zolla, iStat : ${zolleDelUtente}" class="mt-4">
             <div th:if="${zolla.getOrtaggio() != null}"
@@ -58,12 +58,12 @@
                     <div class="flex flex-row items-end gap-4">
                         <img src="/icons/forchettaColtello.svg" alt="icona forchetta e coltello" class="w-10">
                         <div class="">Stima Raccolta: <span
-                                th:text="${#dates.format(zolla.getSemina(), 'yyyy-MM-dd')}"></span></div>
+                                th:text="${#dates.format(zolla.getRaccolta(), 'yyyy-MM-dd')}"></span></div>
                     </div>
                     <div class="flex flex-row items-center gap-4 self-center">
                         <div class="">Stato: <span th:text="${zolla.getStato()}"></span></div>
-                        <div class="c100 p75 green aspect-square">
-                            <span>75%</span>
+                        <div th:classappend="'c100 p' + ${zolla.calcolaPercentualeCrescita()} + ' green aspect-square'">
+                            <span th:text="${zolla.calcolaPercentualeCrescita()}">45%</span>
                             <div class="slice">
                                 <div class="bar"></div>
                                 <div class="fill"></div>
@@ -82,16 +82,12 @@
                 <div class="justify-self-end flex flex-col gap-4 text-verde1 text-xl md:text-2xl ">
                     <div class="flex flex-row items-end gap-4">
                         <img src="/icons/timer.svg" alt="icona timer" class="w-10">
-                        <div class="">Data Scadenza: <span
-                                th:text="${#dates.format(zolla.getDataScadenza(), 'yyyy-MM-dd')}"></span></div>
-                    </div>
-                    <div class="flex flex-row items-end gap-4">
-                        <img src="/icons/farmer1.svg" alt="icona farmer" class="w-10">
-                        <div class="">Proprietario: <span th:text="${zolla.getProprietario()}"></span></div>
+                        <div class="">Scadenza:Abbonamento alla zolla di 90 Giorni
+                            <!--                             <span   th:text="${#dates.format(zolla.getDataScadenza(), 'yyyy-MM-dd')}"></span></div>--></div>
                     </div>
                     <div class="flex flex-row items-end gap-4">
                         <img src="/icons/calendar1.svg" alt="icona calendar" class="w-10">
-                        <div th:text="'In suo possesso da ' + ${zolla.getGiorniPossesso()} + ' giorni'"></div>
+                        <div th:text="'In tuo possesso da ' + ${zolla.getGiorniPossesso()} + ' giorni'"></div>
                     </div>
                 </div>
                 <div>
@@ -107,7 +103,7 @@
     </div>
 
     <div class="bg-[#38231E] min-h-screen w-full">
-        <div class="container lg:px-32 px-4 mx-auto">
+        <div class="container lg:px-32 px-4 mx-auto mx-auto flex flex-col items-center">
             <div class="text-4xl text-giallo1 mb-4">Lista Zolle Libere:</div>
             <div th:each="zolla, iStat : ${zolleDelUtente}" class="mt-4">
                 <div th:if="${zolla.getOrtaggio() == null}"
@@ -123,9 +119,32 @@
                         <div class="">Tipo terreno: <span th:text="${zolla.getTipoTerreno()}"></span></div>
                     </div>
                     <!--Parte Destra  -->
-                    <div class="justify-self-end flex flex-col gap-4 text-verde1 text-xl md:text-2xl "></div>
+                    <div class="justify-self-end flex flex-col items-center justify-center gap-4 text-verde1 text-xl md:text-2xl ">
+                        <img alt="icona pianta" src="/icons/piantina.svg" class="w-32">
+                        <div th:id="'piantaSuQuestaZolla-'+${zolla.getId()}" class="text-center px-4 py-2 cursor-pointer rounded-full bg-green-400 text-verde1 text-md pianta-button">Pianta su questa Zolla di Terreno</div>
+                    </div>
                     <div>
                     </div>
+                </div>
+            </div>
+            <div id="plantModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+                <div class="bg-white rounded-lg p-6 w-full max-w-md mx-2">
+                    <span class="close cursor-pointer text-gray-500 hover:text-gray-900 float-right text-xl">&times;</span>
+                    <h2 class="text-2xl font-bold mb-4">Scegli cosa piantare</h2>
+                    <form id="plantForm" action="" method="get">
+                        <label for="plantSelect" class="block text-left mb-2">Seleziona un ortaggio:</label>
+                        <select id="plantSelect" name="plant" class="block w-full p-2 border rounded mb-4">
+                            <option value="Carote">Carote</option>
+                            <option value="Patate">Patate</option>
+                            <option value="Pomodori">Pomodori</option>
+                            <option value="Cipolle">Cipolle</option>
+                            <option value="Peperoni">Peperoni</option>
+                        </select>
+                        <div class="flex justify-end space-x-4">
+                            <button type="button" class="cancel bg-red-500 text-white px-4 py-2 rounded">Annulla</button>
+                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Piantare</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -144,6 +163,38 @@
                 setTimeout(function () {
                     $(idDaTrovare).css("background-color", "#F4F4F4"); // Rimuove lo stile CSS
                 }, 1500);
+            });
+
+            var currentZollaId = null;
+
+            // Quando si clicca sul div con classe "pianta-button"
+            $('.pianta-button').on('click', function() {
+                // Ottieni l'id dinamico dal div cliccato
+                var buttonId = $(this).attr('id');
+                currentZollaId = buttonId.split('-')[1]; // Estrai l'ID della zolla
+
+                // Mostra il modale
+                $('#plantModal').removeClass('hidden');
+            });
+
+            // Quando si clicca sulla X per chiudere il modale
+            $('.close, .cancel').on('click', function() {
+                // Nasconde il modale
+                $('#plantModal').addClass('hidden');
+            });
+
+            // Gestione dell'invio del form
+            $('#plantForm').on('submit', function(event) {
+                event.preventDefault(); // Previene l'invio standard del form
+                // Ottieni il valore dell'ortaggio selezionato
+                var selectedPlant = $('#plantSelect').val();
+
+                // Costruisci l'URL dell'azione con l'id dinamico e l'ortaggio selezionato
+                var actionUrl = '/user/piantaNellaZolla/' + currentZollaId + '?plant=' + selectedPlant;
+
+                // Imposta l'azione del form e invia il form
+                $(this).attr('action', actionUrl);
+                this.submit();
             });
         });
     </script>
