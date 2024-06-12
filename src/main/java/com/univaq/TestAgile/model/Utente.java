@@ -41,9 +41,17 @@ public class Utente {
     @Column(name = "numero_telefono")
     private String numeroTelefono;
 
+
     @ManyToOne
     @JoinColumn(name = "orto_id")
     private OrtoReferente ortoOccupato;
+
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Partecipazione> partecipazioni;
+
+
+    public Utente() {
+    }
 
     @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Commento> commenti;
@@ -51,8 +59,9 @@ public class Utente {
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Zolla> zolle;
 
-    public Utente() {
-    }
+
+
+
 
     public Utente(String nome, String cognome, String email, String password, String tipoUtente, String sesso, String indirizzo, String nazione, String numeroTelefono) {
         this.nome = nome;
@@ -185,5 +194,13 @@ public class Utente {
                 ", numeroTelefono='" + numeroTelefono + '\'' +
                 ", tipoUtente='" + tipoUtente + '\'' +
                 '}';
+    }
+
+    public List<Partecipazione> getPartecipazioni() {
+        return partecipazioni;
+    }
+
+    public void setPartecipazioni(List<Partecipazione> partecipazioni) {
+        this.partecipazioni = partecipazioni;
     }
 }

@@ -2,7 +2,11 @@ package com.univaq.TestAgile.controller.api;
 
 import com.univaq.TestAgile.model.Evento;
 import com.univaq.TestAgile.model.OrtoReferente;
+import com.univaq.TestAgile.model.Partecipazione;
+import com.univaq.TestAgile.model.Utente;
 import com.univaq.TestAgile.repository.EventoRepository;
+import com.univaq.TestAgile.repository.PartecipazioneRepository;
+import com.univaq.TestAgile.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +20,13 @@ import java.util.List;
 public class EventoController {
 
     @Autowired
+    private UtenteController utenteController;
+
+    @Autowired
     private EventoRepository eventoRepository;
+
+    @Autowired
+    private PartecipazioneRepository partecipazioneRepository;
 
     @GetMapping("/accettati")
     public List<Evento> getEventiAccettati() {
@@ -84,16 +94,47 @@ public class EventoController {
         return listaEventiFiltrati;
     }
 
-    public List<Evento> getEventi3User() {
-        List<Evento> eventi = eventoRepository.findByAccettato("Accettato");
 
-        if (eventi.size() > 3) {
-            eventi = eventi.subList(0, 3);
+    public List<Evento> getEventi3User() {
+        Utente utente = utenteController.getUtenteLoggato();
+        List<Evento> eventi = eventoRepository.findByAccettato("Accettato");
+        List<Evento> eventiPrenotati = getEventiPrenotati(utente);
+
+
+        List<Evento> eventiNonPrenotati = new ArrayList<>();
+
+        for (Evento evento : eventi) {
+            boolean isPrenotato = false;
+            for (Evento eventoPrenotato : eventiPrenotati) {
+                if (eventoPrenotato.getNomeEvento().equals(evento.getNomeEvento())) {
+                    isPrenotato = true;
+                    break;
+                }
+            }
+            if (!isPrenotato) {
+                eventiNonPrenotati.add(evento);
+            }
         }
 
-        return eventi;
+        if (eventiNonPrenotati.size() > 3) {
+            eventiNonPrenotati = eventiNonPrenotati.subList(0, 3);
+        }
+
+        return eventiNonPrenotati;
     }
 
+
+    @GetMapping("/eventiPrenotati")
+    public List<Evento> getEventiPrenotati(Utente utente) {
+        List<Partecipazione> prenotazioni = partecipazioneRepository.findByUtente(utente);
+        List<Evento> eventiPrenotati = new ArrayList<>();
+        for (Partecipazione partecipazione : prenotazioni){
+            eventiPrenotati.add(partecipazione.getEvento());
+        }
+
+        return eventiPrenotati;
+
+    }
 
     @PostMapping
     public Evento createEvento(@RequestBody Evento evento) {

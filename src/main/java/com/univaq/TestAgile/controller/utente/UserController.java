@@ -64,8 +64,8 @@ public class UserController {
         model.addAttribute("EventiTotali", eventiTotali);
         List<Evento> eventiCitta = eventoController.getEventiCitta(user.getNazione());
         model.addAttribute("EventiCitta", eventiCitta);
-        //List<Evento> eventiPrenotati = eventoController.getEventiPrenotati(id);
-        //model.addAttribute("EventiPrenotati", eventiPrenotati);
+        List<Evento> eventiPrenotati = eventoController.getEventiPrenotati(user);
+        model.addAttribute("EventiPrenotati", eventiPrenotati);
         return "utente/listaEventiUser";
     }
 

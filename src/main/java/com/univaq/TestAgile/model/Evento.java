@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import javax.xml.crypto.Data;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @EnableJpaRepositories
 @Entity
@@ -58,6 +59,9 @@ public class Evento {
 
     @Column(name = "id_Referente")
     private Long idReferente;
+
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Partecipazione> partecipazioni;
 
     public Evento(String nome, String referente, Long idReferente, LocalDateTime dataOraEvento, String luogo, String descrizione, LocalDateTime dataOraCreazione, String link_img, String prezzo, String durataEvento, String temaEvento, String statoEvento, String accettato) {
         this.nomeEvento = nome;
@@ -187,5 +191,13 @@ public class Evento {
 
     public void setTemaEvento(String temaEvento) {
         this.temaEvento = temaEvento;
+    }
+
+    public List<Partecipazione> getPartecipazioni() {
+        return partecipazioni;
+    }
+
+    public void setPartecipazioni(List<Partecipazione> partecipazioni) {
+        this.partecipazioni = partecipazioni;
     }
 }

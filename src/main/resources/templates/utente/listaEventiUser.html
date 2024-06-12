@@ -23,6 +23,10 @@
 
                                     <div class=" px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
                                     </div>
+                                    <a th:href="${'/api/partecipazione/addPartecipazione/'+evento.getId()}"
+                                       class="text-sm text-white transition duration-150 bg-verde1 border border-red-800 font-semibold py-2 px-4 rounded-full ">
+                                        Prenotati
+                                    </a>
                                 </a>
                             </div>
                         </div>
@@ -47,14 +51,37 @@
 
                                     </div>
                                 </a>
+
+                                <a th:href="${'/api/partecipazione/addPartecipazione/'+evento.getId()}"
+                                   class="text-sm text-white transition duration-150 bg-verde1 border border-red-800 font-semibold py-2 px-4 rounded-full ">
+                                    Prenotati
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="bg-rosso1 mt-16">
+                <h6 class="mx-14 text-6xl text-left text-verde1 font-extrabold mb-3">Gli eventi a cui ti sei prenotato</h6>
 
+                <div class="mx-10 mb-10 flex flex-row justify-around rounded-3xl bg-verde2 border-verde1 border-2">
+                    <div class="flex overflow-x-scroll hide-scroll-bar">
+                        <div class="flex flex-nowrap">
 
+                            <div class="my-5 ml-20 mr-20 p-2 flex flex-col bg-bianco1 border-2 border-verde1 rounded-3xl" th:each="evento,x : ${EventiPrenotati}">
 
+                                <a th:href="${'/user/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
+                                    <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
+
+                                    <div class="px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
