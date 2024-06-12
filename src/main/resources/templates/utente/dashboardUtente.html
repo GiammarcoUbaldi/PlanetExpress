@@ -7,9 +7,16 @@
 
     <div class="grid grid-cols-6 grid-rows-custom-dash gap-4 h-full w-full mt-10">
         <!--        ORTO REFERENTE-->
-        <a href="" id="content-1"
+        <a href="/user/listaOrtiDisponibili" id="content-1" th:if="${Utente.getOrtoOccupato() == null}"
            class="col-span-6 h-full row-span-2 md:col-span-3 lg:col-span-4 bg-verdeSuccessoBG transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 flex flex-col items-center cursor-pointer shadow-lg hover:shadow-2xl">
-            <div class="text-3xl font-bold text-verde1">Visualizza Orti</div>
+            <div class="text-3xl font-bold text-verde1">Visualizza Lista di Orti Coltivabili</div>
+            <div class="flex-grow w-full flex items-center justify-center overflow-hidden">
+                <img src="/img/tipoNelOrto.png" class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
+            </div>
+        </a>
+        <a href="/user/ortoOccupato" id="content-1" th:if="${Utente.getOrtoOccupato() != null}"
+           class="col-span-6 h-full row-span-2 md:col-span-3 lg:col-span-4 bg-verdeSuccessoBG transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 flex flex-col items-center cursor-pointer shadow-lg hover:shadow-2xl">
+            <div class="text-3xl font-bold text-verde1">Visualizza le tue Zolle di Terreno</div>
             <div class="flex-grow w-full flex items-center justify-center overflow-hidden">
                 <img src="/img/tipoNelOrto.png" class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
             </div>

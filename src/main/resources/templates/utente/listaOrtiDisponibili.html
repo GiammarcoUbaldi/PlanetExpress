@@ -1,0 +1,22 @@
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="/utils/layout">
+<!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
+<div layout:fragment="contenuto" class="flex items-center gap-4 flex-col px-4 container mx-auto relative">
+    <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold mt-12 text-verde1">Lista Orti Disponibili</h1>
+
+
+    <div class="grid grid-cols-3 gap-4 mt-10 w-full h-full">
+        <div class="border-verde1 border-2 rounded-3xl flex flex-col gap-2 items-center justify-center pb-4"
+             th:each="dati : ${ortiDisponibili}">
+            <div class="text-verde1 font-bold uppercase mt-2" th:text="${dati.getNome()}"></div>
+            <div class="" th:text="''+${dati.getDescrizione()}"></div>
+            <img src="/icons/miniOrto.svg" alt="mini orto" class="w-full max-h-56 px-12">
+            <div class="" th:text="'Posizione:'+${dati.getPosizione()}"></div>
+            <div class="" th:text="'Informazioni aggiuntive:'+${dati.getInfoAggiuntive()}"></div>
+            <div class="" th:text="'Nome Referente'+${dati.getNomeReferente()}"></div>
+            <div class="" th:text="'Numero di zolle:'+${dati.getNumeroZolle()}"></div>
+            <a th:href="@{'/user/occupazioneOrto'(ortoId=${dati.getId()})}"
+               class="rounded-full px-4 py-2 font-bold bg-verdeSuccessoBG text-verde1">Richiedi una Zolla </a>
+        </div>
+    </div>
+</html>

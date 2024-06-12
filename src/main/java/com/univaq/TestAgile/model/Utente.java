@@ -41,18 +41,17 @@ public class Utente {
     @Column(name = "numero_telefono")
     private String numeroTelefono;
 
-    public Utente() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "orto_id")
+    private OrtoReferente ortoOccupato;
 
     @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Commento> commenti;
 
-    public List<Commento> getCommenti() {
-        return commenti;
-    }
+    @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Zolla> zolle;
 
-    public void setCommenti(List<Commento> commenti) {
-        this.commenti = commenti;
+    public Utente() {
     }
 
     public Utente(String nome, String cognome, String email, String password, String tipoUtente, String sesso, String indirizzo, String nazione, String numeroTelefono) {
@@ -65,6 +64,7 @@ public class Utente {
         this.indirizzo = indirizzo;
         this.nazione = nazione;
         this.numeroTelefono = numeroTelefono;
+        this.ortoOccupato = null;
     }
 
     public Long getId() {
@@ -145,6 +145,30 @@ public class Utente {
 
     public void setTipoUtente(String tipoUtente) {
         this.tipoUtente = tipoUtente;
+    }
+
+    public OrtoReferente getOrtoOccupato() {
+        return ortoOccupato;
+    }
+
+    public void setOrtoOccupato(OrtoReferente ortoOccupato) {
+        this.ortoOccupato = ortoOccupato;
+    }
+
+    public List<Commento> getCommenti() {
+        return commenti;
+    }
+
+    public void setCommenti(List<Commento> commenti) {
+        this.commenti = commenti;
+    }
+
+    public List<Zolla> getZolle() {
+        return zolle;
+    }
+
+    public void setZolle(List<Zolla> zolle) {
+        this.zolle = zolle;
     }
 
     @Override

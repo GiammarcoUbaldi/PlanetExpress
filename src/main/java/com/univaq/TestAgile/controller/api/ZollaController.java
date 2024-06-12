@@ -1,6 +1,7 @@
 package com.univaq.TestAgile.controller.api;
 
 import com.univaq.TestAgile.model.OrtoReferente;
+import com.univaq.TestAgile.model.Utente;
 import com.univaq.TestAgile.model.Zolla;
 import com.univaq.TestAgile.repository.ZollaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class ZollaController {
     }
 
 
-
-
+    public List<Zolla> getListZolleByOrtoAndUtente(OrtoReferente ortoReferente, Utente utente) {
+        return zollaRepository.findByOrtoAndUtente(ortoReferente,utente);
+    }
 }

@@ -22,6 +22,10 @@ public class Zolla {
     @JoinColumn(name = "orto_id")
     private OrtoReferente orto;
 
+    @ManyToOne
+    @JoinColumn(name = "utente_id")
+    private Utente utente;
+
     @Column(name = "nome")
     private String nome;
 
@@ -144,5 +148,13 @@ public class Zolla {
 
     public void setProprietario(String proprietario) {
         this.proprietario = proprietario;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 }
