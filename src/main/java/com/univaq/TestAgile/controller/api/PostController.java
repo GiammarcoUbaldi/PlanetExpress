@@ -138,6 +138,32 @@ public class PostController {
         return "redirect:/"; // Reindirizza alla homepage o a una pagina di errore se il post non esiste
     }
 
+    @PostMapping("/cancellaCommento")
+    public String cancellaCommento(@RequestParam("commentoId") Long commentoId, Model model) {
+        Optional<Commento> optionalCommento = commentoRepository.findById(commentoId);
+        Utente u = utenteController.getUtenteLoggato();
+
+        if (optionalCommento.isPresent() && u != null) {
+            Commento commento = optionalCommento.get();
+            Post post = commento.getPost();
+
+            // Verifica se l'utente loggato è l'autore del post o del commento
+            if (post.getUtente().getId().equals(u.getId()) || commento.getUtente().getId().equals(u.getId())) {
+                commentoRepository.deleteById(commentoId);
+
+                model.addAttribute("post", post);
+                model.addAttribute("commenti", post.getCommenti());
+
+                return "redirect:/no-user/forum/" + post.getId(); // Reindirizza alla pagina del post con i commenti aggiornati
+            }
+
+            return "redirect:/no-user/forum/" + post.getId(); // L'utente non è autorizzato a cancellare questo commento
+        }
+
+        return "redirect:/"; // Reindirizza alla homepage o a una pagina di errore se il commento non esiste
+    }
+
+
   /*  public List<Post> getPostsByCategory(@RequestParam(required = false) String category) {
         if (category == null || category.isEmpty()) {
             return PostRepository.findAll();
