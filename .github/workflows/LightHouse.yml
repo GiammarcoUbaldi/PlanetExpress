@@ -42,13 +42,14 @@ jobs:
       - name: Verify 'planet' database exists
         run: |
           sudo apt-get install -y mysql-client
-          DB_EXISTS=$(mysql -u root -proott -e "SHOW DATABASES LIKE 'planet';" | grep "planet")
+          DB_EXISTS=$(mysql -h 127.0.0.1 -u root -proott -e "SHOW DATABASES LIKE 'planet';" | grep "planet")
           if [ -z "$DB_EXISTS" ]; then
             echo "Database 'planet' does not exist!"
             exit 1
           else
             echo "Database 'planet' exists."
           fi
+
 
       - name: Start Spring PlanetExpress
         run: mvn spring-boot:run
