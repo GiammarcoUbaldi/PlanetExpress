@@ -1,27 +1,27 @@
-#name: Build and Test Spring Boot Application
-#
-#on:
-#  push:
-#    branches:
-#      - pipeline2
-#
-#jobs:
-#  build:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v2
-#
-#      - name: Set up JDK 17
-#        uses: actions/setup-java@v3
-#        with:
-#          distribution: 'temurin'
-#          java-version: '17'
-#
-#      - name: Build with Maven
-#        run: mvn clean install
-#
+name: Build and Test Spring Boot Application
+
+on:
+  push:
+    branches:
+      - pipeline2
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn clean install
+
 #      - name: Setup MySQL
 #        uses: mirromutth/mysql-action@v1.1
 #        with:
@@ -36,89 +36,92 @@
 #          SPRING_DATASOURCE_USERNAME: root
 #          SPRING_DATASOURCE_PASSWORD: 'roott'
 #        run: mvn spring-boot:run
-name: Forest CI
-
-env:
-  MYSQL_DATABASE: planet
-  MYSQL_ROOT_PASSWORD: password
-  MYSQL_USER: test_user
-  MYSQL_PASSWORD: password
-  MYSQL_HOST: mysql-master
-  NODE_ENV: test
-
-on:
-  push:
-    branches:
-      - pipeline
-
-jobs:
-  ci:
-    runs-on: ubuntu-latest
-
-    services:
-      mysql-master:
-        image: mysql:5.7
-        ports:
-          - 3306/tcp
-        env:
-          MYSQL_DATABASE: ${{ env.MYSQL_DATABASE }}
-          MYSQL_USER: ${{ env.MYSQL_USER }}
-          MYSQL_PASSWORD: ${{ env.MYSQL_PASSWORD }}
-          MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_PASSWORD }}
-        options: >-
-          --name=mysql-master
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-
-      spring-boot-app:
-        image: openjdk:17-jdk
-        env:
-          SPRING_DATASOURCE_URL: jdbc:mysql://172.18.0.2:3306/${{ env.MYSQL_DATABASE }}?serverTimezone=UTC
-          SPRING_DATASOURCE_USERNAME: ${{ env.MYSQL_USER }}
-          SPRING_DATASOURCE_PASSWORD: ${{ env.MYSQL_PASSWORD }}
-        ports:
-          - 8080:8080
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Set up Maven
-        run: |
-          sudo apt-get install -y maven
-          mvn -v  # Verifies Maven installation
-
-      - name: Build with Maven
-        run: mvn clean install
-
-      - name: Debug Environment Variables
-        run: |
-          echo "MYSQL_HOST=${MYSQL_HOST}"
-          echo "MYSQL_DATABASE=${MYSQL_DATABASE}"
-          echo "MYSQL_USER=${MYSQL_USER}"
-          echo "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
-          
-      - name: Check MySQL Service Status
-        run: docker inspect --format='{{.State.Status}}' mysql-master
-
-      - name: Check MySQL Logs
-        run: docker logs mysql-master
-
-      - name: Get MySQL Container IP
-        run: |
-          CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql-master)
-          echo "MySQL Container IP: $CONTAINER_IP"
-
-      - name: Check MySQL Port Mapping
-        run: docker port mysql-master
 
 
-      - name: Run Spring Boot Application
-        run: mvn spring-boot:run -X
+
+#name: Forest CI
+#
+#env:
+#  MYSQL_DATABASE: planet
+#  MYSQL_ROOT_PASSWORD: password
+#  MYSQL_USER: test_user
+#  MYSQL_PASSWORD: password
+#  MYSQL_HOST: mysql-master
+#  NODE_ENV: test
+#
+#on:
+#  push:
+#    branches:
+#      - pipeline
+#
+#jobs:
+#  ci:
+#    runs-on: ubuntu-latest
+#
+#    services:
+#      mysql-master:
+#        image: mysql:5.7
+#        ports:
+#          - 3306/tcp
+#        env:
+#          MYSQL_DATABASE: ${{ env.MYSQL_DATABASE }}
+#          MYSQL_USER: ${{ env.MYSQL_USER }}
+#          MYSQL_PASSWORD: ${{ env.MYSQL_PASSWORD }}
+#          MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_PASSWORD }}
+#        options: >-
+#          --name=mysql-master
+#          --health-cmd="mysqladmin ping"
+#          --health-interval=10s
+#          --health-timeout=5s
+#          --health-retries=3
+#
+#      spring-boot-app:
+#        image: openjdk:17-jdk
+#        env:
+#          SPRING_DATASOURCE_URL: jdbc:mysql://172.18.0.2:3306/${{ env.MYSQL_DATABASE }}?serverTimezone=UTC
+#          SPRING_DATASOURCE_USERNAME: ${{ env.MYSQL_USER }}
+#          SPRING_DATASOURCE_PASSWORD: ${{ env.MYSQL_PASSWORD }}
+#        ports:
+#          - 8080:8080
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Set up JDK 17
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'temurin'
+#          java-version: '17'
+#
+#      - name: Set up Maven
+#        run: |
+#          sudo apt-get install -y maven
+#          mvn -v  # Verifies Maven installation
+#
+#      - name: Build with Maven
+#        run: mvn clean install
+#
+#      - name: Debug Environment Variables
+#        run: |
+#          echo "MYSQL_HOST=${MYSQL_HOST}"
+#          echo "MYSQL_DATABASE=${MYSQL_DATABASE}"
+#          echo "MYSQL_USER=${MYSQL_USER}"
+#          echo "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
+#
+#      - name: Check MySQL Service Status
+#        run: docker inspect --format='{{.State.Status}}' mysql-master
+#
+#      - name: Check MySQL Logs
+#        run: docker logs mysql-master
+#
+#      - name: Get MySQL Container IP
+#        run: |
+#          CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql-master)
+#          echo "MySQL Container IP: $CONTAINER_IP"
+#
+#      - name: Check MySQL Port Mapping
+#        run: docker port mysql-master
+#
+#
+#      - name: Run Spring Boot Application
+#        run: mvn spring-boot:run -X
