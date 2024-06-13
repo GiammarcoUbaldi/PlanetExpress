@@ -139,53 +139,20 @@
         </div>
 
         <div class="">
-            <div class="absolute h-24 w-24">
-
-                <svg  viewBox="0 0 428 428" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_547_3420)">
-                        <mask id="mask0_547_3420" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="428" height="428">
-                            <path d="M428 0H0V428H428V0Z" fill="white"/>
-                        </mask>
-                        <g mask="url(#mask0_547_3420)">
-                            <path d="M214 0L247.786 87.9082L321 28.6706L306.306 121.694L399.329 107L340.091 180.214L428 214L340.091 247.786L399.329 321L306.306 306.306L321 399.329L247.786 340.091L214 428L180.214 340.091L107 399.329L121.694 306.306L28.6706 321L87.9082 247.786L0 214L87.9082 180.214L28.6706 107L121.694 121.694L107 28.6706L180.214 87.9082L214 0Z" fill="#F3896B"/>
-                        </g>
-                    </g>
-                </svg>
-
-            </div>
             <div class="mx-7 text-3xl font-extrabold text-verde1 text-left">
                 Descrizione
             </div>
             <h6 class="mx-7 mt-2 w-full text-verde1 text-xl" th:text="${datiDettagli.getDescrizione()}"> </h6>
         </div>
 
-        <div class="m-5 border-verde1 border-2 p-4 rounded-3xl w-full bg-gialloSecondarioBG">
-            <div class="flex flex-col">
-
-                <div class="py-3 flex flex-row justify-between">
-                    <div class="text-xl text-verde1">
-                        Referente Evento
-                    </div>
-                    <div class="text-xl text-verde1 flex flex-row">
-                        <img src="/icons/farmer_details.svg" alt="icona" class="w-8 h-8 mr-2">
-                        <h6 class="w-full text-verde1" th:text="${datiDettagli.getNomeReferente()}"> </h6>
-                    </div>
-                </div>
-
-                <div class="h-[2px] bg-verde1 rounded-full w-full"> </div>
-
-                <div class="py-3 flex flex-row justify-between">
-                    <div class="text-xl text-verde1">
-                        Data e Ora Creazione
-                    </div>
-                    <div class="text-xl text-verde1 flex flex-row">
-                        <img src="/icons/calendar_details.svg" alt="icona" class="w-8 h-8 mr-2">
-                        <p class="text-xl text-verde1" th:text="${#temporals.format(datiDettagli.getDataOraEvento(), 'yyyy-MM-dd hh:mm')}"> </p>
-                    </div>
-                </div>
-
-            </div>
+        <div class="mr-16 float-right my-8">
+            <a th:href="${'/api/partecipazione/addPartecipazione/' + datiDettagli.getId2()}"
+               th:classappend="${utentePrenotato} ? 'bg-gray-500' : 'bg-verde1'"
+               class="text-center text-3xl text-white transition duration-150 border font-semibold py-2 px-4 rounded-full">
+                <span th:text="${utentePrenotato} ? 'Già Prenotato' : 'Prenotati'"></span>
+            </a>
         </div>
+
 
     </div>
 

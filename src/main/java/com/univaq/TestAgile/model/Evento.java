@@ -150,6 +150,10 @@ public class Evento {
     public Long getId() {
         return id;
     }
+
+    public Long getId2() {
+        return id;
+    }
     public void setId(Long id) {
         this.id = id;
     }

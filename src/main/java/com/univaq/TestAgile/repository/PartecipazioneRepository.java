@@ -11,4 +11,6 @@ public interface PartecipazioneRepository extends CrudRepository<Partecipazione,
 
     List<Partecipazione> findByUtente(Utente utente);
 
+        boolean existsByEventoIdAndUtenteId(Long eventoId, Long utenteId);
+
 }

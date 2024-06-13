@@ -18,15 +18,17 @@
                     <div class="flex overflow-x-scroll hide-scroll-bar">
                         <div class="flex flex-nowrap">
                             <div class="my-5 ml-20 mr-20 p-2 flex flex-col bg-bianco1 border-verde1 max-w-[200px] rounded-3xl" th:each="evento,x : ${EventiTotali}">
-                                <a th:href="${'/utente/mostraDettagliEventoUser/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline  ">
+                                <a th:href="${'/user/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
                                     <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
 
-                                    <div class=" px-2 text-xl pt-2 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
+                                    <div class=" w-full text-xl pt-3 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
+
                                     </div>
-                                    <a th:href="${'/api/partecipazione/addPartecipazione/'+evento.getId()}"
-                                       class="text-sm text-white transition duration-150 bg-verde1 border border-red-800 font-semibold py-2 px-4 rounded-full ">
-                                        Prenotati
-                                    </a>
+                                </a>
+
+                                <a th:href="${'/api/partecipazione/addPartecipazione/'+evento.getId()}"
+                                   class="text-sm text-white transition duration-150 bg-verde1 border border-red-800 font-semibold py-2 px-4 rounded-full ">
+                                    Prenotati
                                 </a>
                             </div>
                         </div>
@@ -44,7 +46,7 @@
 
                             <div class="my-5 ml-20 mr-20 p-2 flex flex-col bg-bianco1 border-2 border-verde1 rounded-3xl" th:each="evento,x : ${EventiCitta}">
 
-                                <a th:href="${'/utente/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
+                                <a th:href="${'/user/mostraDettagliEvento/'+evento.getId()}" class="transition w-full h-full border-b-2 border-verde1 no-underline ">
                                     <img  class="rounded-t-3xl aspect[3/4] object-cover" th:src="${evento.getLink_img()}"  alt="img" />
 
                                     <div class=" w-full text-xl pt-3 pb-5 text-verde1 font-bold text-center" th:text="${evento.nomeEvento}">
@@ -52,10 +54,13 @@
                                     </div>
                                 </a>
 
-                                <a th:href="${'/api/partecipazione/addPartecipazione/'+evento.getId()}"
-                                   class="text-sm text-white transition duration-150 bg-verde1 border border-red-800 font-semibold py-2 px-4 rounded-full ">
-                                    Prenotati
-                                </a>
+                                <div class="mr-16 float-right my-8">
+                                    <a th:href="${'/api/partecipazione/addPartecipazione/' + datiDettagli.getId()}"
+                                       th:classappend="${utentePrenotato} ? 'bg-gray-500' : 'bg-verde1'"
+                                       class="text-center text-3xl text-white transition duration-150 border font-semibold py-2 px-4 rounded-full">
+                                        <span th:text="${utentePrenotato} ? 'Già Prenotato' : 'Prenotati'"></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
