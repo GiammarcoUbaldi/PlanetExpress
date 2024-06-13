@@ -37,6 +37,7 @@
 #          SPRING_DATASOURCE_PASSWORD: 'roott'
 #        run: mvn spring-boot:run
 name: Forest CI
+
 env:
   MYSQL_DATABASE: planet
   MYSQL_ROOT_PASSWORD: password
@@ -49,11 +50,11 @@ on:
   push:
     branches:
       - pipeline
+
 jobs:
   ci:
     runs-on: ubuntu-latest
-    container:
-      image: node:14.5.0-alpine
+
     services:
       mysql-master:
         image: mysql:5.7
@@ -70,6 +71,7 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
+
       spring-boot-app:
         image: openjdk:11-jdk
         env:
@@ -78,8 +80,20 @@ jobs:
           SPRING_DATASOURCE_PASSWORD: ${{ env.MYSQL_PASSWORD }}
         ports:
           - 8080:8080
+
     steps:
       - uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Set up Maven
+        run: |
+          sudo apt-get install -y maven
+          mvn -v  # Verifies Maven installation
+
       - name: Build with Maven
         run: mvn clean install
 
