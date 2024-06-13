@@ -10,6 +10,7 @@ import com.univaq.TestAgile.model.OrtoReferente;
 
 import com.univaq.TestAgile.model.Utente;
 import com.univaq.TestAgile.model.Zolla;
+import com.univaq.TestAgile.repository.PartecipazioneRepository;
 import com.univaq.TestAgile.repository.UtenteRepository;
 import com.univaq.TestAgile.repository.ZollaRepository;
 import org.aspectj.weaver.ast.Or;
@@ -31,6 +32,9 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    private PartecipazioneRepository partecipazioneRepository;
 
     @Autowired
     UtenteController utenteController;
@@ -72,7 +76,10 @@ public class UserController {
     @GetMapping("/mostraDettagliEvento/{id}")
     public String mostraDettagliEvento(Model model, @PathVariable long id) {
         Evento evento = eventoController.getEventoById(id);
+        Utente utente = utenteController.getUtenteLoggato();
+        boolean utentePrenotato = partecipazioneRepository.existsByEventoIdAndUtenteId(id, utente.getId());
         model.addAttribute("datiDettagli", evento);
+        model.addAttribute("utentePrenotato", utentePrenotato);
         return "utente/dettagliEventoUser";
     }
 

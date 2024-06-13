@@ -40,8 +40,7 @@ public class Utente {
 
     @Column(name = "numero_telefono")
     private String numeroTelefono;
-
-
+    
     @ManyToOne
     @JoinColumn(name = "orto_id")
     private OrtoReferente ortoOccupato;
@@ -50,16 +49,14 @@ public class Utente {
     private List<Partecipazione> partecipazioni;
 
 
-    public Utente() {
-    }
-
     @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Commento> commenti;
 
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Zolla> zolle;
 
-
+    public Utente() {
+    }
 
 
 

@@ -9,6 +9,7 @@ import com.univaq.TestAgile.repository.PartecipazioneRepository;
 import com.univaq.TestAgile.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -136,6 +137,12 @@ public class EventoController {
 
     }
 
+    @GetMapping("/isPrenotato/{eventoId}")
+    public boolean isUtentePrenotato(@PathVariable Long eventoId) {
+        Utente utente = utenteController.getUtenteLoggato(); // Supponendo che tu abbia un metodo per ottenere l'utente loggato
+        return partecipazioneRepository.existsByEventoIdAndUtenteId(eventoId, utente.getId());
+    }
+
     @PostMapping
     public Evento createEvento(@RequestBody Evento evento) {
         return eventoRepository.save(evento);
@@ -154,6 +161,7 @@ public class EventoController {
     public Evento getEventoById(@PathVariable long id) {
         return eventoRepository.findById(id).get();
     }
+
 
     @GetMapping("/getEveRef/{id}/")
     public List<Evento> getEventiByIdRef(@PathVariable long id) {
