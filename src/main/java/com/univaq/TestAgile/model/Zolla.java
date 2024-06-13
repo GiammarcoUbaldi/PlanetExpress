@@ -221,5 +221,21 @@ public class Zolla {
         System.out.println(percentuale);
         return percentuale;
     }
+
+
+    public boolean isDayRaccolta() {
+        if (raccolta == null) {
+            return false;
+        }
+
+        // Converti la data di raccolta a LocalDate
+        LocalDate dataRaccolta = raccolta.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        // Ottieni la data odierna
+        LocalDate dataOdierna = LocalDate.now();
+
+        // Controlla se la data di raccolta è oggi o nel passato
+        return !dataRaccolta.isAfter(dataOdierna);
+    }
 }
 

@@ -70,6 +70,7 @@
                             </div>
                         </div>
                     </div>
+                    <a th:href="'/user/raccogliNellaZolla/'+${zolla.getId()}" class="px-4 py-2 bg-orange-200 text-red-400 font-semibold text-lg rounded-full" th:if="${zolla.isDayRaccolta()}">Raccogli Ortaggi</a>
                 </div>
                 <!--Parte Centrale  -->
                 <div class="flex flex-col items-center justify-center ">

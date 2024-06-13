@@ -46,17 +46,17 @@ public class Utente {
     @JoinColumn(name = "orto_id")
     private OrtoReferente ortoOccupato;
 
-    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Partecipazione> partecipazioni;
 
 
     public Utente() {
     }
 
-    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Commento> commenti;
 
-    @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Zolla> zolle;
 
 
@@ -193,6 +193,7 @@ public class Utente {
                 ", nazione='" + nazione + '\'' +
                 ", numeroTelefono='" + numeroTelefono + '\'' +
                 ", tipoUtente='" + tipoUtente + '\'' +
+                ", orto='" + ortoOccupato + '\'' +
                 '}';
     }
 

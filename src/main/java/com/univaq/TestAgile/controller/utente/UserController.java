@@ -211,4 +211,20 @@ public class UserController {
         return "redirect:/user/ortoOccupato";
     }
 
+    @GetMapping("/raccogliNellaZolla/{zollaId}")
+    public String raccogliNellaZolla(Model model,@PathVariable("zollaId") Long zollaId) {
+
+
+        Zolla zollaPiantata = zollaRepository.findById(zollaId).orElseThrow(() -> new IllegalArgumentException("Invalid zolla ID"));
+
+        zollaPiantata.setOrtaggio(null);
+        zollaPiantata.setSemina(null);
+        zollaPiantata.setStato(null);
+        zollaPiantata.setRaccolta(null);
+
+        zollaRepository.save(zollaPiantata);
+
+        return "redirect:/user/ortoOccupato";
+    }
+
 }

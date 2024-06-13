@@ -49,6 +49,9 @@
                     <input type="hidden" id="tipoUtente" name="tipoUtente" th:value="${utente.getTipoUtente()}"
                            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                            required>
+                    <input type="hidden" id="ortoOccupato" name="ortoOccupato" th:value="${utente.getOrtoOccupato().getId()}"
+                           class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
                 </div>
                 <div class="mb-4">
                     <label for="numeroTelefono" class="block text-gray-700">Numero di Telefono:</label>
