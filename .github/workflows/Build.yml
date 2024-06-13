@@ -108,6 +108,16 @@ jobs:
       - name: Check MySQL Service Status
         run: docker inspect --format='{{.State.Status}}' mysql-master
 
+      - name: Check MySQL Logs
+        run: docker logs mysql-master
+
+      - name: Get MySQL Container IP
+        run: |
+          CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql-master)
+          echo "MySQL Container IP: $CONTAINER_IP"
+
+      - name: Check MySQL Port Mapping
+        run: docker port mysql-master
 
 
       - name: Run Spring Boot Application
