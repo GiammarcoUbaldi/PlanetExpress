@@ -39,9 +39,10 @@
 name: Forest CI
 env:
   MYSQL_DATABASE: planet
-  MYSQL_USER: root
-  MYSQL_PASSWORD: root
-  MYSQL_HOST: root
+  MYSQL_ROOT_PASSWORD: password
+  MYSQL_USER: test_user
+  MYSQL_PASSWORD: password
+  MYSQL_HOST: mysql-master
   NODE_ENV: test
 
 on:
