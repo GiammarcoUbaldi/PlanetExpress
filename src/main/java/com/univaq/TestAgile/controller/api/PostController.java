@@ -107,6 +107,36 @@ public class PostController {
     }
 
 
+    @PostMapping("/modificaPost")
+    public String modificaPost(@RequestParam("postId") Long postId,
+                               @RequestParam("titolo") String titolo,
+                               @RequestParam("descrizione") String descrizione,
+                               Model model) {
+        Optional<Post> optionalPost = postRepository.findById(postId);
+        Utente u = utenteController.getUtenteLoggato();
+
+        if (optionalPost.isPresent() && u != null) {
+            Post post = optionalPost.get();
+
+            // Verifica se l'utente loggato è l'autore del post
+            if (!post.getUtente().getId().equals(u.getId())) {
+                return "redirect:/no-user/forum"; // L'utente non è autorizzato a modificare questo post
+            }
+
+            // Aggiorna i campi del post
+            post.setTitolo(titolo);
+            post.setDescrizione(descrizione);
+
+            postRepository.save(post);
+
+            model.addAttribute("post", post);
+            model.addAttribute("commenti", post.getCommenti());
+
+            return "redirect:/no-user/forum/" + postId; // Reindirizza alla pagina del post aggiornato
+        }
+
+        return "redirect:/"; // Reindirizza alla homepage o a una pagina di errore se il post non esiste
+    }
 
   /*  public List<Post> getPostsByCategory(@RequestParam(required = false) String category) {
         if (category == null || category.isEmpty()) {
