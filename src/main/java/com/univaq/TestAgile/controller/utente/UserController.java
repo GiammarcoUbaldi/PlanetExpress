@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -127,6 +127,7 @@ public class UserController {
 
         zollaPrenotata.setUtente(utente);
         zollaPrenotata.setDataPrenotazione(new Date());
+        zollaPrenotata.setProprietario(utente.getNome() + " " + utente.getCognome());
         zollaRepository.save(zollaPrenotata);
 
 
@@ -175,10 +176,46 @@ public class UserController {
 
         zollaPrenotata.setUtente(utente);
         zollaPrenotata.setDataPrenotazione(new Date());
+        zollaPrenotata.setProprietario(utente.getNome() + " " + utente.getCognome());
         zollaRepository.save(zollaPrenotata);
 
         return "redirect:/user/ortoOccupato";
     }
 
+
+    @GetMapping("/piantaNellaZolla/{zollaId}")
+    public String piantaNellaZolla(Model model,
+                                   @PathVariable("zollaId") Long zollaId,
+                                   @RequestParam("plant") String plant) {
+
+        // Logica per gestire la piantagione nella zolla specifica
+        System.out.println("ID della zolla: " + zollaId);
+        System.out.println("Tipo di pianta: " + plant);
+
+        Zolla zollaPiantata = zollaRepository.findById(zollaId).orElseThrow(() -> new IllegalArgumentException("Invalid zolla ID"));
+
+        zollaPiantata.setOrtaggio(plant);
+        zollaPiantata.setSemina(new Date());
+        zollaPiantata.setStato("Seminato");
+
+        // Mappa dei giorni necessari per la coltivazione
+        Map<String, Integer> giorniColtivazione = new HashMap<>();
+        giorniColtivazione.put("Carote", 75);
+        giorniColtivazione.put("Patate", 80);
+        giorniColtivazione.put("Pomodori", 60);
+        giorniColtivazione.put("Peperoni", 80);
+        giorniColtivazione.put("Cipolle", 85);
+
+        // Calcolo della data di raccolta
+        Integer giorniNecessari = giorniColtivazione.getOrDefault(plant, 0);
+        LocalDate dataRaccoltaLocalDate = LocalDate.now().plusDays(giorniNecessari);
+        Date dataRaccolta = Date.from(dataRaccoltaLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        zollaPiantata.setRaccolta(dataRaccolta);
+
+        zollaRepository.save(zollaPiantata);
+
+        return "redirect:/user/ortoOccupato";
+    }
 
 }

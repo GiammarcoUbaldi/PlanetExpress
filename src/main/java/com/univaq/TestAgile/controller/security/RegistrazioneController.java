@@ -64,19 +64,24 @@ public class RegistrazioneController {
             return "/";
         }
 
-        System.out.println("Utente");
-        System.out.println(utente.getPassword());
-        // Codifica della password
-        utente.setPassword(passwordEncoder.encode(utente.getPassword()));
-        // Salvataggio dell'utente
-        utenteRepository.save(utente);
-
         System.out.println("Orto");
         System.out.println(ortoReferente.getNome());
         // Settaggio del campo nomeReferente in OrtoReferente
         ortoReferente.setNomeReferente(utente.getNome() + " " + utente.getCognome());
         // Salvataggio dell'orto
         ortoReferenteRepository.save(ortoReferente);
+
+        System.out.println("Utente");
+        System.out.println(utente.getPassword());
+        // Codifica della password
+        utente.setPassword(passwordEncoder.encode(utente.getPassword()));
+        utente.setOrtoOccupato(ortoReferente);
+        // Salvataggio dell'utente
+        utenteRepository.save(utente);
+
+        ortoReferente.setUtente(utente);
+        ortoReferenteRepository.save(ortoReferente);
+
 
         // Redirezione alla pagina di successo o home page
         return "redirect:/successPage";
