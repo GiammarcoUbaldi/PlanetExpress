@@ -14,12 +14,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 public class PostControllerTest {
@@ -40,92 +40,109 @@ public class PostControllerTest {
     private PostController postController;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testCreatePost() {
+    void testCreatePost() {
         Post post = new Post();
-        String result = postController.createPost(post);
+        String viewName = postController.createPost(post);
+        assertEquals("redirect:/no-user/forum", viewName);
         verify(postRepository, times(1)).save(post);
-        assertEquals("redirect:/no-user/forum", result);
     }
 
     @Test
-    public void testAggiungiCommento() {
+    void testAggiungiCommento() {
         Post post = new Post();
-        post.setId(1L);
         Utente utente = new Utente();
-        utente.setNome("Test");
-        utente.setCognome("User");
+        utente.setNome("John");
+        utente.setCognome("Doe");
 
-        when(postRepository.findById(1L)).thenReturn(Optional.of(post));
+        when(postRepository.findById(anyLong())).thenReturn(Optional.of(post));
         when(utenteController.getUtenteLoggato()).thenReturn(utente);
 
-        String result = postController.aggiungiCommento(1L, "Test Comment", model);
+        String viewName = postController.aggiungiCommento(1L, "Test Comment", model);
 
+        assertEquals("redirect:/no-user/forum/1", viewName);
         verify(commentoRepository, times(1)).save(any(Commento.class));
         verify(model, times(1)).addAttribute("post", post);
         verify(model, times(1)).addAttribute("commenti", post.getCommenti());
-
-        assertEquals("redirect:/no-user/forum/1", result);
     }
 
     @Test
-    public void testEliminaPost() {
-        doNothing().when(postRepository).deleteById(1L);
-        Boolean result = postController.eliminaPost(1L);
-        assertTrue(result);
+    void testEliminaPost() {
+        doNothing().when(postRepository).deleteById(anyLong());
+        String viewName = postController.eliminaPost(1L);
+        assertEquals("redirect:/no-user/forum", viewName);
+        verify(postRepository, times(1)).deleteById(1L);
     }
 
     @Test
-    public void testEliminaPostFailure() {
-        doThrow(new RuntimeException()).when(postRepository).deleteById(1L);
-        Boolean result = postController.eliminaPost(1L);
-        assertFalse(result);
+    void testEliminaCommento() {
+        doNothing().when(commentoRepository).deleteById(anyLong());
+        String viewName = postController.eliminaCommento(1L);
+        assertEquals("redirect:/no-user/forum", viewName);
+        verify(commentoRepository, times(1)).deleteById(1L);
     }
 
     @Test
-    public void testEliminaCommento() {
-        doNothing().when(commentoRepository).deleteById(1L);
-        Boolean result = postController.eliminaCommento(1L);
-        assertTrue(result);
+    void testGetTuttiPost() {
+        when(postRepository.findAll()).thenReturn(Arrays.asList(new Post(), new Post()));
+        assertEquals(2, postController.getTuttiPost().size());
+        verify(postRepository, times(1)).findAll();
     }
 
     @Test
-    public void testEliminaCommentoFailure() {
-        doThrow(new RuntimeException()).when(commentoRepository).deleteById(1L);
-        Boolean result = postController.eliminaCommento(1L);
-        assertFalse(result);
+    void testGetPostByTipo() {
+        when(postRepository.findByTipo(anyString())).thenReturn(Arrays.asList(new Post(), new Post()));
+        assertEquals(2, postController.getPostByTipo("Test").size());
+        verify(postRepository, times(1)).findByTipo("Test");
     }
 
     @Test
-    public void testGetTuttiPost() {
-        List<Post> posts = new ArrayList<>();
-        when(postRepository.findAll()).thenReturn(posts);
-        List<Post> result = postController.getTuttiPost();
-        assertEquals(posts, result);
+    void testSearchPostsWithQuery() {
+        when(postRepository.findByQuery(anyString())).thenReturn(Arrays.asList(new Post(), new Post()));
+        assertEquals(2, postController.searchPosts("query").size());
+        verify(postRepository, times(1)).findByQuery("query");
     }
 
     @Test
-    public void testGetPostByTipo() {
-        List<Post> posts = new ArrayList<>();
-        when(postRepository.findByTipo("tipo1")).thenReturn(posts);
-        List<Post> result = postController.getPostByTipo("tipo1");
-        assertEquals(posts, result);
+    void testSearchPostsWithoutQuery() {
+        when(postRepository.findAll()).thenReturn(Arrays.asList(new Post(), new Post()));
+        assertEquals(2, postController.searchPosts("").size());
+        verify(postRepository, times(1)).findAll();
     }
 
     @Test
-    public void testSearchPosts() {
-        List<Post> posts = new ArrayList<>();
-        when(postRepository.findByQuery("query")).thenReturn(posts);
-        List<Post> result = postController.searchPosts("query");
-        assertEquals(posts, result);
+    void testModificaPost() {
+        Post post = new Post();
+        post.setId(1L);
+        post.setTitolo("Old Title");
+        post.setDescrizione("Old Description");
 
-        when(postRepository.findAll()).thenReturn(posts);
-        result = postController.searchPosts(null);
-        assertEquals(posts, result);
+        when(postRepository.findById(anyLong())).thenReturn(Optional.of(post));
+
+        String viewName = postController.modificaPost(1L, "New Title", "New Description", model);
+
+        assertEquals("redirect:/no-user/forum", viewName);
+        verify(postRepository, times(1)).save(post);
+        assertEquals("New Title", post.getTitolo());
+        assertEquals("New Description", post.getDescrizione());
+    }
+
+    @Test
+    void testModificaCommento() {
+        Commento commento = new Commento();
+        commento.setId(1L);
+        commento.setDescrizione("Old Description");
+
+        when(commentoRepository.findById(anyLong())).thenReturn(Optional.of(commento));
+
+        String viewName = postController.modificaCommento(1L, "New Description", model);
+
+        assertEquals("redirect:/no-user/forum", viewName);
+        verify(commentoRepository, times(1)).save(commento);
+        assertEquals("New Description", commento.getDescrizione());
     }
 }
-

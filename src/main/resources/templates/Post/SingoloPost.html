@@ -1,5 +1,6 @@
 <div layout:fragment="contenuto" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="/utils/layout">
     <div class="container mx-auto relative">
+        <!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
         <a class="absolute left-4 top-4" href="/no-user/forum">Torna hai post</a>
         <!--        Sezione Post-->
         <div class="grid grid-cols-1 mt-8 max-w-[500px] mx-auto bg-orange-200  rounded-3xl pb-4">
@@ -7,32 +8,139 @@
                 <div class="flex flex-col w-full">
                     <div class="flex flex-row justify-between">
                         <div class="text-blue-500 font-medium text-lg" th:text="'@' + ${post.getUsername()}"></div>
-                        <div class="bg-giallo1 px-2 py-1 rounded-full font-medium text-lg" th:text="${post.getTipo()}"></div>
+                        <div class="bg-giallo1 px-2 py-1 rounded-full font-medium text-lg"
+                             th:text="${post.getTipo()}"></div>
                     </div>
-                    <div class="text-black font-medium text-lg mt-4" th:text="${post.getTitolo()}"> </div>
+                    <div class="text-black font-medium text-lg mt-4" th:text="${post.getTitolo()}"></div>
                 </div>
                 <!--                Stacchetto-->
                 <div class="w-full h-2 bg-rosso1 rounded-full my-4"></div>
                 <!--                Corpo-->
-                <div class="w-full text-lg text-black " th:text="${post.getDescrizione()}">  </div>
+                <div class="w-full text-lg text-black " th:text="${post.getDescrizione()}"></div>
+                <div th:if="${Utente!=null}" class="self-end">
+                    <a th:href="'/api/post/rimuoviPost/'+${post.getId()}"
+                       th:if="${post.getUsername() == Utente.getNome() + ' ' + Utente.getCognome()}"
+                       class="px-2 py-1 bg-rosso1 rounded-full">cancella</a>
+                    <button type="button" class="px-2 py-1 bg-giallo1 rounded-full modifica-post" data-type="post"
+                            th:data-id="${post.getId()}">modifica
+                    </button>
+                </div>
             </div>
             <!--            Sezione Commenti-->
             <div class="w-full flex flex-col px-4" th:each="commento : ${commenti}">
-                <div class="flex flex-row justify-between" >
-                    <div class="text-lg text-blue-500 font-medium" th:text="'@' + ${commento.getUsername()}">  </div>
-                    <div class="text-lg text-black font-normal" th:text="${#dates.format(commento.getDataCreazione(), 'dd-MM-yyyy HH:mm')}"> </div>
+                <div class="flex flex-row justify-between">
+                    <div class="text-lg text-blue-500 font-medium" th:text="'@' + ${commento.getUsername()}"></div>
+                    <div class="text-lg text-black font-normal"
+                         th:text="${#dates.format(commento.getDataCreazione(), 'dd-MM-yyyy HH:mm')}"></div>
                 </div>
                 <div class="text-md text-black break-all " th:text="${commento.getDescrizione()}"></div>
+                <div th:if="${Utente!=null}" class="self-end">
+                    <a th:href="'/api/post/rimuoviCommento/'+${commento.getId()}"
+                       th:if="${commento.getUsername() == Utente.getNome() + ' ' + Utente.getCognome()}"
+                       class="px-2 py-1 bg-rosso1 rounded-full">cancella</a>
+                    <button type="button" class="px-2 py-1 bg-giallo1 rounded-full modifica-commento"
+                            data-type="commento" th:data-id="${commento.getId()}">modifica
+                    </button>
+                </div>
                 <div class="rounded-full h-2 bg-[#c27bed] my-4"></div>
             </div>
 
-            <form class="flex flex-row gap-4 items-center justify-between px-4" action="/api/post/aggiungiCommento" method="post">
+            <form class="flex flex-row gap-4 items-center justify-between px-4" action="/api/post/aggiungiCommento"
+                  method="post">
                 <input class="border-2 border-green-400 w-full bg-bianco1 h-10 px-5 pr-16 rounded-full text-sm focus:outline-none"
                        type="search" name="commentoPost" placeholder="Scrivi un commento...">
                 <input type="hidden" th:value="${post.getId()}" name="postId">
-                <button class="bg-verdeSuccessoBG px-2 py-1 rounded-full font-medium text-verde1 text-lg" type="submit">Pubblica
+                <button class="bg-verdeSuccessoBG px-2 py-1 rounded-full font-medium text-verde1 text-lg" type="submit">
+                    Pubblica
                 </button>
             </form>
         </div>
     </div>
+    <div id="modificaModal" class="fixed inset-0 z-50 overflow-y-auto flex justify-center items-center hidden ">
+        <div class="bg-white p-6 rounded-lg relative max-w-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <h2 id="modalTitle" class="text-xl font-semibold mb-4"></h2>
+            <form id="modificaForm" action="#" method="post">
+                <input type="hidden" id="modificaId" name="id">
+                <input type="hidden" id="modificaType" name="type">
+                <label for="modificaTitolo" class="block mb-2" id="modificaTitoloLabel">Titolo</label>
+                <input type="text" id="modificaTitolo" name="titolo" class="border-2 border-gray-300 rounded-md px-3 py-2 mb-4 w-full" style="display: none;">
+                <label for="modificaDescrizione" class="block mb-2">Descrizione</label>
+                <textarea id="modificaDescrizione" name="descrizione" class="border-2 border-gray-300 rounded-md px-3 py-2 mb-4 w-full"></textarea>
+                <div class="flex justify-end">
+                    <button type="button" id="chiudiModal" class=" px-4 py-2 bg-red-500 text-white rounded-md">Annulla</button>
+                    <button type="submit" class="px-4 py-2 ml-2 bg-green-500 text-white rounded-md">Salva</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('.modifica-post').click(function() {
+                var postId = $(this).data('id');
+                $('#modificaModal').fadeIn();
+                $('#modalTitle').text('Modifica Post');
+                $('#modificaId').val(postId);
+                $('#modificaType').val('post');
+                $('#modificaTitolo').show(); // Mostra il campo titolo solo per i post
+                $('#modificaTitoloLabel').show(); // Mostra il campo titolo solo per i post
+                // Popolare il form con i dati del post
+                // Ad esempio:
+                // $('#modificaTitolo').val('Valore del titolo');
+                // $('#modificaDescrizione').val('Valore della descrizione');
+            });
 
+            $('.modifica-commento').click(function() {
+                var commentoId = $(this).data('id');
+                $('#modificaModal').fadeIn();
+                $('#modalTitle').text('Modifica Commento');
+                $('#modificaId').val(commentoId);
+                $('#modificaType').val('commento');
+                $('#modificaTitolo').hide(); // Nascondi il campo titolo per i commenti
+                $('#modificaTitoloLabel').hide(); // Nascondi il campo titolo per i commenti
+
+                // Popolare il form con i dati del commento
+            });
+
+            $('#chiudiModal').click(function() {
+                $('#modificaModal').fadeOut();
+            });
+
+            $('#modificaForm').submit(function(e) {
+                e.preventDefault();
+                var id = $('#modificaId').val();
+                var type = $('#modificaType').val();
+                var titolo = $('#modificaTitolo').val();
+                var descrizione = $('#modificaDescrizione').val();
+
+                var url = '';
+                if (type === 'post') {
+                    url = '/api/post/modificaPost/' + id;
+                } else if (type === 'commento') {
+                    url = '/api/post/modificaCommento/' + id;
+                }
+
+                // Esegui la richiesta Ajax per inviare i dati al backend
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        postId: id,
+                        titolo: titolo,
+                        descrizione: descrizione
+                    },
+                    success: function(response) {
+                        // Gestisci la risposta del backend (opzionale)
+                        // Chiudi il modal dopo il salvataggio
+                        $('#modificaModal').fadeOut();
+                        // Ricarica o aggiorna la pagina secondo necessità
+                        location.reload();
+                    },
+                    error: function(error) {
+                        console.error('Errore durante la modifica:', error);
+                        // Gestione degli errori (opzionale)
+                    }
+                });
+            });
+        });
+    </script>
+</div>

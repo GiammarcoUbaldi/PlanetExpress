@@ -65,24 +65,24 @@ public class PostController {
 
 
     @Transactional
-    @GetMapping("/rimuoviPost")
-    public Boolean eliminaPost(@RequestParam Long postId) {
+    @GetMapping("/rimuoviPost/{postId}")
+    public String eliminaPost(@PathVariable Long postId) {
         try {
             postRepository.deleteById(postId);
-            return true;
+            return "redirect:/no-user/forum";
         } catch (Exception e) {
-            return false;
+            return "redirect:/no-user/forum";
         }
     }
 
     @Transactional
-    @GetMapping("/rimuoviCommento")
-    public Boolean eliminaCommento(@RequestParam Long commentoId) {
+    @GetMapping("/rimuoviCommento/{commentoId}")
+    public String eliminaCommento(@PathVariable Long commentoId) {
         try {
             commentoRepository.deleteById(commentoId);
-            return true;
+            return "redirect:/no-user/forum";
         } catch (Exception e) {
-            return false;
+            return "redirect:/no-user/forum";
         }
     }
 
@@ -107,6 +107,32 @@ public class PostController {
     }
 
 
+    @PostMapping("/modificaPost/{postId}")
+    public String modificaPost(@PathVariable("postId") Long postId,
+                               @RequestParam("titolo") String titolo,
+                               @RequestParam("descrizione") String descrizione,
+                               Model model) {
+        System.out.println("modifica :) " + postId + " " + titolo);
+        Post postUpdate = postRepository.findById(postId).get();
+        postUpdate.setTitolo(titolo);
+        postUpdate.setDescrizione(descrizione);
+        postRepository.save(postUpdate);
+        return "redirect:/no-user/forum";
+    }
+
+    @PostMapping("/modificaCommento/{commentoId}")
+    public String modificaCommento(@PathVariable("commentoId") Long commentoId,
+                                   @RequestParam("descrizione") String descrizione,
+                                   Model model) {
+        System.out.println("modifica commento :) " + commentoId + " " + descrizione);
+        Commento commentoUpdate = commentoRepository.findById(commentoId).get();
+        commentoUpdate.setDescrizione(descrizione);
+        commentoRepository.save(commentoUpdate);
+        return "redirect:/no-user/forum";
+    }
+
+
+/*
     @PostMapping("/modificaPost")
     public String modificaPost(@RequestParam("postId") Long postId,
                                @RequestParam("titolo") String titolo,
@@ -162,7 +188,7 @@ public class PostController {
 
         return "redirect:/"; // Reindirizza alla homepage o a una pagina di errore se il commento non esiste
     }
-
+*/
 
   /*  public List<Post> getPostsByCategory(@RequestParam(required = false) String category) {
         if (category == null || category.isEmpty()) {
