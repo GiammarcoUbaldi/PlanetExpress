@@ -26,13 +26,13 @@ jobs:
         uses: mirromutth/mysql-action@v1.1
         with:
           mysql-database: 'planet'
-          mysql-root-password: ''
+          mysql-root-password: 'root'
           mysql-user: 'root'
-          mysql-password: ''
+          mysql-password: 'root'
 
       - name: Run Spring Boot Application
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/planet
           SPRING_DATASOURCE_USERNAME: root
-          SPRING_DATASOURCE_PASSWORD: ''
+          SPRING_DATASOURCE_PASSWORD: 'root'
         run: mvn spring-boot:run
