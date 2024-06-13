@@ -98,5 +98,17 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
+      - name: Debug Environment Variables
+        run: |
+          echo "MYSQL_HOST=${MYSQL_HOST}"
+          echo "MYSQL_DATABASE=${MYSQL_DATABASE}"
+          echo "MYSQL_USER=${MYSQL_USER}"
+          echo "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
+          
+      - name: Check MySQL Service Status
+        run: docker inspect --format='{{.State.Status}}' mysql-master
+
+
+
       - name: Run Spring Boot Application
-        run: mvn spring-boot:run
+        run: mvn spring-boot:run -X
