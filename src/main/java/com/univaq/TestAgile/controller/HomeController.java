@@ -57,6 +57,8 @@ public class HomeController {
         List<Post> listPost = postController.getTuttiPost();
         model.addAttribute("ListaPost",listPost);
         model.addAttribute("EventiRefe", eventiRefe);
+        List<Evento> eventiNormali = eventoController.getEventi33();
+        model.addAttribute("EventiNormali", eventiNormali);
         return "/home/homePage";
     }
 
@@ -104,7 +106,7 @@ public class HomeController {
     public String mostraDettagliEvento(Model model, @PathVariable long id) {
         Evento evento = eventoController.getEventoById(id);
         model.addAttribute("datiDettagli", evento);
-        return "dettagliEventoAdmin";
+        return "/home/dettagliEventiNoUser";
     }
 
     @GetMapping("/no-user/form-richiesta-orto")
