@@ -40,7 +40,7 @@ jobs:
           echo "MySQL is up and running"
 
       - name: Start Spring PlanetExpress
-        run: mvn spring-boot:run -Dspring-boot.run.profiles=dev &
+        run: mvn spring-boot:run
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/planet
           SPRING_DATASOURCE_USERNAME: root
