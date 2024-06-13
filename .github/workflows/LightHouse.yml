@@ -25,31 +25,30 @@ jobs:
       - name: Setup MySQL
         uses: mirromutth/mysql-action@v1.1
         with:
-          mysql database: 'planet'
-          mysql root password: 'root'
-          mysql user: 'root'
-          mysql password: ''
-        
+          mysql-database: 'planet'
+          mysql-root-password: 'root'
+          mysql-user: 'root'
+          mysql-password: ''
+
       - name: Wait for MySQL to be ready
         run: |
           sudo apt-get install -y netcat
-          while ! nc -z localhost 3306; do   
-            echo "Waiting for MySQL...";
-            sleep 5;
-          done;
+          while ! nc -z localhost 3306; do
+            echo "Waiting for MySQL..."
+            sleep 5
+          done
           echo "MySQL is up and running"
 
       - name: Start Spring PlanetExpress
-        run: |
-          nohup mvn spring-boot:run &
-          sleep 60
+        run: mvn spring-boot:run -Dspring-boot.run.profiles=dev &
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/planet
           SPRING_DATASOURCE_USERNAME: root
           SPRING_DATASOURCE_PASSWORD: ''
-      
+
       - name: Verify Application is Running
         run: |
+          sleep 30
           curl --fail http://localhost:8080 || exit 1
 
       - name: Install Node.js
@@ -62,6 +61,7 @@ jobs:
 
       - name: Run Lighthouse
         run: |
+          sleep 10
           npx lighthouse http://localhost:8080 --output json --output-path ./lighthouse-report.json
 
       - name: List Generated Files
