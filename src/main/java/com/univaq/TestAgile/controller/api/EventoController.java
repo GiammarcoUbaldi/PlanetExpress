@@ -179,6 +179,17 @@ public class EventoController {
         return eventi;
     }
 
+    @GetMapping("/eventiRef33")
+    public List<Evento> getEventi33() {
+        List<Evento> eventi = eventoRepository.findByAccettato("Accettato");
+
+        if (eventi.size() > 3) {
+            eventi = eventi.subList(0, 3);
+        }
+
+        return eventi;
+    }
+
     @PostMapping("/add-richiesta-evento")
     public String nuovoEvento(@ModelAttribute Evento eventoNuovo) {
         eventoRepository.save(eventoNuovo);

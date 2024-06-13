@@ -83,7 +83,7 @@
 
             <div class="mx-10 flex flex-row justify-around rounded-3xl bg-gialloSecondarioBG border-verde1 border-2">
                 <div class="my-5 flex flex-col bg-bianco1 border-2 border-verde1 max-w-[200px] rounded-3xl"
-                     th:each="evento : ${EventiRefe}">
+                     th:each="evento : ${EventiNormali}">
 
                     <a th:href="${'/no-user/mostraDettagliEvento/'+evento.getId()}"
                        class="transition w-full h-full  border-verde1 no-underline  ">
