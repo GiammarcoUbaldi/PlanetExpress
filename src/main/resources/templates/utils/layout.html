@@ -30,7 +30,7 @@
         <h1 class="text-2xl font-medium">PlanetExpress</h1>
     </a>
     <div>
-        <!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
+        <!--/*@thymesVar id="Utente" type="com.univaq.Agile.model.Utente"*/-->
         <a th:if="${Utente != null}" th:href="'/'+${Utente.getTipoUtente().toLowerCase()}+'/dashboard'"  class="flex flex-row items-center gap-2">
            <span>Ciao, <span th:text="${Utente.getNome()}"></span></span>
             <?xml version="1.0" encoding="utf-8"?>
