@@ -16,6 +16,10 @@ public class OrtoReferente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @OneToMany(mappedBy = "orto")
     private List<Zolla> zolle;
 
