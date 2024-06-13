@@ -73,7 +73,7 @@ jobs:
           --health-retries=3
 
       spring-boot-app:
-        image: openjdk:11-jdk
+        image: openjdk:17-jdk
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://${{ env.MYSQL_HOST }}:3306/${{ env.MYSQL_DATABASE }}?serverTimezone=UTC
           SPRING_DATASOURCE_USERNAME: ${{ env.MYSQL_USER }}
