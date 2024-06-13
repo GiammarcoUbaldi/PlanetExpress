@@ -70,7 +70,46 @@
                             </div>
                         </div>
                     </div>
+                    <button type="button" class="info bg-blue-500 text-white px-4 py-2 rounded" data-ortaggio="${zolla.getOrtaggio()}">Informazioni</button>
                 </div>
+
+                <div id="descriptionModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+                    <div class="bg-white rounded-lg p-6 w-full max-w-md mx-2">
+                        <span class="closeDesc cursor-pointer text-gray-500 hover:text-gray-900 float-right text-xl">&times;</span>
+                        <h2 class="text-2xl font-bold mb-4">Descrizione Ortaggio</h2>
+                        <div id="descriptionContent" class="text-left mb-4">
+
+                        </div>
+                        <button type="button" class="closeDesc bg-red-500 text-white px-4 py-2 rounded">Chiudi</button>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        var descriptions = {
+                            'Carote': 'Le carote sono radici commestibili, ricche di vitamine e ottime crude o cotte. Consigli: Pianta le carote in terreni ben drenati e assicurati che ricevano molta luce solare.',
+                            'Patate': 'Le patate sono tuberi nutrienti, molto versatili in cucina e facili da coltivare. Consigli: Pianta le patate in primavera e mantieni il terreno umido.',
+                            'Pomodori': 'I pomodori sono frutti succosi, ideali per insalate, salse e molto altro. Consigli: Assicurati che i pomodori ricevano almeno 6 ore di luce solare diretta al giorno.',
+                            'Cipolle': 'Le cipolle sono bulbi aromatici, essenziali in molte ricette per il loro sapore unico. Consigli: Pianta le cipolle in terreni ricchi di nutrienti e ben drenati.',
+                            'Peperoni': 'I peperoni sono frutti croccanti e colorati, ottimi crudi o cotti. Consigli: Pianta i peperoni in una posizione soleggiata e proteggili dai venti forti.'
+                        };
+
+
+                        $('.info').on('click', function() {
+                            var ortaggio = $(this).data('ortaggio');
+                            var description = descriptions[ortaggio];
+                            $('#descriptionContent').text(description);
+                            $('#descriptionModal').removeClass('hidden');
+                        });
+
+
+                        $('.closeDesc').on('click', function() {
+                            $('#descriptionModal').addClass('hidden');
+                        });
+                    });
+                </script>
+                </div>
+
                 <!--Parte Centrale  -->
                 <div class="flex flex-col items-center justify-center ">
                     <div class="text-3xl text-verde1"><span th:text="${zolla.getNome()}"></span></div>
