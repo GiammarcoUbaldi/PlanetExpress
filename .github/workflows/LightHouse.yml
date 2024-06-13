@@ -3,7 +3,7 @@ name: Lighthouse
 on:
   push:
     branches:
-      - main
+      - pipeline
 
 jobs:
   lighthouse:
@@ -25,10 +25,10 @@ jobs:
       - name: Setup MySQL
         uses: mirromutth/mysql-action@v1.1
         with:
-          mysql-database: 'planet'
-          mysql-root-password: 'root'
-          mysql-user: 'root'
-          mysql-password: ''
+          mysql database: 'planet'
+          mysql root password: 'roott'
+          mysql user: 'root'
+          mysql password: 'roott'
 
       - name: Wait for MySQL to be ready
         run: |
@@ -44,7 +44,7 @@ jobs:
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/planet
           SPRING_DATASOURCE_USERNAME: root
-          SPRING_DATASOURCE_PASSWORD: ''
+          SPRING_DATASOURCE_PASSWORD: 'roott'
 
       - name: Verify Application is Running
         run: |
