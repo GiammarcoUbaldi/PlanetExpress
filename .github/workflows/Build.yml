@@ -75,7 +75,7 @@ jobs:
       spring-boot-app:
         image: openjdk:17-jdk
         env:
-          SPRING_DATASOURCE_URL: jdbc:mysql://${{ env.MYSQL_HOST }}:3306/${{ env.MYSQL_DATABASE }}?serverTimezone=UTC
+          SPRING_DATASOURCE_URL: jdbc:mysql://172.18.0.2:3306/${{ env.MYSQL_DATABASE }}?serverTimezone=UTC
           SPRING_DATASOURCE_USERNAME: ${{ env.MYSQL_USER }}
           SPRING_DATASOURCE_PASSWORD: ${{ env.MYSQL_PASSWORD }}
         ports:
