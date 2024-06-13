@@ -3,7 +3,7 @@ name: Lighthouse
 on:
   push:
     branches:
-      - pipeline
+      - main
 
 jobs:
   lighthouse:
