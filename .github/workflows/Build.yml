@@ -3,7 +3,7 @@ name: Build and Test Spring Boot Application
 on:
   push:
     branches:
-      - pipeline2
+      - pipeline
 
 jobs:
   build:
