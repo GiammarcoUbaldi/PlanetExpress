@@ -192,7 +192,7 @@ public class Utente {
                 ", nazione='" + nazione + '\'' +
                 ", numeroTelefono='" + numeroTelefono + '\'' +
                 ", tipoUtente='" + tipoUtente + '\'' +
-                ", orto='" + ortoOccupato + '\'' +
+          //      ", orto='" + ortoOccupato + '\'' +
                 '}';
     }
 

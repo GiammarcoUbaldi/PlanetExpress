@@ -21,7 +21,7 @@
                     <a th:href="'/api/post/rimuoviPost/'+${post.getId()}"
                        th:if="${post.getUsername() == Utente.getNome() + ' ' + Utente.getCognome()}"
                        class="px-2 py-1 bg-rosso1 rounded-full">cancella</a>
-                    <button type="button" class="px-2 py-1 bg-giallo1 rounded-full modifica-post" data-type="post"
+                    <button type="button" class="px-2 py-1 bg-giallo1 rounded-full modifica-post" data-type="post"  th:if="${post.getUsername() == Utente.getNome() + ' ' + Utente.getCognome()}"
                             th:data-id="${post.getId()}">modifica
                     </button>
                 </div>
@@ -38,7 +38,7 @@
                     <a th:href="'/api/post/rimuoviCommento/'+${commento.getId()}"
                        th:if="${commento.getUsername() == Utente.getNome() + ' ' + Utente.getCognome()}"
                        class="px-2 py-1 bg-rosso1 rounded-full">cancella</a>
-                    <button type="button" class="px-2 py-1 bg-giallo1 rounded-full modifica-commento"
+                    <button type="button" class="px-2 py-1 bg-giallo1 rounded-full modifica-commento"  th:if="${post.getUsername() == Utente.getNome() + ' ' + Utente.getCognome()}"
                             data-type="commento" th:data-id="${commento.getId()}">modifica
                     </button>
                 </div>

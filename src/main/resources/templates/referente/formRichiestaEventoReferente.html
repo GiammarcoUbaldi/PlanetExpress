@@ -2,50 +2,57 @@
 <html lang="it" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="/utils/layout">
 <head>
     <meta charset="UTF-8">
-
 </head>
 <body>
-
 <div layout:fragment="contenuto">
+    <!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
     <div class="bg-white p-4 m-4 mt-8 rounded-3xl max-w-[500px] mx-auto w-full shadow-2xl">
         <h1 class="my-4 font-semibold text-gray-800 text-center text-3xl">Form per richiedere di organizzare un Evento
         </h1>
         <div class="max-w-[400px] mx-auto flex items-center justify-center">
             <form action="/api/evento/add-richiesta-evento" method="post">
-                <label for="nome" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Nome Evento:</label>
-                <input type="text" id="nome" name="nome" required
+                <label for="nomeEvento" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Nome
+                    Evento:</label>
+                <input type="text" id="nomeEvento" name="nomeEvento" required
+                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                <input type="hidden" th:value="${Utente.getId()}" name="idReferente">
+                <input type="hidden" value="In Sospeso" name="accettato">
+                <label for="descrizione" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Dettagli
+                    Evento:</label>
+                <input type="text" id="descrizione" name="descrizione" required
                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                <label for="dettagli" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Dettagli Evento:</label>
-                <input type="text" id="dettagli" name="dettagli" required
-                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
-
-                <label for="temaEvento" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Tema Evento:</label>
+                <label for="temaEvento" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Tema
+                    Evento:</label>
                 <input type="text" id="temaEvento" name="temaEvento" required
                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
                 <div class="input-container">
-                    <label for="costoBiglietti" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Costo Biglietto:</label>
-                    <input type="number" id="costoBiglietti" name="costoBiglietti" required min="0"
+                    <label for="prezzo" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Costo
+                        Biglietto:</label>
+                    <input type="number" id="prezzo" name="prezzo" required min="0"
                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 pl-8 pr-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                 </div>
 
-                <label for="partecipantiMax"
-                       class="mb-1 block text-base font-medium text-[#07074D] mt-1">Numero di Partecipanti Massimo:</label>
-                <input type="number" id="partecipantiMax" name="partecipantiMax" required
+                <label for="numeroPartecipantiMax"
+                       class="mb-1 block text-base font-medium text-[#07074D] mt-1">Numero di Partecipanti
+                    Massimo:</label>
+                <input type="number" id="numeroPartecipantiMax" name="numeroPartecipantiMax" required
                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                <label for="indirizzo"
+                <label for="luogo"
                        class="mb-1 block text-base font-medium text-[#07074D] mt-1">Indirizzo:</label>
-                <input type="text" id="indirizzo" name="indirizzo" required
+                <input type="text" id="luogo" name="luogo" required
                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                <label for="data" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Data Evento:</label>
-                <input type="date" id="data" name="data" required
+                <label for="dataOraEvento" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Data
+                    Evento:</label>
+                <input type="datetime-local" id="dataOraEvento" name="dataOraEvento" required
                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
-                <label for="durata" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Durata Evento:</label>
-                <input type="number" id="durata" name="durata" required
+                <label for="durataEvento" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Durata
+                    Evento:</label>
+                <input type="text" id="durataEvento" name="durataEvento" required
                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
 
                 <label for="infoAggiuntive" class="mb-1 block text-base font-medium text-[#07074D] mt-1">Info
@@ -63,7 +70,7 @@
     </div>
 
     <script>
-        document.getElementById('costoBiglietti').addEventListener('input', function () {
+        document.getElementById('prezzo').addEventListener('input', function () {
             if (this.value < 0) {
                 this.value = 0;
             }
@@ -71,6 +78,5 @@
     </script>
 
 </div>
-
 </body>
 </html>

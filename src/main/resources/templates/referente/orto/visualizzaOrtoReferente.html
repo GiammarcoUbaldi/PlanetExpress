@@ -17,7 +17,7 @@
         L'Orto <span class="" th:text="${ortoReferente.getNome()}"></span>
     </div>
     <!--    Orto BG -->
-    <div class="w-full">
+    <div class="w-full fill-orange-400">
         <img class="w-full" src="/bg/bgOrtoCorto.png" alt="Sfondo di un paesaggio"/>
     </div>
     <!--    Sfondo Verde     -->
@@ -27,7 +27,7 @@
                'grid-template-rows: repeat(' + ${ortoReferente.getDimensioneY()} + ', minmax(0, 1fr));'">
             <!-- Inserisco le zolle nel orto-->
             <div th:each="zolla, iStat : ${zolle}">
-                <div th:insert="~{/components/orto/_zollaDiTerreno ::  terra(ortaggio=${zolla.getOrtaggio()},id=${zolla.getId()})}"></div>
+                <div th:insert="~{/components/orto/_zollaDiTerreno ::  terra(ortaggio=${zolla.getOrtaggio()},id=${zolla.getId()},coloreTerra=${zolla.getProprietario()==null?'fill-[#E7AF82]':'fill-orange-400'})}"></div>
             </div>
         </div>
         <div class="grid container lg:px-32 mx-auto grid-rows-1 text-center px-8"
@@ -39,7 +39,7 @@
         <div class="p-8 container lg:px-32 mx-auto ">
             <div class="text-4xl text-verde1 mb-4">Lista Zolle Occupate:</div>
             <div th:each="zolla, iStat : ${zolle}" class="mt-4">
-                <div th:if="${zolla.getOrtaggio() != null}"
+                <div th:if="${zolla.getProprietario() != null}"
                      th:id="'desc-zolla-'+${zolla.getId()}" class="w-full rounded-3xl border-verde1 border-8 bg-[#F4F4F4] p-8 text-center text-3xl transition-all duration-300
                    grid grid-cols-1 md:grid-cols-3 justify-items-center place-items-center">
                     <!--Parte Sinistra  -->
@@ -73,7 +73,7 @@
                     <div class="flex flex-col items-center justify-center ">
                         <div class="text-3xl text-verde1"><span th:text="${zolla.getNome()}"></span></div>
                         <div class="aspect-[193/125] w-32 my-12"
-                             th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true')}"></div>
+                             th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true',coloreTerra='fill-[#E7AF82]')}"></div>
                         <div class="">Tipo terreno: <span th:text="${zolla.getTipoTerreno()}"></span></div>
                     </div>
                     <!--Parte Destra  -->
@@ -108,7 +108,7 @@
             <div class="container lg:px-32 px-4 mx-auto">
                 <div class="text-4xl text-giallo1 mb-4">Lista Zolle Libere:</div>
                 <div th:each="zolla, iStat : ${zolle}" class="mt-4">
-                    <div th:if="${zolla.getOrtaggio() == null}"
+                    <div th:if="${zolla.getProprietario() == null}"
                          th:id="'desc-zolla-'+${zolla.getId()}" class="w-full rounded-3xl border-rosso1 border-8 bg-[#F4F4F4] p-8 text-center text-3xl transition-all duration-300
                    grid grid-cols-1 md:grid-cols-3 justify-items-center place-items-center">
                         <!--Parte Sinistra  -->
@@ -117,7 +117,7 @@
                         <div class="flex flex-col items-center justify-center ">
                             <div class="text-2xl text-verde1"><span th:text="${zolla.getNome()}"></span></div>
                             <div class="aspect-[193/125] w-32 my-12"
-                                 th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true')}"></div>
+                                 th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true',coloreTerra='fill-[#E7AF82]')}"></div>
                             <div class="">Tipo terreno: <span th:text="${zolla.getTipoTerreno()}"></span></div>
                         </div>
                         <!--Parte Destra  -->

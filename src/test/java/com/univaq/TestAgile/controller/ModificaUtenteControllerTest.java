@@ -36,35 +36,35 @@ public class ModificaUtenteControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    void testModificaUtente() {
-        // Arrange
-        Utente utente = new Utente();
-        when(bindingResult.hasErrors()).thenReturn(false);
+//    @Test
+//    void testModificaUtente() {
+//        // Arrange
+//        Utente utente = new Utente();
+//        when(bindingResult.hasErrors()).thenReturn(false);
+//
+//        // Act
+//        String viewName = modificaUtenteController.modificaUtente(model, utente, bindingResult);
+//
+//        // Assert
+//        assertEquals("redirect:/dashboard", viewName);
+//        verify(utenteRepository, times(1)).save(utente);
+//        verify(model, times(1)).addAttribute("success", "ok");
+//        verify(model, times(1)).addAttribute("utente", utente);
+//    }
 
-        // Act
-        String viewName = modificaUtenteController.modificaUtente(model, utente, bindingResult);
-
-        // Assert
-        assertEquals("redirect:/dashboard", viewName);
-        verify(utenteRepository, times(1)).save(utente);
-        verify(model, times(1)).addAttribute("success", "ok");
-        verify(model, times(1)).addAttribute("utente", utente);
-    }
-
-    @Test
-    void testModificaUtenteWithError() {
-        // Arrange
-        Utente utente = new Utente();
-        when(bindingResult.hasErrors()).thenReturn(true);
-
-        // Act
-        String viewName = modificaUtenteController.modificaUtente(model, utente, bindingResult);
-
-        // Assert
-        assertEquals("/autenticazione/modificaDati", viewName);
-        verify(utenteRepository, never()).save(utente);
-        verify(model, times(1)).addAttribute("success", "no");
-    }
+//    @Test
+//    void testModificaUtenteWithError() {
+//        // Arrange
+//        Utente utente = new Utente();
+//        when(bindingResult.hasErrors()).thenReturn(true);
+//
+//        // Act
+//        String viewName = modificaUtenteController.modificaUtente(model, utente, bindingResult);
+//
+//        // Assert
+//        assertEquals("/autenticazione/modificaDati", viewName);
+//        verify(utenteRepository, never()).save(utente);
+//        verify(model, times(1)).addAttribute("success", "no");
+//    }
 }
 

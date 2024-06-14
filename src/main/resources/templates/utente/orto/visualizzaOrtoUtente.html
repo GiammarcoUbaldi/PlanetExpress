@@ -28,7 +28,7 @@
 
         <!-- Inserisco le zolle nel orto-->
         <div th:each="zolla, iStat : ${zolleDelUtente}" class="w-full md:w-1/2 mx-auto">
-            <div th:insert="~{/components/orto/_zollaDiTerreno ::  terra(ortaggio=${zolla.getOrtaggio()},id=${zolla.getId()})}"></div>
+            <div th:insert="~{/components/orto/_zollaDiTerreno ::  terra(ortaggio=${zolla.getOrtaggio()},id=${zolla.getId()},coloreTerra='fill-[#E7AF82]')}"></div>
         </div>
     </div>
     <!--        <div class="grid container lg:px-32 mx-auto grid-rows-1 text-center px-8"-->
@@ -80,7 +80,7 @@
                 <div class="flex flex-col items-center justify-center ">
                     <div class="text-3xl text-verde1"><span th:text="${zolla.getNome()}"></span></div>
                     <div class="aspect-[193/125] w-32 my-12"
-                         th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true')}"></div>
+                         th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true',coloreTerra='fill-[#E7AF82]')}"></div>
                     <div class="">Tipo terreno: <span th:text="${zolla.getTipoTerreno()}"></span></div>
                 </div>
                 <!--Parte Destra  -->
@@ -159,7 +159,7 @@
                     <div class="flex flex-col items-center justify-center ">
                         <div class="text-2xl text-verde1"><span th:text="${zolla.getNome()}"></span></div>
                         <div class="aspect-[193/125] w-32 my-12"
-                             th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true')}"></div>
+                             th:insert="~{/components/orto/_zollaDiTerreno :: terra(ortaggio=${zolla.getOrtaggio()},id='1',noSelect='true',coloreTerra='fill-[#E7AF82]')}"></div>
                         <div class="">Tipo terreno: <span th:text="${zolla.getTipoTerreno()}"></span></div>
                     </div>
                     <!--Parte Destra  -->

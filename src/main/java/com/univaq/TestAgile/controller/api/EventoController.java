@@ -10,9 +10,12 @@ import com.univaq.TestAgile.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.beans.PropertyEditorSupport;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -190,10 +193,14 @@ public class EventoController {
         return eventi;
     }
 
+
+
     @PostMapping("/add-richiesta-evento")
     public String nuovoEvento(@ModelAttribute Evento eventoNuovo) {
+        System.out.print("oi");
+        System.out.print(eventoNuovo);
         eventoRepository.save(eventoNuovo);
-        return "redirect:/";
+        return "redirect:/dashboard";
     }
 
 }
