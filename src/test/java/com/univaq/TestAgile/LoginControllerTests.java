@@ -68,6 +68,6 @@ public class LoginControllerTests {
 		assertThat(utenteInserito).isNotNull();
 		assertThat(utenteInserito.getEmail()).isEqualTo(email);
 
-	} 
+	}
 }
 */
