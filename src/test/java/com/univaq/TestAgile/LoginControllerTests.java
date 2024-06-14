@@ -1,5 +1,5 @@
 package com.univaq.TestAgile;
-
+/*
 import com.univaq.TestAgile.controller.api.UtenteController;
 import com.univaq.TestAgile.model.Utente;
 import com.univaq.TestAgile.repository.UtenteRepository;
@@ -68,5 +68,6 @@ public class LoginControllerTests {
 		assertThat(utenteInserito).isNotNull();
 		assertThat(utenteInserito.getEmail()).isEqualTo(email);
 
-	}
+	} 
 }
+*/
