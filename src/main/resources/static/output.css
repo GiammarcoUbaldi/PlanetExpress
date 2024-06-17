@@ -1055,6 +1055,10 @@ video {
   max-width: 200px;
 }
 
+.max-w-\[230px\] {
+  max-width: 230px;
+}
+
 .max-w-\[350px\] {
   max-width: 350px;
 }
@@ -1599,10 +1603,6 @@ video {
 
 .fill-current {
   fill: currentColor;
-}
-
-.fill-orange-200 {
-  fill: #fed7aa;
 }
 
 .fill-orange-400 {
