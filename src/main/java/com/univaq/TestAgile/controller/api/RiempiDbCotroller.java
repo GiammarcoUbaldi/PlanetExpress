@@ -46,7 +46,7 @@ public class RiempiDbCotroller {
                 "Orto Comunale - Via Roma",
                 "Preparazione del terreno per la semina e il trapianto",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=1234345",
+                "/img/evento (1).jpg",
                 "20$",
                 "2:00 ore",
                 "Agricoltura",
@@ -60,7 +60,7 @@ public class RiempiDbCotroller {
                 "Orto Comunale - Via Roma",
                 "Semina di pomodori, lattuga, carote e altre verdure",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=2312345",
+                "/img/evento (2).jpg",
                 "30$",
                 "1 giorno",
                 "Vegetali",
@@ -73,7 +73,7 @@ public class RiempiDbCotroller {
                 "Campagna di Giovanni",
                 "Semina di pomodori, lattuga, carote e altre verdure",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=1234345",
+                "/img/evento (3).jpg",
                 "40$",
                 "4 ore",
                 "Storie",
@@ -86,7 +86,7 @@ public class RiempiDbCotroller {
                 "italia",
                 "Semina di pomodori, lattuga, carote e altre verdure",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=1234345",
+                "/img/evento (4).jpg",
                 "40$",
                 "4 ore",
                 "Storie",
@@ -99,7 +99,7 @@ public class RiempiDbCotroller {
                 "Via dell'autunno 23 Roma",
                 "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=1234345",
+                "/img/evento (5).jpg",
                 "40$",
                 "4 ore",
                 "Storie",
@@ -112,7 +112,7 @@ public class RiempiDbCotroller {
                 "Campi autunnali del Sospiro",
                 "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=1234345",
+                "/img/evento (6).jpg",
                 "Gratuito",
                 "4 ore",
                 "Vita e Gioventù",
@@ -125,7 +125,7 @@ public class RiempiDbCotroller {
                 "Mare e montagna",
                 "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis ",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=1234345",
+                "/img/evento (1).jpg",
                 "Gratuito",
                 "1 ora",
                 "Vita",
@@ -138,7 +138,7 @@ public class RiempiDbCotroller {
                 "Sala Conferenze - Comune di L'Aquila",
                 "Tecniche per un'irrigazione efficiente e sostenibile",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=1234435",
+                "/img/evento (2).jpg",
                 "5$",
                 "3:00 ore",
                 "Acqua",
@@ -151,7 +151,7 @@ public class RiempiDbCotroller {
                 "Orto Comunale - Via Roma",
                 "Festa per celebrare l'apertura dell'orto e conoscere i nuovi partecipanti",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=1232345",
+                "/img/evento (3).jpg",
                 "Gratuito",
                 "5:00 ore",
                 "Inaugurazione",
@@ -165,7 +165,7 @@ public class RiempiDbCotroller {
                 "Orto Comunale - Via Roma",
                 "Porta i tuoi semi e piantine in eccedenza e scambiali con gli altri",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=134245",
+                "/img/evento (4).jpg",
                 "20$",
                 "2:00 ore",
                 "Orto",
@@ -178,7 +178,7 @@ public class RiempiDbCotroller {
                 "Sala Conferenze - Comune di L'Aquila",
                 "Impara a creare il tuo compost per nutrire il tuo orto in modo naturale",
                 LocalDateTime.now(),
-                "https://source.unsplash.com/random/300x400?seed=12345",
+                "/img/evento (5).jpg",
                 "Gratuito",
                 "2:00 ore",
                 "Cibo",
@@ -254,9 +254,9 @@ public class RiempiDbCotroller {
     }
 
     public void inserisciDati() {
-     //   inserisciDatiEvento();
+        inserisciDatiEvento();
      //   inserisciDatiOrtoReferente();
-        inserisciDatiUtente();
+    //   inserisciDatiUtente();
     }
 
     @Autowired
