@@ -5,11 +5,8 @@ import com.univaq.TestAgile.controller.api.EventoController;
 import com.univaq.TestAgile.controller.api.OrtoReferenteController;
 import com.univaq.TestAgile.controller.api.UtenteController;
 import com.univaq.TestAgile.controller.api.ZollaController;
-import com.univaq.TestAgile.model.Evento;
-import com.univaq.TestAgile.model.OrtoReferente;
+import com.univaq.TestAgile.model.*;
 
-import com.univaq.TestAgile.model.Utente;
-import com.univaq.TestAgile.model.Zolla;
 import com.univaq.TestAgile.repository.PartecipazioneRepository;
 import com.univaq.TestAgile.repository.UtenteRepository;
 import com.univaq.TestAgile.repository.ZollaRepository;
@@ -219,7 +216,7 @@ public class UserController {
     }
 
     @GetMapping("/raccogliNellaZolla/{zollaId}")
-    public String raccogliNellaZolla(Model model,@PathVariable("zollaId") Long zollaId) {
+    public String raccogliNellaZolla(Model model, @PathVariable("zollaId") Long zollaId) {
 
 
         Zolla zollaPiantata = zollaRepository.findById(zollaId).orElseThrow(() -> new IllegalArgumentException("Invalid zolla ID"));
@@ -232,6 +229,15 @@ public class UserController {
         zollaRepository.save(zollaPiantata);
 
         return "redirect:/user/ortoOccupato";
+    }
+
+
+    @GetMapping("/task")
+    public String mostraTaskUtente(Model model) {
+        Utente user = utenteController.getUtenteLoggato();
+        List<Task> tasks = user.getTask();
+        model.addAttribute("tasks", tasks);
+        return "utente/taskDesign";
     }
 
 }

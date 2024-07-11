@@ -157,7 +157,7 @@ public class EventoController {
         evento.setAccettato(valoreNuovo);
         eventoRepository.save(evento);
 
-        return "redirect:/mostraEventi";
+        return "redirect:/admin/mostraEventi";
     }
 
     @GetMapping("/get/{id}/")

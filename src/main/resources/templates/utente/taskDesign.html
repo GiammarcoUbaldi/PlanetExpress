@@ -1,0 +1,91 @@
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="/utils/layout">
+<!--    Script-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
+<div layout:fragment="contenuto" class="flex items-center gap-4 flex-col px-4 container mx-auto relative">
+    <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold mt-12 text-verde1">Task di <span
+            th:text="${Utente.getNome()}"></span></h1>
+
+    <button id="aggiungiTaskButton" class="bg-verde1 text-white px-4 py-2 rounded mt-4">Aggiungi Task</button>
+
+    <div id="taskForm" class="hidden mt-4">
+        <input type="text" id="cosaDaFare" placeholder="Cosa da fare" class="border-2 border-gray-300 p-2 rounded">
+        <button id="salvaTaskButton" class="bg-verde1 text-white px-4 py-2 rounded ml-2">Salva Task</button>
+    </div>
+
+    <div class="my-5 flex flex-row items-center  justify-between gap-4 px-4 w-full bg-bianco1 border-2 border-verde1 max-w-[500px] rounded-3xl "
+         th:each="task : ${tasks}" th:data-task-id="${task.id}">
+        <input type="checkbox" class="checkTask scale-150" th:checked="${task.check == 1}" >
+        <span th:text="${task.getCosaDaFare()}"></span>
+        <button class="eliminaTaskButton bg-red-500 text-white px-2 py-1 rounded my-3">Elimina</button>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#aggiungiTaskButton').click(function () {
+                $('#taskForm').toggle();
+            });
+
+            $('#salvaTaskButton').click(function () {
+                var cosaDaFare = $('#cosaDaFare').val();
+                if (cosaDaFare.trim() === "") {
+                    alert("Inserisci una descrizione per il task.");
+                    return;
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/utenti/aggiungiTask',
+                    data: JSON.stringify({cosaDaFare: cosaDaFare, eseguita:0}),
+                    contentType: 'application/json',
+                    success: function () {
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("Errore durante l'aggiunta del task.");
+                    }
+                });
+            });
+
+            $('.checkTask').change(function () {
+                var taskId = $(this).closest('div').data('task-id');
+                var checked = $(this).is(':checked') ? 1 : 0;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/utenti/checkTask/' + taskId,
+                    data: {check: checked},
+                    success: function () {
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("Errore durante l'aggiornamento del task.");
+                    }
+                });
+            });
+
+            $('.eliminaTaskButton').click(function () {
+                if (!confirm("Sei sicuro di voler eliminare questo task?")) {
+                    return;
+                }
+
+                var taskId = $(this).closest('div').data('task-id');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/utenti/rimuoviTask/' + taskId,
+                    success: function () {
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("Errore durante l'eliminazione del task.");
+                    }
+                });
+            });
+        });
+    </script>
+</div>
+
+
+
+</html>

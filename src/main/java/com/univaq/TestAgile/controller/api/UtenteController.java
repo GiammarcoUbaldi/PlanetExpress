@@ -1,8 +1,12 @@
 package com.univaq.TestAgile.controller.api;
 
+import com.univaq.TestAgile.model.Task;
 import com.univaq.TestAgile.model.Utente;
+import com.univaq.TestAgile.repository.TaskRepository;
 import com.univaq.TestAgile.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +22,10 @@ public class UtenteController {
 
     @Autowired
     private UtenteRepository utenteRepository;
+
+    @Autowired
+    private TaskRepository taskRepository;
+
     @GetMapping
     public List<Utente> getAllUtenti() {
         return (List<Utente>) utenteRepository.findAll();
@@ -69,4 +77,39 @@ public class UtenteController {
         }
         return null;
     }
+
+
+    //    TASK
+    @PostMapping("/aggiungiTask")
+    public ResponseEntity<String> aggiungiTask(@RequestBody  Task task) {
+        Utente utente = getUtenteLoggato();
+        task.setUtente(utente);
+        taskRepository.save(task);
+        return ResponseEntity.ok("Task aggiunta con successo");
+    }
+
+    @PostMapping("/rimuoviTask/{taskId}")
+    public ResponseEntity<String> rimuoviTask(@PathVariable Long taskId) {
+        taskRepository.deleteById(taskId);
+        return ResponseEntity.ok("Task cancellata con successo");
+    }
+
+    @PostMapping("/checkTask/{taskId}")
+    public ResponseEntity<String> checkTaskPost(@PathVariable Long taskId, @RequestParam Integer check) {
+        Optional<Task> optionalTask = taskRepository.findById(taskId);
+        if (optionalTask.isPresent()) {
+            Task task = optionalTask.get();
+            task.setCheck(check);
+            taskRepository.save(task);
+            return ResponseEntity.ok("Task aggiornata con successo");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task non trovata");
+    }
+
+    @GetMapping("/getTask")
+    public List<Task> getTask() {
+        Utente utente = getUtenteLoggato();
+        return utente.getTask();
+    }
+
 }

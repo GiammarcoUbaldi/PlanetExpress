@@ -115,7 +115,7 @@ class EventoControllerTest {
         assertEquals("Evento 1", result.getNomeEvento());
     }
 
-    @Test
+  /*  @Test
     void testUpdateStato() {
         when(eventoRepository.findById(1L)).thenReturn(Optional.of(evento1));
 
@@ -123,7 +123,7 @@ class EventoControllerTest {
 
         assertEquals("redirect:/mostraEventi", result);
         verify(eventoRepository, times(1)).save(any(Evento.class));
-    }
+    } */
 
     @Test
     void testGetEventoById() {

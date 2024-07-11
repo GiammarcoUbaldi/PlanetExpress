@@ -53,13 +53,13 @@ public class Utente {
     }
 
     @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = false)
-
     private List<Commento> commenti;
 
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Zolla> zolle;
 
-
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<Task> task;
 
 
     public Utente(String nome, String cognome, String email, String password, String tipoUtente, String sesso, String indirizzo, String nazione, String numeroTelefono) {
@@ -89,6 +89,14 @@ public class Utente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Task> getTask() {
+        return task;
+    }
+
+    public void setTask(List<Task> task) {
+        this.task = task;
     }
 
     public String getCognome() {

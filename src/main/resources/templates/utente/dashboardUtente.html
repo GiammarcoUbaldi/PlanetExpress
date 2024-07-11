@@ -1,4 +1,3 @@
-
 <html lang="it" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="/utils/layout">
 <!--/*@thymesVar id="Utente" type="com.univaq.TestAgile.model.Utente"*/-->
@@ -58,14 +57,14 @@
                      class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
             </div>
         </a>
-        <!--        Eventi-->
-        <!--        <a th:href="@{'/referente/orto/' + ${ortoDelReferente.id}}" id="content-6"-->
-        <!--           class="col-span-6 h-full row-span-2 md:col-span-3 lg:col-span-2 bg-orange-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 flex flex-col items-center cursor-pointer shadow-lg hover:shadow-2xl">-->
-        <!--            <div class="text-3xl font-bold text-verde1">Eventi</div>-->
-        <!--            <div class="flex-grow w-full flex items-center justify-center overflow-hidden">-->
-        <!--                <img src="/img/tipiFesta.png" class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>-->
-        <!--            </div>-->
-        <!--        </a>-->
+        <!--        Task-->
+        <a href="/user/task" id="content-6"
+           class="col-span-6 h-full row-span-2 md:col-span-3 lg:col-span-2 bg-orange-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 flex flex-col items-center cursor-pointer shadow-lg hover:shadow-2xl">
+            <div class="text-3xl font-bold text-verde1">Task</div>
+            <div class="flex-grow w-full flex items-center justify-center overflow-hidden">
+                <img src="/img/task.png" class="max-h-full max-w-full object-cover" alt="tipo in un orto"/>
+            </div>
+        </a>
         <!--Chat-->
         <a href="/no-user/forum" id="content-7"
            class="col-span-6 row-span-1 md:row-span-2 md:col-span-3 lg:col-span-4 max-h-[200px] h-[200px] bg-indigo-300 transition-all duration-300 rounded-3xl border-verde1 hover:border-rosso1 p-4 border-4 grid grid-cols-2 place-content-center place-items-center gap-2 cursor-pointer shadow-lg hover:shadow-2xl">
@@ -75,6 +74,7 @@
                      class="max-h-full max-w-full h-full object-cover" alt="tipo in un orto"/>
             </div>
         </a>
+
 
     </div>
 
@@ -105,7 +105,7 @@
                 targets: element,
                 translateX: translate, // Parte da 250 e arriva a 0
                 translateY: opacity, // Parte da 250 e arriva a 0
-                opacity: [0,1], // Opacità da 0 a 1
+                opacity: [0, 1], // Opacità da 0 a 1
                 easing: 'easeInOutQuad', // Puoi modificare il tipo di easing
                 duration: 800, // Durata dell'animazione in millisecondi
                 delay: anime.stagger(100) // Delay tra ogni animazione per creare un effetto di sequenza
@@ -114,7 +114,7 @@
 
         // Nascondi tutti gli elementi all'inizio
         var contentElements = document.querySelectorAll('[id^="content-"]');
-        contentElements.forEach(function(element) {
+        contentElements.forEach(function (element) {
             element.style.opacity = 0;
         });
 
