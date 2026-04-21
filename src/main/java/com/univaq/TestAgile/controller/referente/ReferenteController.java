@@ -80,9 +80,15 @@ public class ReferenteController {
     public String dashboard(Model model) {
         Utente utente = utenteController.getUtenteLoggato();
         if (utente != null) {
+            model.addAttribute("Utente", utente);
             List<OrtoReferente> ortiDelReferente = ortoReferenteRepository.findByUtente(utente);
-            if (!ortiDelReferente.isEmpty())
-                model.addAttribute("ortoDelReferente", ortiDelReferente.get(0));
+            if (!ortiDelReferente.isEmpty()) {
+                OrtoReferente orto = ortiDelReferente.get(0);
+                model.addAttribute("ortoDelReferente", orto);
+                model.addAttribute("statoOrto", orto.getStato());
+            } else {
+                model.addAttribute("statoOrto", "nessuno");
+            }
         }
         return "referente/dashboardReferente";
     }
